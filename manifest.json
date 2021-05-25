@@ -1,0 +1,12 @@
+{
+    "manifest_version": 3,
+    "name": "Accesa Web",
+    "description": "Complemento para accesibilizar y adaptar páginas web",
+    "version": "0.1",
+    "icons": {
+        "128": "AWLogo.png"
+    },
+    "permissions": [
+        "storage"
+    ]
+}
