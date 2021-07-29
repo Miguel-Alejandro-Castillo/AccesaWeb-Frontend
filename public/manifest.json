@@ -1,20 +1,12 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "name": "Accesa Web",
+  "short_name": "AW",
   "version": "1.0.0",
   "manifest_version": 2,
-  "icons": {
-    "192": "logo192.png",
-    "512": "logo512.png"
-  },
-  "browser_action": {
-    "default_popup": "index.html",
-    "default_title": "Open the popup",
-    "default_icons/icon": {
-      "192": "logo192.png",
-      "512": "logo512.png"
-    }
-  },
+  "default_locale": "en",
+  "author": "Castillo Miguel, Martinez Emilia",
+  "description": "Accesa Web: complemento para accesibilizar y adaptar páginas web",
+  "homepage_url": "",
   "permissions" : [
     "<all_urls>",
     "bookmarks",
@@ -26,6 +18,48 @@
     "topSites",
     "unlimitedStorage"
   ],
-  "content_security_policy": "script-src 'self' 'sha256-5GkODPRVjs4PLHFieW0PXo+v2o5kEUm7NPIGmPlAbdE=' 'unsafe-eval'; object-src 'self'",
-  "options_page": "index.html"
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "options_page": "docs.html",
+  "icons": {
+    "16": "icons/icon16x16.png",
+    "20": "icons/icon20x20.png",
+    "24": "icons/icon24x24.png",
+    "32": "icons/icon32x32.png",
+    "64": "icons/icon64x64.png",
+    "128": "icons/icon128x128.png",
+    "256": "icons/icon256x256.png",
+    "512": "icons/icon512x512.png"
+  },
+  "browser_action": {
+    "default_icons/icon": {
+      "16": "icons/icon16x16.png",
+      "20": "icons/icon20x20.png",
+      "24": "icons/icon24x24.png",
+      "32": "icons/icon32x32.png",
+      "64": "icons/icon64x64.png",
+      "128": "icons/icon128x128.png",
+      "256": "icons/icon256x256.png",
+      "512": "icons/icon512x512.png"
+    }
+  },
+  "content_scripts": [{
+    "matches": ["<all_urls>"],
+    "run_at": "document_end",
+    "match_about_blank": true,
+    "css": ["body.css"],
+    "js": ["content.js"]
+  }],
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+  "web_accessible_resources": [
+    "app.css",
+    "speech-recognizer.html",
+    "native-commands-handler.js",
+    "font-awesome/fontawesome-webfont.eot",
+    "font-awesome/fontawesome-webfont.woff2",
+    "font-awesome/fontawesome-webfont.woff",
+    "font-awesome/fontawesome-webfont.ttf",
+    "font-awesome/fontawesome-webfont.svg"
+  ]
 }

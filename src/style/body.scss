@@ -1,0 +1,8 @@
+body {
+  overflow: auto !important;
+
+  .highlight-selected-element {
+    outline: 1px solid #0275D8;
+    box-shadow: 0 0 5px 5px #0275D8;
+  }
+}
