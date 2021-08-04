@@ -6,7 +6,7 @@
   "default_locale": "en",
   "author": "Castillo Miguel, Martinez Emilia",
   "description": "Accesa Web: complemento para accesibilizar y adaptar páginas web",
-  "homepage_url": "",
+  "homepage_url": "https://github.com/Miguel-Alejandro-Castillo/AccesaWeb-Frontend.git",
   "permissions" : [
     "<all_urls>",
     "bookmarks",
