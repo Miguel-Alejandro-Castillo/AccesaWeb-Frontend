@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "",
   "main": "index.js",
-  "scripts": { 
+  "scripts": {
     "lint": "./node_modules/.bin/eslint --ext .js --ext .jsx src test",
     "lint-watch": "./node_modules/.bin/esw --watch --ext .js --ext .jsx src test",
     "clean-dist": "node ./bin/clean-dist.js",

@@ -58,28 +58,28 @@ function buildManifest() {
 
 function buildExtensionIcon() {
   return new CopyWebpackPlugin([{
-    from: './public/assets/images/icon16x16.png',
+    from: './public/assets/images/AWLogo16.png',
     to: 'icons/icon16x16.png'
   }, {
-    from: './public/assets/images/icon20x20.png',
+    from: './public/assets/images/AWLogo20.png',
     to: 'icons/icon20x20.png'
   }, {
-    from: './public/assets/images/icon24x24.png',
+    from: './public/assets/images/AWLogo24.png',
     to: 'icons/icon24x24.png'
   }, {
-    from: './public/assets/images/icon32x32.png',
+    from: './public/assets/images/AWLogo32.png',
     to: 'icons/icon32x32.png'
   }, {
-    from: './public/assets/images/icon64x64.png',
+    from: './public/assets/images/AWLogo64.png',
     to: 'icons/icon64x64.png'
   }, {
-    from: './public/assets/images/icon128x128.png',
+    from: './public/assets/images/AWLogo128.png',
     to: 'icons/icon128x128.png'
   }, {
-    from: './public/assets/images/icon256x256.png',
+    from: './public/assets/images/AWLogo256.png',
     to: 'icons/icon256x256.png'
   }, {
-    from: './public/assets/images/icon512x512.png',
+    from: './public/assets/images/AWLogo512.png',
     to: 'icons/icon512x512.png'
   }]);
 }
