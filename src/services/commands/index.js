@@ -81,6 +81,11 @@ const coreModules = [
   weekOptions
 ];
 
+//Faltan completar el menu de configuraciones
+const coreSettings = [
+
+];
+
 function saveCommands(context, newCommands, excludeDefaultCommands) {
   commands[context] = (commands[context] || []).concat(newCommands);
 }
@@ -266,6 +271,10 @@ function getActiveModules() {
   return coreModules;
 }
 
+function getActiveSettings() {
+  return coreSettings;
+}
+
 const i18nSeparator = 'i18n-';
 
 function getI18nText(key = '', context, currentLanguage) {
@@ -313,6 +322,7 @@ export default {
   init,
   getI18nText,
   getActiveModules,
+  getActiveSettings,
   findText,
   getStateForSelectedElement,
   executeCommand,

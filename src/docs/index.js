@@ -1,7 +1,7 @@
 global.Promise = global.Promise || require('es6-promise').Promise;
 
 import $ from 'jquery';
-import { getActiveModules } from '../services/commands/index';
+import { getActiveModules, getActiveSettings } from '../services/commands/index';
 import {
   getSelectedLang,
   setLanguage,
@@ -28,8 +28,16 @@ function getModules() {
   return getActiveModules().concat(getImportedModules());
 }
 
+function getSettings() {
+  //Hay que agregarle el concat(getImportedModules()); ??
+  return getActiveSettings();
+}
+
+
 function renderComponents() {
   const modules = getModules();
+  const settings = getSettings();
+
   const $topBarContent = $('#top-bar');
   const TopBarComponent = (<TopBar
     currentLanguage={getSelectedLang()}
@@ -38,7 +46,7 @@ function renderComponents() {
   ReactDOM.render(TopBarComponent, $topBarContent[0]);
 
   const $menu = $('#menu-container');
-  const MenuComponent = (<Menu modules={modules} />);
+  const MenuComponent = (<Menu modules={modules} settings={settings} />);
   ReactDOM.render(MenuComponent, $menu[0]);
 
   const $menuFooter = $('#menu-footer-container');
