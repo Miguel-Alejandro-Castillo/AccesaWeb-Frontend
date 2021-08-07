@@ -29,7 +29,7 @@ function getModules() {
 }
 
 function getSettings() {
-  //Hay que agregarle el concat(getImportedModules()); ??
+  //Hay que agregarle el concat(getImportedModules()); ?? A mi entender, no
   return getActiveSettings();
 }
 
@@ -46,7 +46,9 @@ function renderComponents() {
   ReactDOM.render(TopBarComponent, $topBarContent[0]);
 
   const $menu = $('#menu-container');
-  const MenuComponent = (<Menu modules={modules} settings={settings} />);
+  const MenuComponent = (<Menu modules={modules}
+    settings={settings}
+  />);
   ReactDOM.render(MenuComponent, $menu[0]);
 
   const $menuFooter = $('#menu-footer-container');
@@ -59,6 +61,7 @@ function renderComponents() {
   const $mainContent = $('#main-component');
   const MainComponent = (<Main
     modules={modules}
+    settings={settings}
     removeModule={removeImportedModule}
     continuousMode={getContinuousMode()}
     setContinuousMode={setContinuousMode}

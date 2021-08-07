@@ -31,6 +31,7 @@ import timeOptions from './time-options';
 import topSites from './top-sites';
 import { validateModule } from './validate-i18n';
 import weekOptions from './week-options';
+import addRemoveImages from '../settings/add-remove-images';
 
 let commands = {};
 let contextNames = {};
@@ -83,7 +84,7 @@ const coreModules = [
 
 //Faltan completar el menu de configuraciones
 const coreSettings = [
-
+  addRemoveImages
 ];
 
 function saveCommands(context, newCommands, excludeDefaultCommands) {

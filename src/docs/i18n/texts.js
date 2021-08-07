@@ -2,6 +2,7 @@ export default {
   en: {
     'accept': 'Accept',
     'active-modules': 'Active Modules',
+    'active-settings': 'Active Settings',
     'add-module': 'Add Module',
     'commands': 'Commands',
     'command': 'Command',
@@ -32,6 +33,7 @@ export default {
   es: {
     'accept': 'Aceptar',
     'active-modules': 'Módulos Activos',
+    'active-settings': 'Configuraciones Activas',
     'add-module': 'Agregar Módulo',
     'commands': 'Comandos',
     'command': 'Comando',

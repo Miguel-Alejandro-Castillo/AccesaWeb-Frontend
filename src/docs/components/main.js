@@ -1,12 +1,14 @@
 import _ from 'lodash';
 import { getI18nText } from '../i18n/i18n';
 import ModuleDetail from './module-detail';
+import SettingDetail from './setting-detail';
 import React from 'react';
 
 export default class Main extends React.Component {
   static propTypes = {
     removeModule: React.PropTypes.func.isRequired,
     modules: React.PropTypes.array.isRequired,
+    settings: React.PropTypes.array.isRequired,
     setContinuousMode: React.PropTypes.func.isRequired,
     continuousMode: React.PropTypes.bool.isRequired
   }
@@ -51,9 +53,15 @@ export default class Main extends React.Component {
     return _.compact(modules);
   }
 
+  getSettings() {
+    let settings = this.props.settings;
+    return _.compact(settings);
+  }
+
   render() {
     return (
       <div className='right_col module-description' role='main'>
+
         <h1>{getI18nText('speech-recognizer-mode')}</h1>
         <div className='x_panel speech-recognizer-options'>
           <p className='speech-recognizer-mode-description'>{getI18nText('speech-recognizer-mode-description')}</p>
@@ -70,6 +78,12 @@ export default class Main extends React.Component {
             <p>{getI18nText('intermittent-mode-description')}</p>
           </div>
         </div>
+
+        <h1>{getI18nText('active-settings')}</h1>
+        { this.getSettings()
+          .sort((settingA, settingB) => settingA.name < settingB.name ? -1 : 1)
+          .map(setting => <SettingDetail setting={setting} key={setting.name} />)
+        }
 
         <h1>{getI18nText('active-modules')}</h1>
         {this.getModules()
