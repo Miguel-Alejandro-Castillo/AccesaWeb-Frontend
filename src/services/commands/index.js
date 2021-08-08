@@ -32,6 +32,8 @@ import topSites from './top-sites';
 import { validateModule } from './validate-i18n';
 import weekOptions from './week-options';
 import addRemoveImages from '../settings/add-remove-images';
+import menuSettings from '../menus/menuSettings';
+import menuModules from '../menus/menuModules';
 
 let commands = {};
 let contextNames = {};
@@ -85,6 +87,11 @@ const coreModules = [
 //Faltan completar el menu de configuraciones
 const coreSettings = [
   addRemoveImages
+];
+
+const coreItemsMenu = [
+  menuSettings,
+  menuModules
 ];
 
 function saveCommands(context, newCommands, excludeDefaultCommands) {
@@ -276,6 +283,9 @@ function getActiveSettings() {
   return coreSettings;
 }
 
+function getActiveItemsMenu() {
+  return coreItemsMenu;
+}
 const i18nSeparator = 'i18n-';
 
 function getI18nText(key = '', context, currentLanguage) {
@@ -324,6 +334,7 @@ export default {
   getI18nText,
   getActiveModules,
   getActiveSettings,
+  getActiveItemsMenu,
   findText,
   getStateForSelectedElement,
   executeCommand,

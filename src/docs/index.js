@@ -1,7 +1,7 @@
 global.Promise = global.Promise || require('es6-promise').Promise;
 
 import $ from 'jquery';
-import { getActiveModules, getActiveSettings } from '../services/commands/index';
+import { getActiveModules, getActiveSettings, getActiveItemsMenu} from '../services/commands/index';
 import {
   getSelectedLang,
   setLanguage,
@@ -33,10 +33,14 @@ function getSettings() {
   return getActiveSettings();
 }
 
+function getItemsMenu() {
+  return getActiveItemsMenu();
+}
 
 function renderComponents() {
   const modules = getModules();
   const settings = getSettings();
+  const itemsMenu = getItemsMenu();
 
   const $topBarContent = $('#top-bar');
   const TopBarComponent = (<TopBar
@@ -48,6 +52,7 @@ function renderComponents() {
   const $menu = $('#menu-container');
   const MenuComponent = (<Menu modules={modules}
     settings={settings}
+    itemsMenu={itemsMenu}
   />);
   ReactDOM.render(MenuComponent, $menu[0]);
 
