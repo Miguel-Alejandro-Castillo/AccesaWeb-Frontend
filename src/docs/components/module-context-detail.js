@@ -49,6 +49,7 @@ HtmlExample.propTypes = {
 function ContextDetail({context}) {
   return (
     <div>
+      {_.isFunction(context.functionComponent) ? context.functionComponent() : null}
       {!_.isEmpty(context.commands) ?
         <h3 className='context-title'>{getI18nText('i18n-context')} {context.name}</h3> : null}
       {_.map(context.commands, (commands, group) => <CommandList commands={commands} key={group} group={!_.isEmpty(context.commands) ? group : null} />)}

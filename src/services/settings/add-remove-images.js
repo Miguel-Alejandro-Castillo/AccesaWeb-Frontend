@@ -7,12 +7,12 @@ function Form({isAddImages, onChangeAddImages}) {
     <div>
       <div className='radio'>
         <label>
-          <input type='radio' checked={isAddImages} onChange={() => onChangeAddImages(true)}/> <span>{getI18nText('continuous-mode')}</span>
+          <input type='radio' checked={isAddImages} onChange={() => onChangeAddImages(true)}/> <span>{getI18nText('add-image')}</span>
         </label>
       </div>
       <div className='radio'>
         <label>
-          <input type='radio' checked={!isAddImages} onChange={() => onChangeAddImages(false)}/> <span>{getI18nText('intermittent-mode')}</span>
+          <input type='radio' checked={!isAddImages} onChange={() => onChangeAddImages(false)}/> <span>{getI18nText('remove-image')}</span>
         </label>
       </div>
     </div>
@@ -36,7 +36,7 @@ function setAddImages(value) {
   }
 }
 
-function RenderFunction() {
+function AddRemoveImageFunction() {
   return (
     <Form isAddImages={isAddImages()} onChangeAddImages={setAddImages}/>
   );
@@ -45,17 +45,16 @@ function RenderFunction() {
 export default {
   name: 'i18n-name',
   description: 'i18n-description',
-  icon: 'fa fa-mouse-pointer',
+  icon: 'fa fa-image',
   i18n: {
     en: {
-      'name': 'Add/Remove Images',
+      'name': 'Images',
       'description': 'Add or remove images'
     },
     es: {
-      'name': 'Agregar/Quitar imagenes',
+      'name': 'Imagenes',
       'description': 'Agregar o quitar imagenes'
     }
   },
-  contexts: [],
-  renderFunctionComponent: RenderFunction
+  contexts: [{ functionComponent: AddRemoveImageFunction }]
 };

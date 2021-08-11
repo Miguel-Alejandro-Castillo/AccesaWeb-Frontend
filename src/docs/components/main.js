@@ -42,7 +42,8 @@ export default class Main extends React.Component {
             return {
               name: getI18nText(context.name || context.context, context.i18n),
               commands: this.getCommandsByGroup(commands, context),
-              htmlExample: getI18nText(context.htmlExample, context.i18n)
+              htmlExample: getI18nText(context.htmlExample, context.i18n),
+              functionComponent: context.functionComponent
             };
           })
         };
