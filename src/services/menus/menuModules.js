@@ -59,14 +59,17 @@ const items = [
 ];
 export default {
   name: 'i18n-name',
+  titleMain: 'i18n-titleMain',
   icon: 'fa fa-cubes',
   items: items,
   i18n: {
     en: {
-      'name': 'Interaction mode'
+      'name': 'Interaction mode',
+      'titleMain': 'Active Modules'
     },
     es: {
-      'name': 'Modo de Interacción'
+      'name': 'Modo de Interacción',
+      'titleMain': 'Módulos Activos'
     }
   }
 };

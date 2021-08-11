@@ -1,14 +1,12 @@
 import _ from 'lodash';
 import { getI18nText } from '../i18n/i18n';
 import ModuleDetail from './module-detail';
-import SettingDetail from './setting-detail';
 import React from 'react';
 
 export default class Main extends React.Component {
   static propTypes = {
+    itemsMenu: React.PropTypes.array.isRequired,
     removeModule: React.PropTypes.func.isRequired,
-    modules: React.PropTypes.array.isRequired,
-    settings: React.PropTypes.array.isRequired,
     setContinuousMode: React.PropTypes.func.isRequired,
     continuousMode: React.PropTypes.bool.isRequired
   }
@@ -30,16 +28,16 @@ export default class Main extends React.Component {
     return groups;
   }
 
-  getModules() {
-    let modules = this.props.modules.map(module => {
-      if (module.name) {
+  getItems(items) {
+    let aux_items = items.map(item => {
+      if (item.name) {
         return {
-          icon: module.icon,
-          id: module.id,
-          imported: module.imported,
-          name: getI18nText(module.name, module.i18n),
-          description: getI18nText(module.description, module.i18n),
-          contexts: module.contexts.map(context => {
+          icon: item.icon,
+          id: item.id,
+          imported: item.imported,
+          name: getI18nText(item.name, item.i18n),
+          description: getI18nText(item.description, item.i18n),
+          contexts: item.contexts.map(context => {
             const commands = (context.commands || []).filter(command => command.name !== '*');
             return {
               name: getI18nText(context.name || context.context, context.i18n),
@@ -50,12 +48,7 @@ export default class Main extends React.Component {
         };
       }
     });
-    return _.compact(modules);
-  }
-
-  getSettings() {
-    let settings = this.props.settings;
-    return _.compact(settings);
+    return _.compact(aux_items);
   }
 
   render() {
@@ -78,21 +71,20 @@ export default class Main extends React.Component {
             <p>{getI18nText('intermittent-mode-description')}</p>
           </div>
         </div>
-
-        <h1>{getI18nText('active-settings')}</h1>
-        { this.getSettings()
-          .sort((settingA, settingB) => settingA.name < settingB.name ? -1 : 1)
-          .map(setting => <SettingDetail setting={setting} key={setting.name} />)
+        {
+          this.props.itemsMenu
+          .map(itemMenu => (
+            <div>
+              <h1>{getI18nText(itemMenu.titleMain, itemMenu.i18n)}</h1>
+              { this.getItems(itemMenu.items).sort((itemA, itemB) => itemA.name < itemB.name ? -1 : 1)
+                .map(item => <ModuleDetail
+                  module={item}
+                  removeModule={this.props.removeModule}
+                  key={item.name}
+              />)}
+            </div>
+          ))
         }
-
-        <h1>{getI18nText('active-modules')}</h1>
-        {this.getModules()
-          .sort((moduleA, moduleB) => moduleA.name < moduleB.name ? -1 : 1)
-          .map(module => <ModuleDetail
-            module={module}
-            removeModule={this.props.removeModule}
-            key={module.name}
-          />)}
       </div>
     );
   }

@@ -50,6 +50,15 @@ export function onContinuousModeChange(callback) {
   document.addEventListener('continuousModeChange', () => callback(getContinuousMode()));
 }
 
+export function onChangeInput(callback) {
+  window.addEventListener('storage', event => {
+    if (event.key.startsWith('input.name.')) {
+      callback();
+    }
+  }, false);
+  document.addEventListener('changeInput', () => callback());
+}
+
 export function getInitialContext() {
   return 'root';
 }

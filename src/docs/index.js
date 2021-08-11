@@ -1,19 +1,19 @@
 global.Promise = global.Promise || require('es6-promise').Promise;
 
 import $ from 'jquery';
-import { getActiveModules, getActiveSettings, getActiveItemsMenu} from '../services/commands/index';
+import { getActiveItemsMenu } from '../services/commands/index';
 import {
   getSelectedLang,
   setLanguage,
   onLanguageChange,
   importModule,
   onImportedModulesChange,
-  getImportedModules,
   removeImportedModule,
   moduleCanBeImported,
   getContinuousMode,
   setContinuousMode,
-  onContinuousModeChange } from '../services/appSettings';
+  onContinuousModeChange,
+  onChangeInput} from '../services/appSettings';
 import Main from './components/main';
 import Menu from './components/menu';
 import MenuFooter from './components/menu-footer';
@@ -24,22 +24,11 @@ import SpeechRecognizer from '../services/speech-recognizer';
 
 SpeechRecognizer.init();
 
-function getModules() {
-  return getActiveModules().concat(getImportedModules());
-}
-
-function getSettings() {
-  //Hay que agregarle el concat(getImportedModules()); ?? A mi entender, no
-  return getActiveSettings();
-}
-
 function getItemsMenu() {
   return getActiveItemsMenu();
 }
 
 function renderComponents() {
-  const modules = getModules();
-  const settings = getSettings();
   const itemsMenu = getItemsMenu();
 
   const $topBarContent = $('#top-bar');
@@ -50,9 +39,7 @@ function renderComponents() {
   ReactDOM.render(TopBarComponent, $topBarContent[0]);
 
   const $menu = $('#menu-container');
-  const MenuComponent = (<Menu modules={modules}
-    settings={settings}
-    itemsMenu={itemsMenu}
+  const MenuComponent = (<Menu itemsMenu={itemsMenu}
   />);
   ReactDOM.render(MenuComponent, $menu[0]);
 
@@ -64,9 +51,7 @@ function renderComponents() {
   ReactDOM.render(MenuFooterComponent, $menuFooter[0]);
 
   const $mainContent = $('#main-component');
-  const MainComponent = (<Main
-    modules={modules}
-    settings={settings}
+  const MainComponent = (<Main itemsMenu={itemsMenu}
     removeModule={removeImportedModule}
     continuousMode={getContinuousMode()}
     setContinuousMode={setContinuousMode}
@@ -79,3 +64,4 @@ renderComponents();
 onLanguageChange(renderComponents);
 onContinuousModeChange(renderComponents);
 onImportedModulesChange(renderComponents);
+onChangeInput(renderComponents);

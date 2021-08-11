@@ -13,6 +13,7 @@ function SettingDetail({setting}) {
             id={setting.id}
             removeModule={()=>{}}
           />
+          {setting.renderFunctionComponent()}
         </div>
       </div>
     </div>
@@ -23,7 +24,8 @@ SettingDetail.propTypes = {
     id: React.PropTypes.string,
     name: React.PropTypes.string.isRequired,
     description: React.PropTypes.string.isRequired,
-    icon: React.PropTypes.string
+    icon: React.PropTypes.string,
+    renderFunctionComponent: React.PropTypes.func
   }).isRequired
 };
 export default SettingDetail;

@@ -34,7 +34,7 @@ import weekOptions from './week-options';
 import addRemoveImages from '../settings/add-remove-images';
 import menuSettings from '../menus/menuSettings';
 import menuModules from '../menus/menuModules';
-
+import { getImportedModules } from '../appSettings';
 let commands = {};
 let contextNames = {};
 let handlersOnSelectElement = {};
@@ -87,11 +87,6 @@ const coreModules = [
 //Faltan completar el menu de configuraciones
 const coreSettings = [
   addRemoveImages
-];
-
-const coreItemsMenu = [
-  menuSettings,
-  menuModules
 ];
 
 function saveCommands(context, newCommands, excludeDefaultCommands) {
@@ -284,6 +279,12 @@ function getActiveSettings() {
 }
 
 function getActiveItemsMenu() {
+  menuModules.items = getActiveModules().concat(getImportedModules());
+  menuSettings.items = getActiveSettings();
+  const coreItemsMenu = [
+    menuSettings,
+    menuModules
+  ];
   return coreItemsMenu;
 }
 const i18nSeparator = 'i18n-';
