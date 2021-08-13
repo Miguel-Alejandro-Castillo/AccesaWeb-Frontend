@@ -32,6 +32,8 @@ import topSites from './top-sites';
 import { validateModule } from './validate-i18n';
 import weekOptions from './week-options';
 import addRemoveImages from '../settings/add-remove-images';
+import fontSize from '../settings/font_size';
+import contrast from '../settings/contrast_adjustment';
 import menuSettings from '../menus/menuSettings';
 import menuModules from '../menus/menuModules';
 import { getImportedModules } from '../appSettings';
@@ -86,7 +88,9 @@ const coreModules = [
 
 //Faltan completar el menu de configuraciones
 const coreSettings = [
-  addRemoveImages
+  addRemoveImages,
+  contrast,
+  fontSize
 ];
 
 function saveCommands(context, newCommands, excludeDefaultCommands) {

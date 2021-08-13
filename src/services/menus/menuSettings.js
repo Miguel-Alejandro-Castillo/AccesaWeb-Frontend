@@ -1,18 +1,17 @@
 import addRemoveImages from '../settings/add-remove-images';
-const items = [addRemoveImages];
+import fontSize from '../settings/font_size';
+import contrast from '../settings/contrast_adjustment';
+const items = [addRemoveImages, fontSize, contrast];
 export default {
   name: 'i18n-name',
-  titleMain: 'i18n-titleMain',
   icon: 'fa fa-cogs',
   items: items,
   i18n: {
     en: {
-      'name': 'Settings',
-      'titleMain': 'Active Settings'
+      'name': 'Settings'
     },
     es: {
-      'name': 'Configuraciones',
-      'titleMain': 'Configuraciones Activas'
+      'name': 'Configuraciones'
     }
   }
 };
