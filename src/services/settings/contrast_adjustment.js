@@ -10,15 +10,15 @@ const options = [
     value: 'blackYellow'
   }
 ];
-function Form({ onChangeContrast }) {
+function Form({ valueContrast, onChangeContrast }) {
   return (
     <div>
       <label>{getI18nText('select-a-contrast')}</label><br/>
-        <select value={valueContrast} onChange={() => onChangeContrast()}>
-          {options.map((option) => (
-            <option value={option.value} key={option.value}>{option.label}</option>
-          ))}
-        </select>
+      <select value={valueContrast} onChange={e => onChangeContrast(e.target.value)}>
+        {options.map((option) => (
+          <option value={option.value} key={option.value}>{option.label}</option>
+        ))}
+      </select>
     </div>
   );
 }
