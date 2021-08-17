@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import safeEval from 'safe-eval';
+import { getActiveSettings } from './commands/index';
 
 const languages = {
   en: 'en-US',
@@ -27,7 +28,11 @@ export function onLanguageChange(callback) {
       callback(getSelectedLang());
     }
   }, false);
-  document.addEventListener('languageChange', () => callback(getSelectedLang()));
+  document.addEventListener('languageChange', (event) => {
+    console.log('ENTREE POR EL onLanguageChange 222');
+    console.log(event);
+    callback(getSelectedLang());
+  });
 }
 
 export function getContinuousMode() {
@@ -125,4 +130,12 @@ export function removeImportedModule(id) {
 export function moduleCanBeImported(source) {
   const module = getModuleFromSource(source);
   return module && module.name;
+}
+
+export function getSettingsValues() {
+  const result = {};
+  getActiveSettings().filter(setting => setting.propertySettingLocalStorage ).forEach(setting => {
+    result[setting.propertySettingLocalStorage] = localStorage.getItem(setting.propertySettingLocalStorage);
+  });
+  return result;
 }

@@ -12,6 +12,8 @@ import {
   init as initBackground,
   handleBackgroundData } from './actions/background_actions';
 import fontAwesome from './services/font-awesome';
+import { getActiveSettings } from './services/commands/index';
+import _ from 'lodash';
 
 const getURL = window.chrome.runtime.getURL;
 
@@ -65,6 +67,15 @@ function initEvents(store, rootElement) {
   const changeBackgroundHandler = data => {
     if (data.importedModules) {
       getInitialData(initialData => initState(store, {...initialData, rootElement}));
+    }
+    const activeSettings = getActiveSettings();
+    if (!_.isEmpty(data.settingsValues) && !_.isEmpty(activeSettings)) {
+      activeSettings.forEach( setting => {
+        if (setting.action && setting.propertySettingLocalStorage) {
+          const valueSetting = data.settingsValues[setting.propertySettingLocalStorage];
+          setting.action(valueSetting);
+        }
+      });
     }
     store.dispatch(handleBackgroundData(data));
   };

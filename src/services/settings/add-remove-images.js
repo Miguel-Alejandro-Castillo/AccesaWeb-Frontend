@@ -1,6 +1,8 @@
 import React from 'react';
 import { getI18nText } from '../../docs/i18n/i18n';
+import $ from 'jquery';
 
+const propertySettingLocalStorage = 'input.name.addImages';
 
 function Form({isAddImages, onChangeAddImages}) {
   return (
@@ -26,13 +28,21 @@ Form.propTypes = {
 
 
 function isAddImages() {
-  return localStorage['input.name.addImages'] === 'false' ? false : true;
+  return localStorage.getItem(propertySettingLocalStorage) === 'false' ? false : true;
 }
 
 function setAddImages(value) {
   if (isAddImages() !== value) {
-    localStorage.setItem('input.name.addImages', value);
+    localStorage.setItem(propertySettingLocalStorage, value);
     document.dispatchEvent(new Event('changeInput'));
+  }
+}
+
+function action(valueSetting) {
+  if (valueSetting === 'false') {
+    $('img').css({ 'display': 'none !important', 'visibility': 'hidden' });
+  } else {
+    $('img').css({ 'display': 'block !important', 'visibility': 'visible' });
   }
 }
 
@@ -56,5 +66,7 @@ export default {
       'description': 'Agregar o quitar imagenes'
     }
   },
-  contexts: [{ functionComponent: AddRemoveImageFunction }]
+  contexts: [{ functionComponent: AddRemoveImageFunction }],
+  propertySettingLocalStorage: propertySettingLocalStorage,
+  'action': action
 };

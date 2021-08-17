@@ -3,7 +3,10 @@ import {
   getInitialContext,
   onLanguageChange,
   getSelectedLang,
-  onImportedModulesChange
+  onImportedModulesChange,
+  onContinuousModeChange,
+  onChangeInput,
+  getSettingsValues
 } from './appSettings';
 import _ from 'lodash';
 import log from 'loglevel';
@@ -139,6 +142,12 @@ function sendLang() {
   });
 }
 
+function sendSettingsValues() {
+  sendDataToTabs({
+    settingsValues: getSettingsValues()
+  });
+}
+
 function sendTurnedOn() {
   tabs.query({url: docsUrl}, function(docsTabs) {
     sendDataToTabs({
@@ -193,6 +202,9 @@ chrome.runtime.onMessage.addListener(handleMessageFromContent);
 chrome.tabs.onRemoved.addListener(sendTurnedOn);
 
 sendLang();
+sendSettingsValues();
 sendTurnedOn();
 onLanguageChange(sendLang);
 onImportedModulesChange(sendImportedModules);
+onContinuousModeChange();
+onChangeInput(sendSettingsValues);

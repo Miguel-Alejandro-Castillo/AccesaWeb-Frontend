@@ -16,7 +16,7 @@ function Form({ onChangeContrast }) {
       <label>{getI18nText('select-a-contrast')}</label><br/>
         <select value={valueContrast} onChange={() => onChangeContrast()}>
           {options.map((option) => (
-            <option value={option.value}>{option.label}</option>
+            <option value={option.value} key={option.value}>{option.label}</option>
           ))}
         </select>
     </div>
@@ -32,8 +32,8 @@ function setContrast(value) {
   localStorage.setItem('input.name.contrast', value);
   document.dispatchEvent(new Event('changeInput'));
 }
-function valueContrast(value) {
-  return localStorage.getItem('input.name.contrast');
+function valueContrast() {
+  return localStorage.getItem('input.name.contrast') ? localStorage.getItem('input.name.contrast') : '';
 }
 function ContrastFunction() {
   return (
