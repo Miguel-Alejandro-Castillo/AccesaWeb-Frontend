@@ -172,7 +172,8 @@ function getInitialData(sender, actionValue, sendResponse) {
       speechRecognizerState: {
         ...lastSpeechRecognizerState,
         text: []
-      }
+      },
+      settingsValues: getSettingsValues()
     });
   });
   return true;

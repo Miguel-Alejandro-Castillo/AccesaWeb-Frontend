@@ -29,8 +29,6 @@ export function onLanguageChange(callback) {
     }
   }, false);
   document.addEventListener('languageChange', (event) => {
-    console.log('ENTREE POR EL onLanguageChange 222');
-    console.log(event);
     callback(getSelectedLang());
   });
 }

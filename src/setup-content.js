@@ -68,15 +68,7 @@ function initEvents(store, rootElement) {
     if (data.importedModules) {
       getInitialData(initialData => initState(store, {...initialData, rootElement}));
     }
-    const activeSettings = getActiveSettings();
-    if (!_.isEmpty(data.settingsValues) && !_.isEmpty(activeSettings)) {
-      activeSettings.forEach( setting => {
-        if (setting.action && setting.propertySettingLocalStorage) {
-          const valueSetting = data.settingsValues[setting.propertySettingLocalStorage];
-          setting.action(valueSetting);
-        }
-      });
-    }
+    executeSettingAction(data);
     store.dispatch(handleBackgroundData(data));
   };
 
@@ -90,6 +82,18 @@ function initEvents(store, rootElement) {
   window.chrome.extension.onMessage.addListener(changeBackgroundHandler);
 }
 
+function executeSettingAction(data) {
+  const activeSettings = getActiveSettings();
+  if (!_.isEmpty(data.settingsValues) && !_.isEmpty(activeSettings)) {
+    activeSettings.forEach( setting => {
+      if (setting.action && setting.propertySettingLocalStorage) {
+        const valueSetting = data.settingsValues[setting.propertySettingLocalStorage];
+        setting.action(valueSetting);
+      }
+    });
+  }
+}
+
 function initApp(initialData) {
   const containers = initUi();
   initialData = {
@@ -98,6 +102,7 @@ function initApp(initialData) {
   };
   const store = configureStore({});
   looseFocus(initialData);
+  executeSettingAction(initialData);
   initState(store, initialData);
   initEvents(store, containers.shadowRootElement);
   ReactDOM.render(<Provider store={store}><Main /></Provider>, containers.appContainer);
