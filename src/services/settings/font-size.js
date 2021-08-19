@@ -1,7 +1,7 @@
 export default {
   name: 'i18n-name',
   description: 'i18n-description',
-  icon: 'fa fa-mouse-pointer',
+  icon: 'fa fa-font',
   i18n: {
     en: {
       'name': 'Font size',
