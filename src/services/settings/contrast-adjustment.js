@@ -1,6 +1,11 @@
 import React from 'react';
 import { getI18nText } from '../../docs/i18n/i18n';
+import $ from 'jquery';
 const options = [
+  {
+    label: getI18nText('unselected'),
+    value: 'sinContraste'
+  },
   {
     label: getI18nText('blackWhite'),
     value: 'blackWhite'
@@ -10,6 +15,8 @@ const options = [
     value: 'blackYellow'
   }
 ];
+const propertySettingLocalStorage = 'input.name.contrast';
+
 function Form({ valueContrast, onChangeContrast }) {
   return (
     <div>
@@ -29,21 +36,38 @@ Form.propTypes = {
 };
 
 function setContrast(value) {
-  localStorage.setItem('input.name.contrast', value);
+  localStorage.setItem(propertySettingLocalStorage, value);
   document.dispatchEvent(new Event('changeInput'));
 }
+
 function valueContrast() {
-  return localStorage.getItem('input.name.contrast') ? localStorage.getItem('input.name.contrast') : '';
+  return localStorage.getItem(propertySettingLocalStorage) ? localStorage.getItem(propertySettingLocalStorage) : '';
 }
 function ContrastFunction() {
   return (
     <Form valueContrast={valueContrast()} onChangeContrast={setContrast} />
   );
 }
+
+function action(valueSetting) {
+  if (valueSetting === 'blackWhite') {
+    //escala de grises
+    $('#div').each(function() {
+      $(this).css('background-color', 'white');
+      $(this).css('color', 'black');
+    });
+  } else if (valueSetting === 'blackYellow') {
+    $('#div').each(function() {
+      $(this).css('background-color', 'white');
+      $(this).css('color', 'black');
+    });
+  }
+}
+
 export default {
   name: 'i18n-name',
   description: 'i18n-description',
-  icon: 'fa fa-mouse-pointer',
+  icon: 'fa fa-adjust',
   i18n: {
     en: {
       'name': 'Contrast',
@@ -54,5 +78,7 @@ export default {
       'description': 'Cambia el contraste'
     }
   },
-  contexts: [{ functionComponent: ContrastFunction }]
+  contexts: [{ functionComponent: ContrastFunction }],
+  propertySettingLocalStorage: propertySettingLocalStorage,
+  'action': action
 };
