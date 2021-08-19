@@ -31,12 +31,14 @@ import timeOptions from './time-options';
 import topSites from './top-sites';
 import { validateModule } from './validate-i18n';
 import weekOptions from './week-options';
-import addRemoveImages from '../settings/add-remove-images';
-import fontSize from '../settings/font_size';
-import contrast from '../settings/contrast_adjustment';
+import addRemoveImages from '../settings/show-hide-images';
+import fontSize from '../settings/font-size';
+import contrast from '../settings/contrast-adjustment';
+import onOffRecognition from '../settings/on-off-recognition';
 import menuSettings from '../menus/menuSettings';
 import menuModules from '../menus/menuModules';
 import { getImportedModules } from '../appSettings';
+import htmlAccesibility from '../settings/html-accesibility';
 let commands = {};
 let contextNames = {};
 let handlersOnSelectElement = {};
@@ -90,7 +92,9 @@ const coreModules = [
 const coreSettings = [
   addRemoveImages,
   contrast,
-  fontSize
+  fontSize,
+  onOffRecognition,
+  htmlAccesibility
 ];
 
 function saveCommands(context, newCommands, excludeDefaultCommands) {

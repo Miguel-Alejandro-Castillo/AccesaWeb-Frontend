@@ -2,19 +2,19 @@ import React from 'react';
 import { getI18nText } from '../../docs/i18n/i18n';
 import $ from 'jquery';
 
-const propertySettingLocalStorage = 'input.name.addImages';
+const propertySettingLocalStorage = 'input.name.hideImages';
 
-function Form({isAddImages, onChangeAddImages}) {
+function Form({isHideImages, onChangeHideImages}) {
   return (
     <div>
       <div className='radio'>
         <label>
-          <input type='radio' checked={isAddImages} onChange={() => onChangeAddImages(true)}/> <span>{getI18nText('add-image')}</span>
+          <input type='radio' checked={isHideImages} onChange={() => onChangeHideImages(true)}/> <span>{getI18nText('show-image')}</span>
         </label>
       </div>
       <div className='radio'>
         <label>
-          <input type='radio' checked={!isAddImages} onChange={() => onChangeAddImages(false)}/> <span>{getI18nText('remove-image')}</span>
+          <input type='radio' checked={!isHideImages} onChange={() => onChangeHideImages(false)}/> <span>{getI18nText('hide-image')}</span>
         </label>
       </div>
     </div>
@@ -22,17 +22,17 @@ function Form({isAddImages, onChangeAddImages}) {
 }
 
 Form.propTypes = {
-  isAddImages: React.PropTypes.bool.isRequired,
-  onChangeAddImages: React.PropTypes.func.isRequired
+  isHideImages: React.PropTypes.bool.isRequired,
+  onChangeHideImages: React.PropTypes.func.isRequired
 };
 
 
-function isAddImages() {
+function isHideImages() {
   return localStorage.getItem(propertySettingLocalStorage) === 'false' ? false : true;
 }
 
-function setAddImages(value) {
-  if (isAddImages() !== value) {
+function setHideImages(value) {
+  if (isHideImages() !== value) {
     localStorage.setItem(propertySettingLocalStorage, value);
     document.dispatchEvent(new Event('changeInput'));
   }
@@ -46,9 +46,9 @@ function action(valueSetting) {
   }
 }
 
-function AddRemoveImageFunction() {
+function ShowHideImageFunction() {
   return (
-    <Form isAddImages={isAddImages()} onChangeAddImages={setAddImages}/>
+    <Form isHideImages={isHideImages()} onChangeHideImages={setHideImages}/>
   );
 }
 
@@ -59,14 +59,14 @@ export default {
   i18n: {
     en: {
       'name': 'Images',
-      'description': 'Add or remove images'
+      'description': 'Show/hide images'
     },
     es: {
       'name': 'Imagenes',
-      'description': 'Agregar o quitar imagenes'
+      'description': 'Mostrar/ocultar imagenes'
     }
   },
-  contexts: [{ functionComponent: AddRemoveImageFunction }],
+  contexts: [{ functionComponent: ShowHideImageFunction }],
   propertySettingLocalStorage: propertySettingLocalStorage,
   'action': action
 };
