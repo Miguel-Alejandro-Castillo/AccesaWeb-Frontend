@@ -40,9 +40,9 @@ function setHideImages(value) {
 
 function action(valueSetting) {
   if (valueSetting === 'false') {
-    $('img').css({ 'display': 'none !important', 'visibility': 'hidden' });
+    $('img').css({ 'display': 'none', 'visibility': 'hidden' });
   } else {
-    $('img').css({ 'display': 'block !important', 'visibility': 'visible' });
+    $('img').css({ 'display': 'block', 'visibility': 'visible' });
   }
 }
 
