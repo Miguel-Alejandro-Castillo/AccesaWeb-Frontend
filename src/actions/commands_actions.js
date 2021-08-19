@@ -88,7 +88,12 @@ function updateSelectedElement(el) {
   return (dispatch, getState) => {
     _.defer(() => {
       el = el || document.activeElement;
-      if (el.getAttribute('id') === 'browser-voice-control') {
+      /*
+      Emii con este fix se resuelve el hecho de cliquear sobre el select de contraste,
+      No se mostrara el odioso cartel del microfono
+      Nota: para otro elemeento agregar class _not-focuseable-element para que funcione
+      */
+      if (el.getAttribute('id') === 'browser-voice-control' || el.classList.contains('_not-focuseable-element')) {
         return;
       }
       const state = getState().commands;

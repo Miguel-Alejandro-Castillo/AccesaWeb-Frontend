@@ -14,7 +14,7 @@ function Form({ valueContrast, onChangeContrast }) {
   return (
     <div>
       <label>{getI18nText('select-a-contrast')}</label><br/>
-      <select value={valueContrast} onChange={e => onChangeContrast(e.target.value)}>
+      <select className={'_not-focuseable-element'} value={valueContrast} onChange={e => onChangeContrast(e.target.value)}>
         {options.map((option) => (
           <option value={option.value} key={option.value}>{option.label}</option>
         ))}
