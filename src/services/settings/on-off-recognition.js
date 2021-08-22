@@ -4,7 +4,6 @@ import { getContinuousMode, setContinuousMode} from '../appSettings';
 //import $ from 'jquery';
 
 const propertySettingLocalStorage = 'input.name.onRecognition';
-const continuousMode=getContinuousMode();
 
 function Form({isOnRecognition, onChangeOnRecognition, continuousMode, setContinuousMode}) {
   return (
@@ -43,10 +42,8 @@ Form.propTypes = {
   isOnRecognition: React.PropTypes.bool.isRequired,
   onChangeOnRecognition: React.PropTypes.func.isRequired,
   setContinuousMode: React.PropTypes.func.isRequired,
-  getContinuousMode: React.PropTypes.func.isRequired,
   continuousMode: React.PropTypes.bool.isRequired
 };
-
 
 function isOnRecognition() {
   return localStorage.getItem(propertySettingLocalStorage) === 'false' ? false : true;
@@ -69,7 +66,7 @@ function action(valueSetting) {
 
 function OnOffRecognition() {
   return (
-    <Form isOnRecognition={isOnRecognition()} onChangeOnRecognition={setOnRecognition}/>
+    <Form isOnRecognition={isOnRecognition()} onChangeOnRecognition={setOnRecognition} continuousMode={getContinuousMode()} setContinuousMode={setContinuousMode}/>
   );
 }
 
