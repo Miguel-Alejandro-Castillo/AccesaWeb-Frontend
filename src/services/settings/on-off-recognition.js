@@ -4,7 +4,7 @@ import { getContinuousMode, setContinuousMode} from '../appSettings';
 //import $ from 'jquery';
 
 const propertySettingLocalStorage = 'input.name.onRecognition';
-const continuousMode=getContinuousMode();
+const continuousMode = getContinuousMode();
 
 function Form({isOnRecognition, onChangeOnRecognition, continuousMode, setContinuousMode}) {
   return (

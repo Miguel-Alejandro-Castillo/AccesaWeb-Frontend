@@ -39,6 +39,8 @@ import menuSettings from '../menus/menuSettings';
 import menuModules from '../menus/menuModules';
 import { getImportedModules } from '../appSettings';
 import htmlAccesibility from '../settings/html-accesibility';
+import changeMemuOrientation from '../settings/change-menu-orientation';
+import expandedMenu from '../settings/expendend-menu';
 let commands = {};
 let contextNames = {};
 let handlersOnSelectElement = {};
@@ -94,7 +96,9 @@ const coreSettings = [
   contrast,
   fontSize,
   onOffRecognition,
-  htmlAccesibility
+  htmlAccesibility,
+  changeMemuOrientation,
+  expandedMenu
 ];
 
 function saveCommands(context, newCommands, excludeDefaultCommands) {

@@ -12,6 +12,7 @@ export default {
     'continuous-mode-description': 'Select it in noise free environments and when you will only speak commands',
     'context': 'Context',
     'description': 'Description',
+    'down': 'Down',
     'english': 'English',
     'error-title-importing-module': 'Error when trying to import the module',
     'error-description-check-out-docs': 'Check out the docs in order to get help.',
@@ -20,12 +21,15 @@ export default {
     'hide-image': 'Hide images',
     'intermittent-mode': 'Press Ctrl before say every command',
     'intermittent-mode-description': 'Select it in noisy environments or when you want to have full control over the speech recognition start and stop',
+    'left': 'Left',
     'module-docs': 'Module Docs',
     'on': 'On',
     'off': 'Off',
     'remove': 'Remove',
+    'right': 'Right',
     'root': 'Main',
     'select-a-contrast': 'Select a contrast:',
+    'select-a-orientation': 'Select a orientation:',
     'show-image': 'Show images',
     'spanish': 'Spanish',
     'speech-recognizer-mode': 'Speech Recognition Options',
@@ -34,7 +38,8 @@ export default {
     'test-description': 'Test the above commands over the following elements',
     'turned-on': 'Turned On',
     'turned-off': 'Turned Off',
-    'unselected': 'Unselected'
+    'unselected': 'Unselected',
+    'up': 'Up'
   },
   es: {
     'accept': 'Aceptar',
@@ -49,6 +54,7 @@ export default {
     'continuous-mode-description': 'Seleccionarlo en lugares silenciosos y cuando solo vas a decir comandos de voz',
     'context': 'Contexto',
     'description': 'Descripción',
+    'down': 'Abajo',
     'english': 'Inglés',
     'error-description-importing-module': 'Al parecer la estructura del módulo es inválida, por favor corrígela e intenta importar el módulo nuevamente.',
     'error-description-check-out-docs': 'Revisar la documentación en caso de necesitar ayuda.',
@@ -57,12 +63,15 @@ export default {
     'hide-image': 'Ocultar',
     'intermittent-mode': 'Presionar Ctrl antes de decir cada comando',
     'intermittent-mode-description': 'Seleccionarlo en ambientes ruidosos o cuando quieras tener control de cuando el reconocimiento de voz inicia y termina',
+    'left':'Izquierda',
     'module-docs': 'Documentación de los Módulos',
     'on': 'Encender',
     'off': 'Apagar',
     'remove': 'Eliminar',
+    'right': 'Derecha',
     'root': 'Principal',
     'select-a-contrast': 'Selecciona un contraste:',
+    'select-a-orientation': 'Selecciona una orientación:',
     'show-image': 'Mostrar',
     'spanish': 'Español',
     'speech-recognizer-mode': 'Opciones de Reconocimiento de Voz',
@@ -71,6 +80,7 @@ export default {
     'test-description': 'Prueba los comandos sobre los siguientes ejemplos',
     'turned-on': 'Encendido',
     'turned-off': 'Apagado',
-    'unselected': 'Sin seleccionar'
+    'unselected': 'Sin seleccionar',
+    'up':'Arriba'
   }
 };
