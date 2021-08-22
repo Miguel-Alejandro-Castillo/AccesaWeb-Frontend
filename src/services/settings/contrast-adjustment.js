@@ -52,15 +52,12 @@ function ContrastFunction() {
 function action(valueSetting) {
   if (valueSetting === 'blackWhite') {
     //escala de grises
-    $('#div').each(function() {
-      $(this).css('background-color', 'white');
-      $(this).css('color', 'black');
-    });
+    $('head').append("<link id='contrast-accesa' rel='stylesheet' href='contrast-black-white.css' type='text/css'>");
   } else if (valueSetting === 'blackYellow') {
-    $('#div').each(function() {
-      $(this).css('background-color', 'white');
-      $(this).css('color', 'black');
-    });
+    console.log('yellow');
+  } else {
+    $('#contrast-accesa').prop('disabled', true);
+    //$('#contrast-accesa').remove();
   }
 }
 

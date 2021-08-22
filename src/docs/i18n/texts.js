@@ -1,6 +1,7 @@
 export default {
   en: {
     'accept': 'Accept',
+    'activate': 'Activate',
     'active-modules': 'Active Modules',
     'active-settings': 'Active Settings',
     'add-module': 'Add Module',
@@ -11,6 +12,7 @@ export default {
     'continuous-mode': 'Continuous Recognition',
     'continuous-mode-description': 'Select it in noise free environments and when you will only speak commands',
     'context': 'Context',
+    'desactivate': 'Desactivate',
     'description': 'Description',
     'down': 'Down',
     'english': 'English',
@@ -45,6 +47,7 @@ export default {
     'accept': 'Aceptar',
     'accesa-web': 'AccesaWeb',
     'accesa-web-description': 'Herramienta de ayuda para las personas con discapaciad.',
+    'activate': 'Activar',
     'active-modules': 'Módulos Activos',
     'active-settings': 'Configuraciones Activas',
     'add-module': 'Agregar Módulo',
@@ -55,6 +58,7 @@ export default {
     'continuous-mode': 'Reconocimiento continuo',
     'continuous-mode-description': 'Seleccionarlo en lugares silenciosos y cuando solo vas a decir comandos de voz',
     'context': 'Contexto',
+    'desactivate': 'Desactivar',
     'description': 'Descripción',
     'down': 'Abajo',
     'english': 'Inglés',

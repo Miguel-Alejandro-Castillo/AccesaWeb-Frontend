@@ -201,7 +201,8 @@ const config = {
     'native-commands-handler': './src/services/native-commands-handler.js',
     app: './src/style/app.scss',
     body: './src/style/body.scss',
-    'docs-styles': './src/style/docs.scss'
+    'docs-styles': './src/style/docs.scss',
+    'contrast-black-white':'./src/style/contrast-black-white.scss'
   },
   output: {
     publicPath: '',
