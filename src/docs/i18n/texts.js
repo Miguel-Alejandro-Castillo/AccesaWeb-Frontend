@@ -43,6 +43,8 @@ export default {
   },
   es: {
     'accept': 'Aceptar',
+    'accesa-web': 'AccesaWeb',
+    'accesa-web-description': 'Herramienta de ayuda para las personas con discapaciad.',
     'active-modules': 'Módulos Activos',
     'active-settings': 'Configuraciones Activas',
     'add-module': 'Agregar Módulo',
@@ -68,6 +70,7 @@ export default {
     'on': 'Encender',
     'off': 'Apagar',
     'remove': 'Eliminar',
+    'reset-extension': 'Resetear configuración',
     'right': 'Derecha',
     'root': 'Principal',
     'select-a-contrast': 'Selecciona un contraste:',
