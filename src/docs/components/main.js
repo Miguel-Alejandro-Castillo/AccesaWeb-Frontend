@@ -6,9 +6,7 @@ import React from 'react';
 export default class Main extends React.Component {
   static propTypes = {
     itemsMenu: React.PropTypes.array.isRequired,
-    removeModule: React.PropTypes.func.isRequired,
-    setContinuousMode: React.PropTypes.func.isRequired,
-    continuousMode: React.PropTypes.bool.isRequired
+    removeModule: React.PropTypes.func.isRequired
   }
 
   getCommandsByGroup(commands, context) {
@@ -55,36 +53,19 @@ export default class Main extends React.Component {
   render() {
     return (
       <div className='right_col module-description' role='main'>
-
-        <h1>{getI18nText('speech-recognizer-mode')}</h1>
-        <div className='x_panel speech-recognizer-options'>
-          <p className='speech-recognizer-mode-description'>{getI18nText('speech-recognizer-mode-description')}</p>
-          <div className='radio'>
-            <label>
-              <input type='radio' checked={this.props.continuousMode} onChange={() => this.props.setContinuousMode(true)}/> <span>{getI18nText('continuous-mode')}</span>
-            </label>
-            <p>{getI18nText('continuous-mode-description')}</p>
-          </div>
-          <div className='radio'>
-            <label>
-              <input type='radio' checked={!this.props.continuousMode} onChange={() => this.props.setContinuousMode(false)}/> <span>{getI18nText('intermittent-mode')}</span>
-            </label>
-            <p>{getI18nText('intermittent-mode-description')}</p>
-          </div>
-        </div>
-        {
+      {
           this.props.itemsMenu
-          .map(itemMenu => (
-            <div>
-              <h1>{getI18nText(itemMenu.titleMain, itemMenu.i18n)}</h1>
-              { this.getItems(itemMenu.items).sort((itemA, itemB) => itemA.name < itemB.name ? -1 : 1)
-                .map(item => <ModuleDetail
-                  module={item}
-                  removeModule={this.props.removeModule}
-                  key={item.name}
-              />)}
-            </div>
-          ))
+            .map(itemMenu => (
+              <div>
+                <h1>{getI18nText(itemMenu.titleMain, itemMenu.i18n)}</h1>
+                {this.getItems(itemMenu.items).sort((itemA, itemB) => itemA.name < itemB.name ? -1 : 1)
+                  .map(item => <ModuleDetail
+                    module={item}
+                    removeModule={this.props.removeModule}
+                    key={item.name}//ver
+                  />)}
+              </div>
+            ))
         }
       </div>
     );

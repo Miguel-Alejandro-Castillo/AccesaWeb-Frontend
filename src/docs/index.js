@@ -6,17 +6,17 @@ import {
   getSelectedLang,
   setLanguage,
   onLanguageChange,
-  importModule,
+  //importModule,
   onImportedModulesChange,
   removeImportedModule,
-  moduleCanBeImported,
-  getContinuousMode,
-  setContinuousMode,
+  //moduleCanBeImported,
+  //getContinuousMode,
+  //setContinuousMode,
   onContinuousModeChange,
   onChangeInput} from '../services/appSettings';
 import Main from './components/main';
 import Menu from './components/menu';
-import MenuFooter from './components/menu-footer';
+//import MenuFooter from './components/menu-footer';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TopBar from './components/top-bar';
@@ -43,18 +43,16 @@ function renderComponents() {
   />);
   ReactDOM.render(MenuComponent, $menu[0]);
 
-  const $menuFooter = $('#menu-footer-container');
+  /*const $menuFooter = $('#menu-footer-container');
   const MenuFooterComponent = (<MenuFooter
     importModule={importModule}
     validateModule={moduleCanBeImported}
   />);
-  ReactDOM.render(MenuFooterComponent, $menuFooter[0]);
+  ReactDOM.render(MenuFooterComponent, $menuFooter[0]);*/
 
   const $mainContent = $('#main-component');
   const MainComponent = (<Main itemsMenu={itemsMenu}
     removeModule={removeImportedModule}
-    continuousMode={getContinuousMode()}
-    setContinuousMode={setContinuousMode}
   />);
 
   ReactDOM.render(MainComponent, $mainContent[0]);
