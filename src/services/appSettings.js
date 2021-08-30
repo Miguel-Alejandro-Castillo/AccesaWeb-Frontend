@@ -53,6 +53,26 @@ export function onContinuousModeChange(callback) {
   document.addEventListener('continuousModeChange', () => callback(getContinuousMode()));
 }
 
+export function isOnRecognition() {
+  return localStorage.getItem('onRecognition') === 'false' ? false : true;
+}
+
+export function setOnRecognition(value) {
+  if (isOnRecognition() !== value) {
+    localStorage.setItem('onRecognition', value);
+    document.dispatchEvent(new Event('changeOnRecognition'));
+  }
+}
+
+export function onChangeOnRecognition(callback) {
+  window.addEventListener('storage', event => {
+    if (event.key === 'onRecognition') {
+      callback();
+    }
+  }, false);
+  document.addEventListener('changeOnRecognition', () => callback());
+}
+
 export function onChangeInput(callback) {
   window.addEventListener('storage', event => {
     if (event.key.startsWith('input.name.')) {

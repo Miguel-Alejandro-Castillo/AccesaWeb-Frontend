@@ -4,9 +4,10 @@ import {
   onLanguageChange,
   getSelectedLang,
   onImportedModulesChange,
-  onContinuousModeChange,
   onChangeInput,
-  getSettingsValues
+  getSettingsValues,
+  onChangeOnRecognition,
+  isOnRecognition
 } from './appSettings';
 import _ from 'lodash';
 import log from 'loglevel';
@@ -148,6 +149,12 @@ function sendSettingsValues() {
   });
 }
 
+function sendRecognition() {
+  sendDataToTabs({
+    isOnRecognition: isOnRecognition()
+  });
+}
+
 function sendTurnedOn() {
   tabs.query({url: docsUrl}, function(docsTabs) {
     sendDataToTabs({
@@ -173,7 +180,8 @@ function getInitialData(sender, actionValue, sendResponse) {
         ...lastSpeechRecognizerState,
         text: []
       },
-      settingsValues: getSettingsValues()
+      settingsValues: getSettingsValues(),
+      isOnRecognition: isOnRecognition()
     });
   });
   return true;
@@ -207,5 +215,5 @@ sendSettingsValues();
 sendTurnedOn();
 onLanguageChange(sendLang);
 onImportedModulesChange(sendImportedModules);
-onContinuousModeChange();
 onChangeInput(sendSettingsValues);
+onChangeOnRecognition(sendRecognition);

@@ -1,9 +1,7 @@
 import React from 'react';
 import { getI18nText } from '../../docs/i18n/i18n';
-import { getContinuousMode, setContinuousMode} from '../appSettings';
+import { getContinuousMode, setContinuousMode, isOnRecognition, setOnRecognition } from '../appSettings';
 //import $ from 'jquery';
-
-const propertySettingLocalStorage = 'input.name.onRecognition';
 
 function Form({isOnRecognition, onChangeOnRecognition, continuousMode, setContinuousMode}) {
   return (
@@ -45,25 +43,6 @@ Form.propTypes = {
   continuousMode: React.PropTypes.bool.isRequired
 };
 
-function isOnRecognition() {
-  return localStorage.getItem(propertySettingLocalStorage) === 'false' ? false : true;
-}
-
-function setOnRecognition(value) {
-  if (isOnRecognition() !== value) {
-    localStorage.setItem(propertySettingLocalStorage, value);
-    document.dispatchEvent(new Event('changeInput'));
-  }
-}
-
-function action(valueSetting) {
-  if (valueSetting === 'false') {
-    //apagado
-  } else {
-    //encendido
-  }
-}
-
 function OnOffRecognition() {
   return (
     <Form isOnRecognition={isOnRecognition()} onChangeOnRecognition={setOnRecognition} continuousMode={getContinuousMode()} setContinuousMode={setContinuousMode}/>
@@ -84,7 +63,5 @@ export default {
       'description': 'Encender/apagar el reconocimiento de voz'
     }
   },
-  contexts: [{ functionComponent: OnOffRecognition }],
-  propertySettingLocalStorage: propertySettingLocalStorage,
-  'action': action
+  contexts: [{ functionComponent: OnOffRecognition }]
 };
