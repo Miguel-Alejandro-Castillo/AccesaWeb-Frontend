@@ -4,34 +4,39 @@ import { getContinuousMode, setContinuousMode, isOnRecognition, setOnRecognition
 //import $ from 'jquery';
 
 function Form({isOnRecognition, onChangeOnRecognition, continuousMode, setContinuousMode}) {
-  return (
+  const SpeechForm = () => (
     <div>
-      <div className='radio'>
-        <label>
-          <input type='radio' checked={isOnRecognition} onChange={() => onChangeOnRecognition(true)}/> <span>{getI18nText('on')}</span>
-        </label>
-      </div>
-      <div className='radio'>
-        <label>
-          <input type='radio' checked={!isOnRecognition} onChange={() => onChangeOnRecognition(false)}/> <span>{getI18nText('off')}</span>
-        </label>
-      </div>
       <p>{getI18nText('speech-recognizer-mode')}</p>
       <div className='x_panel speech-recognizer-options'>
         <p className='speech-recognizer-mode-description'>{getI18nText('speech-recognizer-mode-description')}</p>
         <div className='radio'>
           <label>
-            <input type='radio' checked={continuousMode} onChange={() => setContinuousMode(true)}/> <span>{getI18nText('continuous-mode')}</span>
+            <input type='radio' name={'continuousMode'} checked={continuousMode} onChange={() => setContinuousMode(true)}/> <span>{getI18nText('continuous-mode')}</span>
           </label>
           <p>{getI18nText('continuous-mode-description')}</p>
         </div>
         <div className='radio'>
           <label>
-            <input type='radio' checked={!continuousMode} onChange={() => setContinuousMode(false)}/> <span>{getI18nText('intermittent-mode')}</span>
+            <input type='radio' name={'continuousMode'} checked={!continuousMode} onChange={() => setContinuousMode(false)}/> <span>{getI18nText('intermittent-mode')}</span>
           </label>
           <p>{getI18nText('intermittent-mode-description')}</p>
         </div>
       </div>
+    </div>
+  );
+  return (
+    <div>
+      <div className='radio'>
+        <label>
+          <input type='radio' name={'recognitionMode'} checked={isOnRecognition} onChange={() => onChangeOnRecognition(true)}/> <span>{getI18nText('on')}</span>
+        </label>
+      </div>
+      <div className='radio'>
+        <label>
+          <input type='radio' name={'recognitionMode'} onChange={() => onChangeOnRecognition(false)}/> <span>{getI18nText('off')}</span>
+        </label>
+      </div>
+      { isOnRecognition ? <SpeechForm/> : null }
     </div>
   );
 }

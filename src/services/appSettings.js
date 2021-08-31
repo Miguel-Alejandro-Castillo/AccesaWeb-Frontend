@@ -50,7 +50,11 @@ export function onContinuousModeChange(callback) {
       callback(getContinuousMode());
     }
   }, false);
-  document.addEventListener('continuousModeChange', () => callback(getContinuousMode()));
+  document.addEventListener('continuousModeChange', callback);
+}
+
+export function removeOnContinuousModeChange(callback) {
+  document.removeEventListener('continuousModeChange', callback);
 }
 
 export function isOnRecognition() {

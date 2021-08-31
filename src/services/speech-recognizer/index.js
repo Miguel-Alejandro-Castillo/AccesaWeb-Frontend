@@ -3,6 +3,7 @@ import {
   getSelectedLang,
   onLanguageChange,
   onContinuousModeChange,
+  removeOnContinuousModeChange,
   getContinuousMode,
   isOnRecognition
 } from '../appSettings';
@@ -74,12 +75,12 @@ function handleOnLanguageChange() {
   }
 }
 
-function handleOnContinuousModeChange(continuousMode) {
+function handleOnContinuousModeChange() {
   if (isOnRecognition()) {
     speechRecognition.stop();
     speechRecognition = getSpeechRecognition();
     delayedStartSpeechRecognition();
-    if (continuousMode) {
+    if (getContinuousMode()) {
       stopListenForExternalMessages();
     } else {
       listenForExternalMessages();
@@ -108,7 +109,7 @@ function stopp() {
     speechRecognition.stop();
     if (!getContinuousMode())
       stopListenForExternalMessages();
-    speechRecognition = getSpeechRecognition();
+    removeOnContinuousModeChange(handleOnContinuousModeChange);
   }
 }
 

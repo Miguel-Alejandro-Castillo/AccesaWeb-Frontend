@@ -14,7 +14,7 @@ export default class Menu extends React.Component {
         {
           this.props.itemsMenu
             .map(itemMenu => (
-              <li className='active'>
+              <li className='active' key={getI18nText(itemMenu.name, itemMenu.i18n)}>
                 <a>
                   <i className={itemMenu.icon} />
                   {getI18nText(itemMenu.name, itemMenu.i18n)}
