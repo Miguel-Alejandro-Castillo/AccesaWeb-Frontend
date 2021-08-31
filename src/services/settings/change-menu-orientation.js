@@ -3,6 +3,10 @@ import { getI18nText } from '../../docs/i18n/i18n';
 //import $ from 'jquery';
 const options = [
   {
+    label: getI18nText('unselected'),
+    value: 'unselected'
+  },
+  {
     label: getI18nText('up'),
     value: 'up'
   },

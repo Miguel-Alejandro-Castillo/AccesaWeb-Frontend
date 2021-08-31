@@ -32,15 +32,17 @@ import topSites from './top-sites';
 import { validateModule } from './validate-i18n';
 import weekOptions from './week-options';
 import addRemoveImages from '../settings/show-hide-images';
-import fontSize from '../settings/font-size';
 import contrast from '../settings/contrast-adjustment';
 import onOffRecognition from '../settings/on-off-recognition';
+import htmlAccesibility from '../settings/html-accesibility';
+import menuView from '../settings/menu-view';
+import format from '../settings/format';
+/*import changeMenuOrientation from '../settings/change-menu-orientation';
+import expandendMenu from '../settings/expandend-menu';
+import fontSize from '../settings/font-size';*/
 import menuSettings from '../menus/menuSettings';
 import menuModules from '../menus/menuModules';
 import { getImportedModules } from '../appSettings';
-import htmlAccesibility from '../settings/html-accesibility';
-import changeMemuOrientation from '../settings/change-menu-orientation';
-import expandedMenu from '../settings/expendend-menu';
 let commands = {};
 let contextNames = {};
 let handlersOnSelectElement = {};
@@ -94,12 +96,20 @@ const coreModules = [
 const coreSettings = [
   addRemoveImages,
   contrast,
-  fontSize,
+  format,
   onOffRecognition,
   htmlAccesibility,
-  changeMemuOrientation,
-  expandedMenu
+  menuView
 ];
+
+/*const coreFormat = [
+  fontSize
+];
+
+const coreMenu = [
+  changeMenuOrientation,
+  expandendMenu
+];*/
 
 function saveCommands(context, newCommands, excludeDefaultCommands) {
   commands[context] = (commands[context] || []).concat(newCommands);
