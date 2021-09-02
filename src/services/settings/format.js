@@ -1,8 +1,8 @@
 import fontSize from './font-size';
 import lineSpacing from './line-spacing';
-import alignText from './align-text';
+/*import alignText from './align-text';*/
 import paragraphSacing from './paragraph-spacing';
-const subItems = [fontSize, alignText, lineSpacing, paragraphSacing];
+const subItems = [fontSize, /*alignText,*/ lineSpacing, paragraphSacing];
 export default {
   name: 'i18n-name',
   description: 'i18n-description',
