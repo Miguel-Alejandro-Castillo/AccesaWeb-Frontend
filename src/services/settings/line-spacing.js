@@ -1,17 +1,27 @@
 import React from 'react';
 import { getI18nText } from '../../docs/i18n/i18n';
-//import $ from 'jquery';
+import $ from 'jquery';
+import _ from 'lodash';
 
 const propertySettingLocalStorage = 'input.name.lineSpacing';
 const options = [
   {
-    label: getI18nText('unselected'),
-    value: 'sinSeleccionar'
+    label: 'Ninguno',
+    value: ''
   },
   {
-    label: getI18nText(''),
-    value: ''
-  }];
+    label: '1,5',
+    value: '150%'
+  },
+  {
+    label: '1,75',
+    value: '175%'
+  },
+  {
+    label: '2,0',
+    value: '200%'
+  }
+];
 
 function Form({valueSpacing, onChangeLineSpacing}) {
   return (
@@ -31,18 +41,21 @@ Form.propTypes = {
   valueSpacing: React.PropTypes.string.isRequired
 };
 
-
 function setLineSpacing(value) {
   localStorage.setItem(propertySettingLocalStorage, value);
   document.dispatchEvent(new Event('changeInput'));
 }
 
 function action(valueSetting) {
-  //agrega y setea el tamaño de las lineas
-  console.log(valueSetting);
+  $('body,p,span').each(function() {
+    const element = $(this);
+    if ( _.isEmpty(element.data('defaultLineHeight')) )
+      element.data('defaultLineHeight', element.css('line-height'));
+    element.css('line-height', _.isEmpty(valueSetting) ? element.data('defaultLineHeight') : valueSetting);
+  });
 }
 function valueSpacing() {
-  return localStorage.getItem(propertySettingLocalStorage) ? localStorage.getItem(propertySettingLocalStorage) : '';
+  return !_.isEmpty(localStorage.getItem(propertySettingLocalStorage)) ? localStorage.getItem(propertySettingLocalStorage) : '';
 }
 
 function ChangeLineSpacingFunction() {
@@ -51,7 +64,7 @@ function ChangeLineSpacingFunction() {
   );
 }
 
-export default {
+const lineSpacingSetting = {
   name: 'i18n-name',
   description: 'i18n-description',
   icon: 'fa fa-line-height',
@@ -67,5 +80,6 @@ export default {
   },
   contexts: [{ functionComponent: ChangeLineSpacingFunction }],
   propertySettingLocalStorage: propertySettingLocalStorage,
-  'action': action
+  action: action
 };
+export default lineSpacingSetting;
