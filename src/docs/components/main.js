@@ -29,12 +29,6 @@ export default class Main extends React.Component {
   getItems(items) {
     let aux_items = items.map(item => {
       if (item.name) {
-        item.subItems = _.isEmpty(item.subItems) ? []
-          : item.subItems.map(subItem => {
-            subItem.name = getI18nText(subItem.name, subItem.i18n);
-            subItem.description = getI18nText(subItem.description, subItem.i18n);
-            return subItem;
-          });
         return {
           icon: item.icon,
           id: item.id,
@@ -50,7 +44,14 @@ export default class Main extends React.Component {
               functionComponent: context.functionComponent
             };
           }),
-          subItems: item.subItems
+          subItems: (item.subItems  || []).map(subItem => {
+            subItem.name = getI18nText(subItem.name, subItem.i18n);
+            subItem.description = getI18nText(subItem.description, subItem.i18n);
+            subItem.contexts.forEach( context => {
+              context.commands = [];
+            });
+            return subItem;
+          })
         };
       }
     });
@@ -75,21 +76,23 @@ export default class Main extends React.Component {
               <div>
                 <h1>{getI18nText(itemMenu.titleMain, itemMenu.i18n)}</h1>
                 {this.getItems(itemMenu.items).sort((itemA, itemB) => itemA.name < itemB.name ? -1 : 1)
-                  .map(item =>
-                  _.isEmpty(item.subItems) ?
-                  <ModuleDetail
-                    module={item}
-                    removeModule={this.props.removeModule}
-                    //key={getI18nText(item.name, item.i18n)}//ver
-                  />
-                  :
-                  item.subItems.map(subItem =>
-                    <ModuleDetail
-                    module={subItem}
-                    removeModule={this.props.removeModule}
-                    key={subItem.name}
-                  />)
-                  )}
+                  .map(item => (
+                    <div>
+                      <ModuleDetail
+                        module={item}
+                        removeModule={this.props.removeModule}
+                        key={getI18nText(item.name, item.i18n)}
+                      />
+                      {this.getItems(item.subItems || []).map(subItem => (
+                        <ModuleDetail
+                          module={subItem}
+                          removeModule={this.props.removeModule}
+                          key={getI18nText(subItem.name, subItem.i18n)}
+                        />
+                      ))}
+                     </div>
+                  ))
+                }
               </div>
             ))
         }

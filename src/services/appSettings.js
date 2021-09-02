@@ -132,8 +132,9 @@ export function moduleCanBeImported(source) {
 
 export function getSettingsValues() {
   const result = {};
-  getActiveSettings().filter(setting => setting.propertySettingLocalStorage ).forEach(setting => {
-    result[setting.propertySettingLocalStorage] = localStorage.getItem(setting.propertySettingLocalStorage);
+  _.compact(_.flattenDeep(getActiveSettings().map(setting => [setting.propertySettingLocalStorage, _.map(setting.subItems, subItem => subItem.propertySettingLocalStorage)] ))).
+  forEach(propertySettingLocalStorage => {
+    result[propertySettingLocalStorage] = localStorage.getItem(propertySettingLocalStorage);
   });
   return result;
 }
