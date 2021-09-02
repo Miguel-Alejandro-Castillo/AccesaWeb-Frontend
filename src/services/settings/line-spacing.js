@@ -47,7 +47,7 @@ function setLineSpacing(value) {
 }
 
 function action(valueSetting) {
-  $('body,p,span,div').each(function() {
+  $('body,p,span,div,main,article,section,header,footer,aside,nav,h1,h2,h3,h4,h5,h6').each(function() {
     const element = $(this);
     if ( _.isEmpty(element.data('defaultLineHeight')) )
       element.data('defaultLineHeight', element.css('line-height'));
