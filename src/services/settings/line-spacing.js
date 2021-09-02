@@ -11,15 +11,15 @@ const options = [
   },
   {
     label: '1,5',
-    value: '150%'
+    value: '1.5em'
   },
   {
     label: '1,75',
-    value: '175%'
+    value: '1.75em'
   },
   {
     label: '2,0',
-    value: '200%'
+    value: '2em'
   }
 ];
 
