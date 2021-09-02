@@ -1,18 +1,28 @@
 import React from 'react';
 import { getI18nText } from '../../docs/i18n/i18n';
-//import $ from 'jquery';
+import $ from 'jquery';
+import _ from 'lodash';
 
 const propertySettingLocalStorage = 'input.name.paragraphSpacing';
 const options = [
   {
-    label: getI18nText('unselected'),
-    value: 'sinSeleccionar'
+    label: 'Ninguno',
+    value: ''
   },
   {
-    label: getI18nText(''),
-    value: ''
+    label: '2.0',
+    value: '2em'
+  },
+  {
+    label: '2.25',
+    value: '2.25em'
+  },
+  {
+    label: '2.5',
+    value: '2.50em'
   }
 ];
+
 function Form({valueSpacing, onChangeParagraphSpacing}) {
   return (
     <div>
@@ -31,19 +41,22 @@ Form.propTypes = {
   valueSpacing: React.PropTypes.string.isRequired
 };
 
-
 function setParagraphSpacing(value) {
   localStorage.setItem(propertySettingLocalStorage, value);
   document.dispatchEvent(new Event('changeInput'));
 }
 
 function action(valueSetting) {
-  //agrega y setea el tamaño del espaciado
-  console.log(valueSetting);
+  $('p').each(function() {
+    const element = $(this);
+    if ( _.isEmpty(element.data('defaultMarginBottom')) )
+      element.data('defaultMarginBottom', element.css('margin-bottom'));
+    element.css('margin-bottom', _.isEmpty(valueSetting) ? element.data('defaultMarginBottom') : valueSetting);
+  });
 }
 
 function valueSpacing() {
-  return localStorage.getItem(propertySettingLocalStorage) ? localStorage.getItem(propertySettingLocalStorage) : '';
+  return _.isEmpty(localStorage.getItem(propertySettingLocalStorage)) ? '' : localStorage.getItem(propertySettingLocalStorage);
 }
 
 function ChangeParagraphSpacingFunction() {
