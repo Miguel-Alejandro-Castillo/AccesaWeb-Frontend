@@ -68,7 +68,7 @@ export default class Main extends React.Component {
         <h1>{getI18nText('accesa-web')}</h1>
         <div className='x_panel speech-recognizer-options'>
           <p className='speech-recognizer-mode-description'>{getI18nText('accesa-web-description')}</p>
-          <button onClick={this.resetExtension}>{getI18nText('reset-extension')}</button>
+          <button className='btn btn-default' onClick={this.resetExtension}>{getI18nText('reset-extension')}</button>
         </div>
       {
           this.props.itemsMenu

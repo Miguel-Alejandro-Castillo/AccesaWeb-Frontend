@@ -6,12 +6,12 @@ const propertySettingLocalStorage = 'input.name.alignText';
 
 function Form({onClickAlignText}) {
   return (
-    <div>
-      <button onClick={() => onClickAlignText('left')}><i className='fa fa-align-left'>{getI18nText('left')}</i></button>
-      <button onClick={() => onClickAlignText('center')}><i className='fa fa-align-center'>{getI18nText('center')}</i></button>
-      <button onClick={() => onClickAlignText('justify')}><i className='fa fa-align-justify'>{getI18nText('justify')}</i></button>
-      <button onClick={() => onClickAlignText('right')}><i className='fa fa-align-right'>{getI18nText('right')}</i></button>
-    </div>
+  <div className='btn-group' role='group' aria-label='opciones de alineado'>
+    <button className='btn btn-default' onClick={onClickAlignText()}><i className='fa fa-align-left'></i> {getI18nText('left')}</button>
+    <button className='btn btn-default' onClick={onClickAlignText()}><i className='fa fa-align-center'></i> {getI18nText('center')}</button>
+    <button className='btn btn-default' onClick={onClickAlignText()}><i className='fa fa-align-justify'></i> {getI18nText('justify')}</button>
+    <button className='btn btn-default' onClick={onClickAlignText()}><i className='fa fa-align-right'></i> {getI18nText('right')}</button>
+  </div>
   );
 }
 

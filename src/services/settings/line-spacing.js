@@ -25,13 +25,15 @@ const options = [
 
 function Form({valueSpacing, onChangeLineSpacing}) {
   return (
-    <div>
+    <div className='form-group'>
       <label>{getI18nText('select-a-spacing')}</label><br/>
-      <select className={'_not-focuseable-element'} value={valueSpacing} onChange={e => onChangeLineSpacing(e.target.value)}>
-        {options.map((option) => (
-          <option value={option.value} key={option.value}>{option.label}</option>
-        ))}
-      </select>
+      <div className='col-lg-2'>
+        <select className="form-control {'_not-focuseable-element'}"value={valueSpacing} onChange={e => onChangeLineSpacing(e.target.value)}>
+          {options.map((option) => (
+            <option value={option.value} key={option.value}>{option.label}</option>
+          ))}
+        </select>
+      </div>
     </div>
   );
 }

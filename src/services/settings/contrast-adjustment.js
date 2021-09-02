@@ -19,13 +19,15 @@ const propertySettingLocalStorage = 'input.name.contrast';
 
 function Form({ valueContrast, onChangeContrast }) {
   return (
-    <div>
+    <div className='form-group'>
       <label>{getI18nText('select-a-contrast')}</label><br/>
-      <select className={'_not-focuseable-element'} value={valueContrast} onChange={e => onChangeContrast(e.target.value)}>
-        {options.map((option) => (
-          <option value={option.value} key={option.value}>{option.label}</option>
-        ))}
-      </select>
+      <div className='col-lg-2'>
+        <select className="form-control {'_not-focuseable-element'}" value={valueContrast} onChange={e => onChangeContrast(e.target.value)}>
+          {options.map((option) => (
+            <option value={option.value} key={option.value}>{option.label}</option>
+          ))}
+        </select>
+      </div>
     </div>
   );
 }
