@@ -38,12 +38,11 @@ function action(valueSetting) {
   $('*').each(function() {
     const element = $(this);
     const fontSizePx = element.css('font-size');
+    if (_.isEmpty(element.data('defaultFontSize')))
+      element.data('defaultFontSize', fontSizePx);// Guardar el font size por default
     if (!_.isEmpty(fontSizePx) && !_.isEmpty(valueSetting)) {
-      if (_.isEmpty(element.data('origFontSize'))) {
-        element.data('origFontSize', fontSizePx);// Guardar el font size original
-      }
-      const fontSize = parseFloat(element.data('origFontSize')) * parseFloat(valueSetting);
-      element.css('font-size', fontSize);
+      const fontSize = parseFloat(element.data('defaultFontSize')) * parseFloat(valueSetting);
+      element.css('font-size', fontSize + 'px');
     }
   });
 }

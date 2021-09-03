@@ -3,6 +3,10 @@ import { getI18nText } from '../../docs/i18n/i18n';
 //import $ from 'jquery';
 const options = [
   {
+    label: getI18nText('unselected'),
+    value: 'unselected'
+  },
+  {
     label: getI18nText('up'),
     value: 'up'
   },
@@ -23,13 +27,15 @@ const propertySettingLocalStorage = 'input.name.menuOrientation';
 
 function Form({ valueMenuOrientation, onChangeMenuOrientation }) {
   return (
-    <div>
-      <label>{getI18nText('select-a-orientation')}</label><br/>
-      <select className={'_not-focuseable-element'} value={valueMenuOrientation} onChange={e => onChangeMenuOrientation(e.target.value)}>
-        {options.map((option) => (
-          <option value={option.value} key={option.value}>{option.label}</option>
-        ))}
-      </select>
+    <div className='form-group'>
+      <label id='select-orientation' >{getI18nText('select-a-orientation')}</label><br/>
+      <div className='col-lg-2'>
+        <select className="form-control {'_not-focuseable-element'}" id='select-orientation' value={valueMenuOrientation} onChange={e => onChangeMenuOrientation(e.target.value)}>
+          {options.map((option) => (
+            <option value={option.value} key={option.value}>{option.label}</option>
+          ))}
+        </select>
+      </div>
     </div>
   );
 }
