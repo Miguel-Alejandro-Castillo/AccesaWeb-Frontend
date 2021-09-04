@@ -1,6 +1,7 @@
 import React from 'react';
 import { getI18nText } from '../../docs/i18n/i18n';
 import $ from 'jquery';
+import _ from 'lodash';
 
 const propertySettingLocalStorage = 'input.name.hideImages';
 
@@ -39,11 +40,18 @@ function setHideImages(value) {
 }
 
 function action(valueSetting) {
-  if (valueSetting === 'false') {
-    $('img').css({ 'display': 'none', 'visibility': 'hidden' });
-  } else {
-    $('img').css({ 'display': 'block', 'visibility': 'visible' });
-  }
+  $('img').each(function() {
+    const img = $(this);
+    if (_.isEmpty(img.data('defaultDisplay')))
+      img.data('defaultDisplay', img.css('display'));  //Guardar el Display por default
+    if (_.isEmpty(img.data('defaultVisibility')))
+      img.data('defaultVisibility', img.css('visibility'));  //Guardar el Visibility por default
+
+    if (valueSetting === 'false')
+      img.css({ 'display': 'none', 'visibility': 'hidden' });
+    else
+      img.css({ 'display': img.data('defaultDisplay'), 'visibility': img.data('defaultVisibility')});
+  });
 }
 
 function ShowHideImageFunction() {
