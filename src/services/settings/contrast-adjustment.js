@@ -60,7 +60,7 @@ function action(valueSetting) {
     style.rel = 'stylesheet';
     style.id = 'contrast-accesa';
     style.type = 'text/css';
-    style.href = window.chrome.extension.getURL('contrast-black-white.css');
+    style.href = window.chrome.extension.getURL('contrast-yellow-black.css');
     (document.head || document.documentElement).appendChild(style);
   } else {
     $('#contrast-accesa').prop('disabled', true);

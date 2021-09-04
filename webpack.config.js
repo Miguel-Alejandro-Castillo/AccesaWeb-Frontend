@@ -202,7 +202,8 @@ const config = {
     app: './src/style/app.scss',
     body: './src/style/body.scss',
     'docs-styles': './src/style/docs.scss',
-    'contrast-black-white':'./src/style/contrast-black-white.scss'
+    'contrast-black-white':'./src/style/contrast-black-white.scss',
+    'contrast-yellow-black':'./src/style/contrast-yellow-black.scss'
   },
   output: {
     publicPath: '',
