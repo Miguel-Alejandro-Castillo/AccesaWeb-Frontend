@@ -31,7 +31,7 @@ import timeOptions from './time-options';
 import topSites from './top-sites';
 import { validateModule } from './validate-i18n';
 import weekOptions from './week-options';
-import addRemoveImages from '../settings/show-hide-images';
+import showHideImages from '../settings/show-hide-images';
 import showHideSocialNetworks from '../settings/show-hide-social-networks';
 import contrast from '../settings/contrast-adjustment';
 import onOffRecognition from '../settings/on-off-recognition';
@@ -95,7 +95,7 @@ const coreModules = [
 
 //Faltan completar el menu de configuraciones
 const coreSettings = [
-  addRemoveImages,
+  showHideImages,
   showHideSocialNetworks,
   contrast,
   format,

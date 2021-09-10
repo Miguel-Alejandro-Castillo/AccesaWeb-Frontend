@@ -77,7 +77,7 @@ function ShowHideSocialNetworksFunction() {
 export default {
   name: 'i18n-name',
   description: 'i18n-description',
-  icon: 'fa fa-image',
+  icon: 'fa fa-users',
   i18n: {
     en: {
       'name': 'Social Networks',
