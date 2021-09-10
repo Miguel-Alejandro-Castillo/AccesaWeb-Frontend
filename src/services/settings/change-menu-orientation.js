@@ -81,12 +81,12 @@ export default {
   icon: 'fa fa-bars',
   i18n: {
     en: {
-      'name': 'Change the menu orientation',
+      'name': 'Orientation',
       'description': 'Change the location of the main menu of the pages visited.'
     },
     es: {
-      'name': 'Cambiar la orientacion del menu',
-      'description': 'Cambia la orientacion del menu en las paginas visitadas.'
+      'name': 'Orientación',
+      'description': 'Cambia la orientación del menú en las páginas visitadas.'
     }
   },
   contexts: [{ functionComponent: ChangeMenuOrientationFunction }],

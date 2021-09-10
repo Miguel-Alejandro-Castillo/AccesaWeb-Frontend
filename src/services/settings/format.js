@@ -11,11 +11,11 @@ export default {
   i18n: {
     en: {
       'name': 'Format',
-      'description': 'format'
+      'description': 'Format options:'
     },
     es: {
       'name': 'Formato',
-      'description': 'Format'
+      'description': 'Opciones de formato:'
     }
   },
   contexts: []

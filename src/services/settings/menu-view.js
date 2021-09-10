@@ -9,11 +9,11 @@ export default {
   i18n: {
     en: {
       'name': 'Menu',
-      'description': 'Change menu'
+      'description': 'Change menu:'
     },
     es: {
       'name': 'Menú',
-      'description': 'Cambios del menu'
+      'description': 'Cambios del menú:'
     }
   },
   contexts: []

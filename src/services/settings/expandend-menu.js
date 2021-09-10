@@ -58,11 +58,11 @@ export default {
   icon: 'fa fa-expand',
   i18n: {
     en: {
-      'name': 'Change expanded menu',
+      'name': 'Expanded menu',
       'description': 'displays all the menu options.'
     },
     es: {
-      'name': 'Cambiar a menu expandido.',
+      'name': 'Menú expandido.',
       'description': 'Despliega todas las opciones en los menus.'
     }
   },
