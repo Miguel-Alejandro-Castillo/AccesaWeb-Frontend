@@ -32,6 +32,7 @@ import topSites from './top-sites';
 import { validateModule } from './validate-i18n';
 import weekOptions from './week-options';
 import addRemoveImages from '../settings/show-hide-images';
+import showHideSocialNetworks from '../settings/show-hide-social-networks';
 import contrast from '../settings/contrast-adjustment';
 import onOffRecognition from '../settings/on-off-recognition';
 import htmlAccesibility from '../settings/html-accesibility';
@@ -95,6 +96,7 @@ const coreModules = [
 //Faltan completar el menu de configuraciones
 const coreSettings = [
   addRemoveImages,
+  showHideSocialNetworks,
   contrast,
   format,
   onOffRecognition,
