@@ -1,4 +1,13 @@
-body {
+button,select,th{
+    background-color: white !important;
+    color:black !important;
+}
+h1,h2,h3,h4,h5,h6,p,td,tbody,thead,tr,ul,li,i,span,a,div,body{
     background-color: black !important;
-    color: white !important;
+    color:white !important;
+}
+.nav.side-menu > li.active > a{
+    background-color: white !important;
+    color:black !important;
+    background: white !important;
 }
