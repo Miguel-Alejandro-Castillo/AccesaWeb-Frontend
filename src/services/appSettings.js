@@ -50,7 +50,31 @@ export function onContinuousModeChange(callback) {
       callback(getContinuousMode());
     }
   }, false);
-  document.addEventListener('continuousModeChange', () => callback(getContinuousMode()));
+  document.addEventListener('continuousModeChange', callback);
+}
+
+export function removeOnContinuousModeChange(callback) {
+  document.removeEventListener('continuousModeChange', callback);
+}
+
+export function isOnRecognition() {
+  return localStorage.getItem('onRecognition') === 'false' ? false : true;
+}
+
+export function setOnRecognition(value) {
+  if (isOnRecognition() !== value) {
+    localStorage.setItem('onRecognition', value);
+    document.dispatchEvent(new Event('changeOnRecognition'));
+  }
+}
+
+export function onChangeOnRecognition(callback) {
+  window.addEventListener('storage', event => {
+    if (event.key === 'onRecognition') {
+      callback();
+    }
+  }, false);
+  document.addEventListener('changeOnRecognition', () => callback());
 }
 
 export function onChangeInput(callback) {

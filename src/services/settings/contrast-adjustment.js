@@ -54,7 +54,6 @@ function ContrastFunction() {
 function action(valueSetting) {
   if (valueSetting === 'blackWhite') {
     //escala de grises
-    //$('head').append("<link id='contrast-accesa' rel='stylesheet' href='contrast-black-white.css' type='text/css'>");
   } else if (valueSetting === 'blackYellow') {
     var style = document.createElement('link');
     style.rel = 'stylesheet';

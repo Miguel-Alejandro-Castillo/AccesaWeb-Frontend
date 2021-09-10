@@ -13,7 +13,10 @@ import {
   //getContinuousMode,
   //setContinuousMode,
   onContinuousModeChange,
-  onChangeInput} from '../services/appSettings';
+  onChangeInput,
+  isOnRecognition,
+  onChangeOnRecognition
+} from '../services/appSettings';
 import Main from './components/main';
 import Menu from './components/menu';
 //import MenuFooter from './components/menu-footer';
@@ -22,14 +25,8 @@ import ReactDOM from 'react-dom';
 import TopBar from './components/top-bar';
 import SpeechRecognizer from '../services/speech-recognizer';
 
-SpeechRecognizer.init();
-
-function getItemsMenu() {
-  return getActiveItemsMenu();
-}
-
 function renderComponents() {
-  const itemsMenu = getItemsMenu();
+  const itemsMenu = getActiveItemsMenu();
 
   const $topBarContent = $('#top-bar');
   const TopBarComponent = (<TopBar
@@ -58,8 +55,20 @@ function renderComponents() {
   ReactDOM.render(MainComponent, $mainContent[0]);
 }
 
+function initSpeechRecognition() {
+  if (isOnRecognition())
+    SpeechRecognizer.init();
+  else
+    SpeechRecognizer.stopp();
+}
+
+initSpeechRecognition();
 renderComponents();
 onLanguageChange(renderComponents);
 onContinuousModeChange(renderComponents);
 onImportedModulesChange(renderComponents);
 onChangeInput(renderComponents);
+onChangeOnRecognition(() => {
+  initSpeechRecognition();
+  renderComponents();
+});

@@ -3,7 +3,10 @@ import {
   getSelectedLang,
   onLanguageChange,
   onContinuousModeChange,
-  getContinuousMode } from '../appSettings';
+  removeOnContinuousModeChange,
+  getContinuousMode,
+  isOnRecognition
+} from '../appSettings';
 import SpeechRecognitionContinuesMode from './speech-recognition-continues-mode';
 import SpeechRecognitionStepMode from './speech-recognition-step-mode';
 import log from 'loglevel';
@@ -66,18 +69,22 @@ function delayedStartSpeechRecognition() {
 }
 
 function handleOnLanguageChange() {
-  speechRecognition.stop();
-  delayedStartSpeechRecognition();
+  if (isOnRecognition()) {
+    speechRecognition.stop();
+    delayedStartSpeechRecognition();
+  }
 }
 
-function handleOnContinuousModeChange(continuousMode) {
-  speechRecognition.stop();
-  speechRecognition = getSpeechRecognition();
-  delayedStartSpeechRecognition();
-  if (continuousMode) {
-    stopListenForExternalMessages();
-  } else {
-    listenForExternalMessages();
+function handleOnContinuousModeChange() {
+  if (isOnRecognition()) {
+    speechRecognition.stop();
+    speechRecognition = getSpeechRecognition();
+    delayedStartSpeechRecognition();
+    if (getContinuousMode()) {
+      stopListenForExternalMessages();
+    } else {
+      listenForExternalMessages();
+    }
   }
 }
 
@@ -97,6 +104,18 @@ function init() {
   onContinuousModeChange(handleOnContinuousModeChange);
 }
 
+function stopp() {
+  if (speechRecognition) {
+    speechRecognition.stop();
+    if (!getContinuousMode())
+      stopListenForExternalMessages();
+    removeOnContinuousModeChange(handleOnContinuousModeChange);
+  }
+}
+
+
+
 export default {
-  init
+  init,
+  stopp
 };

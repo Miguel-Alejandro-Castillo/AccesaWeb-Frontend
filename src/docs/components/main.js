@@ -73,7 +73,7 @@ export default class Main extends React.Component {
       {
           this.props.itemsMenu
             .map(itemMenu => (
-              <div>
+              <div key={getI18nText(itemMenu.titleMain, itemMenu.i18n)}>
                 <h1>{getI18nText(itemMenu.titleMain, itemMenu.i18n)}</h1>
                 {this.getItems(itemMenu.items).sort((itemA, itemB) => itemA.name < itemB.name ? -1 : 1)
                   .map(item => (
