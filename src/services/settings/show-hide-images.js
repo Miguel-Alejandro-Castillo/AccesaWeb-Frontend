@@ -10,12 +10,12 @@ function Form({isHideImages, onChangeHideImages}) {
     <div>
       <div className='radio'>
         <label>
-          <input type='radio' checked={isHideImages} onChange={() => onChangeHideImages(true)}/> <span>{getI18nText('show-image')}</span>
+          <input type='radio' checked={isHideImages} onChange={() => onChangeHideImages(true)}/> <span>{getI18nText('show')}</span>
         </label>
       </div>
       <div className='radio'>
         <label>
-          <input type='radio' checked={!isHideImages} onChange={() => onChangeHideImages(false)}/> <span>{getI18nText('hide-image')}</span>
+          <input type='radio' checked={!isHideImages} onChange={() => onChangeHideImages(false)}/> <span>{getI18nText('hide')}</span>
         </label>
       </div>
     </div>
