@@ -1,40 +1,40 @@
 button,select,input {
     background-color: black !important;
-    color:yellow !important;
+    color:white !important;
     border-color: #333 !important;
 }
 audio::-webkit-media-controls-play-button,
 audio::-webkit-media-controls-panel {
-  background-color: yellow;
+  background-color: white;
 }
 audio{
   border: 2px solid black;
 }
 h1,h2,h3,h4,h5,h6,p,ul,ol,li,i,span,a,div,body,pre,code,svg,input[type=text],input::placeholder{
-    background-color: yellow !important;
+    background-color: white !important;
     color:black !important;
 }
 th{
     background-color: black !important;
-    color: yellow !important;
+    color: white !important;
     border: 2px solid #333 !important;
     border-bottom: 2px solid #333 !important;
 }
 td{
-    background-color: yellow !important;
+    background-color: white !important;
     color:black !important;
     border: 1px solid #333 !important;
 }
 .fc-light {
     color:black !important;
-    background: yellow !important;
+    background: white !important;
 }
 .nav-md ul.nav.child_menu li:before {
     background: black !important;
 }
 .nav.side-menu > li.active > a{
     background-color: #333 !important;
-    color:yellow !important;
+    color:white !important;
     background: black !important;
 }
 .x_panel,.nav_menu,.module-description table,.snippet-code,.s-notice{
@@ -44,7 +44,7 @@ td{
     border-bottom:2px solid #333 !important;
 }
 ::-webkit-scrollbar-track{
-    background-color: yellow !important;
+    background-color: white !important;
 }
 ::-webkit-scrollbar-thumb,::-webkit-scrollbar-button,::-webkit-scrollbar-corner {
     background-color: black !important;
@@ -66,7 +66,7 @@ input[type=checkbox] + span:before {
   position: absolute;
   width: 13px;
   height: 13px;
-  background-color: yellow;
+  background-color: white;
   left: -20px;
   top: 1px;
   border: 1px solid black;

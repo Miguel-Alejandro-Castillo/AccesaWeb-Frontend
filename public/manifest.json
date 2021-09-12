@@ -55,7 +55,9 @@
   "web_accessible_resources": [
     "app.css",
     "contrast-black-white.css",
+    "contrast-white-black.css",
     "contrast-yellow-black.css",
+    "contrast-black-yellow.css",
     "speech-recognizer.html",
     "native-commands-handler.js",
     "font-awesome/fontawesome-webfont.eot",

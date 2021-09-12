@@ -7,8 +7,16 @@ const options = [
     value: 'sinContraste'
   },
   {
+    label: getI18nText('whiteBlack'),
+    value: 'whiteBlack'
+  },
+  {
     label: getI18nText('blackWhite'),
     value: 'blackWhite'
+  },
+  {
+    label: getI18nText('yellowBlack'),
+    value: 'yellowBlack'
   },
   {
     label: getI18nText('blackYellow'),
@@ -21,8 +29,8 @@ function Form({ valueContrast, onChangeContrast }) {
   return (
     <div className='form-group'>
       <label>{getI18nText('select-a-contrast')}</label><br/>
-      <div className='col-lg-2'>
-        <select className="form-control {'_not-focuseable-element'}" value={valueContrast} onChange={e => onChangeContrast(e.target.value)}>
+      <div className='col-lg-3'>
+        <select id='contrast' className="form-control {'_not-focuseable-element'}" value={valueContrast} onChange={e => onChangeContrast(e.target.value)}>
           {options.map((option) => (
             <option value={option.value} key={option.value}>{option.label}</option>
           ))}
@@ -52,18 +60,24 @@ function ContrastFunction() {
 }
 
 function action(valueSetting) {
+  var style = document.createElement('link');
+  style.rel = 'stylesheet';
+  style.id = 'contrast-accesa';
+  style.type = 'text/css';
   if (valueSetting === 'blackWhite') {
-    //escala de grises
+    style.href = window.chrome.extension.getURL('contrast-black-white.css');
   } else if (valueSetting === 'blackYellow') {
-    var style = document.createElement('link');
-    style.rel = 'stylesheet';
-    style.id = 'contrast-accesa';
-    style.type = 'text/css';
+    style.href = window.chrome.extension.getURL('contrast-black-yellow.css');
+  } else if (valueSetting === 'yellowBlack') {
     style.href = window.chrome.extension.getURL('contrast-yellow-black.css');
-    (document.head || document.documentElement).appendChild(style);
+  } else if (valueSetting === 'whiteBlack') {
+    style.href = window.chrome.extension.getURL('contrast-white-black.css');
   } else {
     $('#contrast-accesa').prop('disabled', true);
     $('#contrast-accesa').remove();
+  }
+  if (valueSetting !== 'unselected') {
+    (document.head || document.documentElement).appendChild(style);
   }
 }
 

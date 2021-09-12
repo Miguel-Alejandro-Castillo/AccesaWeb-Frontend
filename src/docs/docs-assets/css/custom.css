@@ -2,6 +2,20 @@
 .left_col {
   background: #2A3F54; }
 
+  select#contrast option[value="blackWhite"]   { 
+    background-color: black;
+    color: white; }
+    select#contrast option[value="whiteBlack"]   { 
+      background-color: white;
+      color: black; }
+  select#contrast option[value="blackYellow"] {
+    background-color: black;  
+    color: yellow;
+  }
+  select#contrast option[value="yellowBlack"] {
+    background-color: yellow;  
+    color: black;
+  }
 .nav-sm .container.body .col-md-3.left_col {
   width: 70px;
   padding: 0;

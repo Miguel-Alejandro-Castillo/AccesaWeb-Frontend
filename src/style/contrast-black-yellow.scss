@@ -1,53 +1,53 @@
 button,select,input {
-    background-color: black !important;
-    color:yellow !important;
-    border-color: #333 !important;
+    background-color: yellow !important;
+    color:black !important;
+    border-color: rgb(209, 223, 22)  !important;
 }
 audio::-webkit-media-controls-play-button,
 audio::-webkit-media-controls-panel {
-  background-color: yellow;
+  background-color: black;
 }
 audio{
-  border: 2px solid black;
+  border: 2px solid yellow;
 }
 h1,h2,h3,h4,h5,h6,p,ul,ol,li,i,span,a,div,body,pre,code,svg,input[type=text],input::placeholder{
-    background-color: yellow !important;
-    color:black !important;
+    background-color: black !important;
+    color:yellow !important;
 }
 th{
-    background-color: black !important;
-    color: yellow !important;
-    border: 2px solid #333 !important;
-    border-bottom: 2px solid #333 !important;
+    background-color: yellow !important;
+    color: black !important;
+    border: 2px solid rgb(209, 223, 22)  !important;
+    border-bottom: 2px solid rgb(209, 223, 22)  !important;
 }
 td{
-    background-color: yellow !important;
-    color:black !important;
-    border: 1px solid #333 !important;
+    background-color: black !important;
+    color:yellow !important;
+    border: 1px solid rgb(209, 223, 22)  !important;
 }
 .fc-light {
-    color:black !important;
-    background: yellow !important;
-}
-.nav-md ul.nav.child_menu li:before {
-    background: black !important;
-}
-.nav.side-menu > li.active > a{
-    background-color: #333 !important;
     color:yellow !important;
     background: black !important;
 }
+.nav-md ul.nav.child_menu li:before {
+    background: yellow !important;
+}
+.nav.side-menu > li.active > a{
+    background-color: rgb(209, 223, 22)  !important;
+    color:black !important;
+    background: yellow !important;
+}
 .x_panel,.nav_menu,.module-description table,.snippet-code,.s-notice{
-    border: 1px solid #333 !important;
+    border: 1px solid rgb(209, 223, 22)  !important;
 }
 .x_title{
-    border-bottom:2px solid #333 !important;
+    border-bottom:2px solid rgb(209, 223, 22)  !important;
 }
 ::-webkit-scrollbar-track{
-    background-color: yellow !important;
+    background-color: black !important;
 }
 ::-webkit-scrollbar-thumb,::-webkit-scrollbar-button,::-webkit-scrollbar-corner {
-    background-color: black !important;
+    background-color: yellow !important;
 }
 /*radiobutton*/
 input[type=radio],
@@ -66,10 +66,10 @@ input[type=checkbox] + span:before {
   position: absolute;
   width: 13px;
   height: 13px;
-  background-color: yellow;
+  background-color: black;
   left: -20px;
   top: 1px;
-  border: 1px solid black;
+  border: 1px solid yellow;
 }
 input[type=radio] + span:before {
   -moz-border-radius: 50%;
@@ -83,10 +83,10 @@ input[type=checkbox]:checked + span:after {
   position: absolute;
   width: 9px;
   height: 9px;
-  background-color: black;
+  background-color: yellow;
   left: -18px;
   top: 3px;
-  border: 1px solid black;
+  border: 1px solid yellow;
 }
 input[type=radio]:checked + span:after {
   -moz-border-radius: 50%;
