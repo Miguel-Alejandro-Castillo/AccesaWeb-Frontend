@@ -1,5 +1,5 @@
 import React from 'react';
-import { getI18nText } from '../../docs/i18n/i18n';
+import { getI18nText } from '../../../docs/i18n/i18n';
 //import $ from 'jquery';
 
 const propertySettingLocalStorage = 'input.name.expandedMenu';

@@ -31,18 +31,22 @@ import timeOptions from './time-options';
 import topSites from './top-sites';
 import { validateModule } from './validate-i18n';
 import weekOptions from './week-options';
-import showHideImages from '../settings/show-hide-images';
-import showHideSocialNetworks from '../settings/show-hide-social-networks';
-import contrast from '../settings/contrast-adjustment';
-import onOffRecognition from '../settings/on-off-recognition';
+import showHideImages from '../settings/images/show-hide-images';
+import menuImages from '../menus/menuImages';
+import contrast from '../settings/customize/contrast-adjustment';
+import showHideSocialNetworks from '../settings/customize/show-hide-social-networks';
+/*import changeMenuOrientation from '../settings/customize/change-menu-orientation';
+import expandendMenu from '../settings/customize/expandend-menu';*/
+import menuCustomize from '../menus/menuCustomize';
+/*import fontSize from '../settings/format/font-size';*/
+import alignText from '../settings/format/align-text';
+import lineSpacingSetting from '../settings/format/line-spacing';
+import paragraphSpacing from '../settings/format/paragraph-spacing';
+import menuFormat from '../menus/menuFormat';
 import htmlAccesibility from '../settings/html-accesibility';
-import menuView from '../settings/menu-view';
-import format from '../settings/format';
-/*import changeMenuOrientation from '../settings/change-menu-orientation';
-import expandendMenu from '../settings/expandend-menu';
-import fontSize from '../settings/font-size';*/
-import menuSettings from '../menus/menuSettings';
-import menuModules from '../menus/menuModules';
+import menuAccesibility from '../menus/menuAccesibility';
+import onOffRecognition from '../settings/on-off-recognition';
+import menuCommands from '../menus/menuComands';
 import { getImportedModules } from '../appSettings';
 let commands = {};
 let contextNames = {};
@@ -62,7 +66,7 @@ function resetVariables() {
   i18n = {};
 }
 
-const coreModules = [
+const coreCommands = [
   bookmarks,
   click,
   colorOptions,
@@ -92,26 +96,25 @@ const coreModules = [
   topSites,
   weekOptions
 ];
-
-//Faltan completar el menu de configuraciones
-const coreSettings = [
-  showHideImages,
-  showHideSocialNetworks,
-  contrast,
-  format,
+const coreAccesibility = [
   onOffRecognition,
-  htmlAccesibility,
-  menuView
+  htmlAccesibility
 ];
-
-/*const coreFormat = [
-  fontSize
+const coreCustomize = [
+  showHideSocialNetworks,
+  //changeMenuOrientation,
+  //expandendMenu,
+  contrast
 ];
-
-const coreMenu = [
-  changeMenuOrientation,
-  expandendMenu
-];*/
+const coreFormat = [
+  lineSpacingSetting,
+  paragraphSpacing,
+  //fontSize,
+  alignText
+];
+const coreImages = [
+  showHideImages
+];
 
 function saveCommands(context, newCommands, excludeDefaultCommands) {
   commands[context] = (commands[context] || []).concat(newCommands);
@@ -294,20 +297,34 @@ function findText(state, text, lang) {
   };
 }
 
-function getActiveModules() {
-  return coreModules;
+function getActiveCommands() {
+  return coreCommands;
 }
-
 function getActiveSettings() {
-  return coreSettings;
+  return coreAccesibility;
+}
+function getActiveCustomize() {
+  return coreCustomize;
+}
+function getActiveFormat() {
+  return coreFormat;
+}
+function getActiveImages() {
+  return coreImages;
 }
 
 function getActiveItemsMenu() {
-  menuModules.items = getActiveModules().concat(getImportedModules());
-  menuSettings.items = getActiveSettings();
+  menuCommands.items = getActiveCommands().concat(getImportedModules());
+  menuAccesibility.items = getActiveSettings();
+  menuCustomize.items = getActiveCustomize();
+  menuFormat.items = getActiveFormat();
+  menuImages.items = getActiveImages();
   const coreItemsMenu = [
-    menuSettings,
-    menuModules
+    menuAccesibility,
+    menuCustomize,
+    menuFormat,
+    menuImages,
+    menuCommands
   ];
   return coreItemsMenu;
 }
@@ -347,7 +364,7 @@ function init(importedModules = []) {
     .map(getModuleFromSource)
     .filter(module => _.isObject(module) && (_.isUndefined(module.isActive) || (module.isActive && module.isActive())));
 
-  const modules = coreModules.concat(activeImportedModules);
+  const modules = coreCommands.concat(activeImportedModules);
   loadModules(modules);
   addGlobalCommandsToEachContext();
   validateI18n(modules);
@@ -357,8 +374,11 @@ function init(importedModules = []) {
 export default {
   init,
   getI18nText,
-  getActiveModules,
+  getActiveCommands,
   getActiveSettings,
+  getActiveCustomize,
+  getActiveFormat,
+  getActiveImages,
   getActiveItemsMenu,
   findText,
   getStateForSelectedElement,

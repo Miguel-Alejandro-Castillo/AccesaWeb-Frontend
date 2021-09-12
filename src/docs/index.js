@@ -51,7 +51,15 @@ function renderComponents() {
   const MainComponent = (<Main itemsMenu={itemsMenu}
     removeModule={removeImportedModule}
   />);
-
+  /*const $titleNav = $('#title-nav');
+  let textTitleNav= '';
+  if (getSelectedLang() === 'es-AR') {
+    textTitleNav = 'Mi Configuración';
+  } else {
+    textTitleNav = 'My Setting';
+  }
+  $titleNav.text(textTitleNav);*/
+  //ReactDOM.render((<span >Mi Configuración</span>), $titleNav);
   ReactDOM.render(MainComponent, $mainContent[0]);
 }
 

@@ -60,16 +60,16 @@ const items = [
 export default {
   name: 'i18n-name',
   titleMain: 'i18n-titleMain',
-  icon: 'fa fa-cubes',
+  icon: 'fa fa-microphone',
   items: items,
   i18n: {
     en: {
-      'name': 'Interaction mode',
-      'titleMain': 'Active Modules'
+      'name': 'Voice Commands',
+      'titleMain': 'Voice Commands'
     },
     es: {
-      'name': 'Modo de Interacción',
-      'titleMain': 'Módulos Activos'
+      'name': 'Comandos de voz',
+      'titleMain': 'Comandos de voz'
     }
   }
 };

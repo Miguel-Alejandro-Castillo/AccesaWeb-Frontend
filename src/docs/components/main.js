@@ -83,13 +83,6 @@ export default class Main extends React.Component {
                         removeModule={this.props.removeModule}
                         key={getI18nText(item.name, item.i18n)}
                       />
-                      {this.getItems(item.subItems || []).map(subItem => (
-                        <ModuleDetail
-                          module={subItem}
-                          removeModule={this.props.removeModule}
-                          key={getI18nText(subItem.name, subItem.i18n)}
-                        />
-                      ))}
                      </div>
                   ))
                 }
