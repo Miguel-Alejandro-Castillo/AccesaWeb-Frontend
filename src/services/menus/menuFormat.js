@@ -10,10 +10,12 @@ export default {
   items: items,
   i18n: {
     en: {
-      'name': 'Format'
+      'name': 'Format',
+      'titleMain': 'Format'
     },
     es: {
-      'name': 'Formato'
+      'name': 'Formato',
+      'titleMain': 'Formato'
     }
   }
 };

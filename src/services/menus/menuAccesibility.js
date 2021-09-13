@@ -8,10 +8,12 @@ export default {
   items: items,
   i18n: {
     en: {
-      'name': 'Accesibility'
+      'name': 'Accesibility',
+      'titleMain': 'Accesibility'
     },
     es: {
-      'name': 'Accesibilidad'
+      'name': 'Accesibilidad',
+      'titleMain': 'Accesibilidad'
     }
   }
 };

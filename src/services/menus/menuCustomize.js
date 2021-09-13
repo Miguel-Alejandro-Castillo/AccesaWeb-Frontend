@@ -9,10 +9,12 @@ export default {
   items: items,
   i18n: {
     en: {
-      'name': 'Customize'
+      'name': 'Customize',
+      'titleMain': 'Customize'
     },
     es: {
-      'name': 'Personalizar'
+      'name': 'Personalizar',
+      'titleMain': 'Personalizar'
     }
   }
 };

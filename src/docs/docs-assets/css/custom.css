@@ -2,25 +2,36 @@
 .left_col {
   background: #2A3F54; }
 
-  select#contrast option[value="blackWhite"]   { 
-    background-color: black;
-    color: white; }
-    select#contrast option[value="whiteBlack"]   { 
-      background-color: white;
-      color: black; }
-  select#contrast option[value="blackYellow"] {
-    background-color: black;  
-    color: yellow;
-  }
-  select#contrast option[value="yellowBlack"] {
-    background-color: yellow;  
-    color: black;
-  }
+select#contrast option[value="blackWhite"]   { 
+  background-color: black;
+  color: white;
+}
+select#contrast option[value="whiteBlack"]   { 
+  background-color: white;
+  color: black; 
+}
+select#contrast option[value="blackYellow"] {
+  background-color: black;  
+  color: yellow;
+}
+select#contrast option[value="yellowBlack"] {
+  background-color: yellow;  
+  color: black;
+}
+h1.title-main{
+  text-align: center;
+}
+.img-main{
+  height: 64px;
+}
+.desc-main{
+  text-align: center;
+}
 .nav-sm .container.body .col-md-3.left_col {
   width: 70px;
   padding: 0;
   z-index: 9999;
-  position: absolute; }
+  position: fixed; }
 
 .nav-sm .container.body .col-md-3.left_col.menu_fixed {
   position: fixed;

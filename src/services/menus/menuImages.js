@@ -7,10 +7,12 @@ export default {
   items: items,
   i18n: {
     en: {
-      'name': 'Images/videos'
+      'name': 'Multimedia',
+      'titleMain': 'Multimedia'
     },
     es: {
-      'name': 'Imágenes/videos'
+      'name': 'Multimedia',
+      'titleMain': 'Multimedia'
     }
   }
 };
