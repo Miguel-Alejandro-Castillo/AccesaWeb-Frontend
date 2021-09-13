@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import safeEval from 'safe-eval';
-import { getActiveSettings } from './commands/index';
+import { getActiveItemsMenu } from './commands/index';
 
 const languages = {
   en: 'en-US',
@@ -156,9 +156,10 @@ export function moduleCanBeImported(source) {
 
 export function getSettingsValues() {
   const result = {};
-  _.compact(_.flattenDeep(getActiveSettings().map(setting => [setting.propertySettingLocalStorage, _.map(setting.subItems, subItem => subItem.propertySettingLocalStorage)] ))).
-  forEach(propertySettingLocalStorage => {
-    result[propertySettingLocalStorage] = localStorage.getItem(propertySettingLocalStorage);
+  getActiveItemsMenu().forEach( itemMenu => {
+    itemMenu.items.filter( setting => setting.propertySettingLocalStorage ).forEach(setting => {
+      result[setting.propertySettingLocalStorage] = localStorage.getItem(setting.propertySettingLocalStorage);
+    });
   });
   return result;
 }

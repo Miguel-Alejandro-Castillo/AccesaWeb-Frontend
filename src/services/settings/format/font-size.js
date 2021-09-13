@@ -8,7 +8,7 @@ function Form({valueResizeText, onChangeResizeText}) {
   return (
     <p className='box'>
       <input type='range' width='50' min='0.5' max='1.5' step='0.1' className='_not-focuseable-element' value={valueResizeText} onChange={e => onChangeResizeText(e.target.value)}/>
-      {(parseFloat(valueResizeText) * 100) + '%'}
+      {(Number(valueResizeText) * 100) + '%'}
     </p>
   );
 }

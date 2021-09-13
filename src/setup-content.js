@@ -12,7 +12,7 @@ import {
   init as initBackground,
   handleBackgroundData } from './actions/background_actions';
 import fontAwesome from './services/font-awesome';
-import { getActiveSettings } from './services/commands/index';
+import { getActiveItemsMenu } from './services/commands/index';
 import _ from 'lodash';
 
 const getURL = window.chrome.runtime.getURL;
@@ -103,17 +103,12 @@ function initEvents(store, rootElement, appContainer, data) {
 }
 
 function executeSettingAction(data) {
-  const activeSettings = getActiveSettings();
-  if ( _.has(data, 'settingsValues') && !_.isEmpty(data.settingsValues) && !_.isEmpty(activeSettings)) {
-    activeSettings.forEach( setting => {
-      if (setting.action && setting.propertySettingLocalStorage)
-        setting.action(data.settingsValues[setting.propertySettingLocalStorage]);
-      if ( !_.isEmpty(setting.subItems) ) {
-        _.forEach(setting.subItems, subItem => {
-          if (subItem.action && subItem.propertySettingLocalStorage)
-            subItem.action(data.settingsValues[subItem.propertySettingLocalStorage]);
-        });
-      }
+  if ( _.has(data, 'settingsValues') && !_.isEmpty(data.settingsValues)) {
+    getActiveItemsMenu().forEach( itemMenu => {
+      itemMenu.items.filter( setting => setting.action && setting.propertySettingLocalStorage ).forEach( setting => {
+        const valueSetting = data.settingsValues[setting.propertySettingLocalStorage];
+        setting.action(valueSetting);
+      });
     });
   }
 }
