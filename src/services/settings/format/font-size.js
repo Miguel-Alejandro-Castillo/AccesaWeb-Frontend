@@ -1,5 +1,4 @@
 import React from 'react';
-import { getI18nText } from '../../../docs/i18n/i18n';
 import $ from 'jquery';
 import _ from 'lodash';
 
@@ -9,7 +8,7 @@ function Form({valueResizeText, onChangeResizeText}) {
   return (
     <p className='box'>
       <input type='range' width='50' min='0.5' max='1.5' step='0.1' className='_not-focuseable-element' value={valueResizeText} onChange={e => onChangeResizeText(e.target.value)}/>
-      {valueResizeText}
+      {(parseFloat(valueResizeText) * 100) + '%'}
     </p>
   );
 }

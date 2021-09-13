@@ -38,7 +38,7 @@ import showHideSocialNetworks from '../settings/customize/show-hide-social-netwo
 /*import changeMenuOrientation from '../settings/customize/change-menu-orientation';
 import expandendMenu from '../settings/customize/expandend-menu';*/
 import menuCustomize from '../menus/menuCustomize';
-/*import fontSize from '../settings/format/font-size';*/
+import fontSize from '../settings/format/font-size';
 import alignText from '../settings/format/align-text';
 import lineSpacingSetting from '../settings/format/line-spacing';
 import paragraphSpacing from '../settings/format/paragraph-spacing';
@@ -109,7 +109,7 @@ const coreCustomize = [
 const coreFormat = [
   lineSpacingSetting,
   paragraphSpacing,
-  //fontSize,
+  fontSize,
   alignText
 ];
 const coreImages = [
