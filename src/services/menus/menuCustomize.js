@@ -5,6 +5,7 @@ import expandendMenu from '../settings/customize/expandend-menu';
 const items = [contrast, changeMenuOrientation, expandendMenu];
 export default {
   name: 'i18n-name',
+  titleMain: 'i18n-titleMain',
   icon: 'fa fa-pencil',
   items: items,
   i18n: {

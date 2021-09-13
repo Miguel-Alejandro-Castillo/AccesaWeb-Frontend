@@ -6,6 +6,7 @@ import fontSize from '../settings/format/font-size';
 const items = [alignText, lineSpacingSetting, paragraphSpacing, fontSize];
 export default {
   name: 'i18n-name',
+  titleMain: 'i18n-titleMain',
   icon: 'fa fa-font',
   items: items,
   i18n: {
