@@ -54,7 +54,7 @@ export default {
   es: {
     'accept': 'Aceptar',
     'accesa-web': 'AccesaWeb',
-    'accesa-web-description': 'Herramienta de ayuda para las personas con discapaciad.',
+    'accesa-web-description': 'Herramienta de ayuda para las personas con discapacidad.',
     'activate': 'Activar',
     'active-modules': 'Módulos Activos',
     'active-settings': 'Configuraciones Activas',
