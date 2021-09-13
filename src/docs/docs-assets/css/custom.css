@@ -31,7 +31,7 @@ h1.title-main{
   width: 70px;
   padding: 0;
   z-index: 9999;
-  position: fixed; }
+  position: absolute; }
 
 .nav-sm .container.body .col-md-3.left_col.menu_fixed {
   position: fixed;
@@ -668,10 +668,15 @@ a:hover, a:focus {
   padding: 4px 6px; }
 
 footer {
-  background: #fff;
-  padding: 15px 20px;
-  display: block; }
-
+  background: rgb(218, 213, 213);
+  display: block;
+  position: fixed; 
+  bottom: 0; 
+  width: 100%;  }
+footer > a{
+  color:rgb(46, 45, 45);
+  margin-left: 70%;
+}
 @media (min-width: 768px) {
   footer {
     margin-left: 230px; } }
