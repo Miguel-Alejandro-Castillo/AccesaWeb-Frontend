@@ -65,11 +65,7 @@ export default class Main extends React.Component {
   render() {
     return (
       <div className='right_col module-description' role='main'>
-        <h1 className='title-main' >
-          <img className='img-main' src='../docs-assets/media/AWLogo512.png'/>
-          {getI18nText('accesa-web')}
-        </h1>
-        <div className='x_panel speech-recognizer-options desc-main'>
+        <div className='speech-recognizer-options desc-main'>
           <p className='speech-recognizer-mode-description'>{getI18nText('accesa-web-description')}</p>
           <button className='btn btn-default' onClick={this.resetExtension}>{getI18nText('reset-extension')}</button>
         </div>

@@ -32,6 +32,12 @@ export default class TopBar extends React.Component {
             </label>
           </div>
         </li>
+        <li className='li-main'>
+          <h1 className='title-main' >
+            {getI18nText('accesa-web')}
+          </h1>
+        </li>
+        <li> <img className='img-main' src='../docs-assets/media/AWLogo512.png'/></li>
       </ul>
     );
   }

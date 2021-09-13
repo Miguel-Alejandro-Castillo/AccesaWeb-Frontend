@@ -22,9 +22,14 @@ h1.title-main{
   text-align: center;
 }
 .img-main{
-  height: 64px;
+  height: 50px;
+  margin-top: 5%;
+}
+.li-main{
+  margin-right: 40%;
 }
 .desc-main{
+  margin-top: 1%;
   text-align: center;
 }
 .nav-sm .container.body .col-md-3.left_col {
@@ -675,11 +680,11 @@ footer {
   width: 100%;  }
 footer > a{
   color:rgb(46, 45, 45);
-  margin-left: 70%;
+  float: right;
+  margin-right: 1%;
 }
 @media (min-width: 768px) {
-  footer {
-    margin-left: 230px; } }
+  }
 .nav-sm footer {
   margin-left: 70px; }
 
