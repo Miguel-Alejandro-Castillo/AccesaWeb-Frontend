@@ -320,7 +320,7 @@ function getActiveFormat() {
 function getActiveImages() {
   return coreImages;
 }
-function getActiveAboutUs(){
+function getActiveAboutUs() {
   return coreAboutUs;
 }
 
