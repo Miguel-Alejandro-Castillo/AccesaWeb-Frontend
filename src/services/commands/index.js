@@ -35,6 +35,7 @@ import showHideImages from '../settings/images/show-hide-images';
 import menuImages from '../menus/menuImages';
 import contrast from '../settings/customize/contrast-adjustment';
 import showHideSocialNetworks from '../settings/customize/show-hide-social-networks';
+import showHideAds from '../settings/customize/show-hide-ads';
 /*import changeMenuOrientation from '../settings/customize/change-menu-orientation';
 import expandendMenu from '../settings/customize/expandend-menu';*/
 import menuCustomize from '../menus/menuCustomize';
@@ -102,6 +103,7 @@ const coreAccesibility = [
 ];
 const coreCustomize = [
   showHideSocialNetworks,
+  showHideAds,
   //changeMenuOrientation,
   //expandendMenu,
   contrast
