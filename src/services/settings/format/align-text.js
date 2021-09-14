@@ -42,7 +42,7 @@ function ChangeAlignFunction() {
 export default {
   name: 'i18n-name',
   description: 'i18n-description',
-  icon: 'fa fa-bars',
+  icon: 'fa fa-align-left',
   i18n: {
     en: {
       'name': 'Align text',
