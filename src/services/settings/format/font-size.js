@@ -51,7 +51,7 @@ function action(valueSetting) {
 export default {
   name: 'i18n-name',
   description: 'i18n-description',
-  icon: 'fa fa-font',
+  icon: 'fa fa-text-width',
   i18n: {
     en: {
       'name': 'Font size',

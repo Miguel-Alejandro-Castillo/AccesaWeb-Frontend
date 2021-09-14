@@ -26,8 +26,8 @@ const options = [
 function Form({valueSpacing, onChangeParagraphSpacing}) {
   return (
     <div className='form-group'>
-      <label>{getI18nText('select-a-spacing')}</label><br/>
-      <div className='col-lg-2'>
+      <div className='col-lg-3'>
+        <label>{getI18nText('select-a-spacing')}</label><br/>
         <select className="form-control {'_not-focuseable-element'}" value={valueSpacing} onChange={e => onChangeParagraphSpacing(e.target.value)}>
           {options.map((option) => (
             <option value={option.value} key={option.value}>{option.label}</option>
@@ -70,7 +70,7 @@ function ChangeParagraphSpacingFunction() {
 export default {
   name: 'i18n-name',
   description: 'i18n-description',
-  icon: 'fa fa-line-height',
+  icon: 'fa fa-paragraph',
   i18n: {
     en: {
       'name': 'Paragraph spacing',

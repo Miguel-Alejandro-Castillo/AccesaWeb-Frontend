@@ -1,6 +1,7 @@
 export default {
   en: {
     'accept': 'Accept',
+    'accessa-web': 'AccesaWeb',
     'activate': 'Activate',
     'active-modules': 'Active Modules',
     'active-settings': 'Active Settings',
@@ -38,6 +39,7 @@ export default {
     'right': 'Right',
     'root': 'Main',
     'select-a-contrast': 'Select a contrast:',
+    'select-a-font': 'Select a font:',
     'select-a-orientation': 'Select a orientation:',
     'select-a-spacing': 'Select a spacing:',
     'show': 'Show',
@@ -92,6 +94,7 @@ export default {
     'right': 'Derecha',
     'root': 'Principal',
     'select-a-contrast': 'Selecciona un contraste:',
+    'select-a-font': 'Selecciona una fuente:',
     'select-a-orientation': 'Selecciona una orientación:',
     'select-a-spacing': 'Selecciona un espaciado:',
     'show': 'Mostrar',

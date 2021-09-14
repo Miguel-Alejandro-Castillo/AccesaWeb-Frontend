@@ -49,13 +49,15 @@ import menuAccesibility from '../menus/menuAccesibility';
 import onOffRecognition from '../settings/on-off-recognition';
 import menuCommands from '../menus/menuComands';
 import { getImportedModules } from '../appSettings';
+import menuAboutUs from '../menus/menuAboutUs';
+import aboutUs from '../settings/about-us';
+import changeFont from '../settings/format/change-font';
 let commands = {};
 let contextNames = {};
 let handlersOnSelectElement = {};
 let setups = {};
 let teardowns = {};
 let i18n = {};
-
 let nativeCommands = [];
 
 function resetVariables() {
@@ -112,10 +114,14 @@ const coreFormat = [
   lineSpacingSetting,
   paragraphSpacing,
   fontSize,
-  alignText
+  alignText,
+  changeFont
 ];
 const coreImages = [
   showHideImages
+];
+const coreAboutUs = [
+  aboutUs
 ];
 
 function saveCommands(context, newCommands, excludeDefaultCommands) {
@@ -314,6 +320,9 @@ function getActiveFormat() {
 function getActiveImages() {
   return coreImages;
 }
+function getActiveAboutUs(){
+  return coreAboutUs;
+}
 
 function getActiveItemsMenu() {
   menuCommands.items = getActiveCommands().concat(getImportedModules());
@@ -321,12 +330,14 @@ function getActiveItemsMenu() {
   menuCustomize.items = getActiveCustomize();
   menuFormat.items = getActiveFormat();
   menuImages.items = getActiveImages();
+  menuAboutUs.items = getActiveAboutUs();
   const coreItemsMenu = [
     menuAccesibility,
     menuCustomize,
     menuFormat,
     menuImages,
-    menuCommands
+    menuCommands,
+    menuAboutUs
   ];
   return coreItemsMenu;
 }
@@ -381,6 +392,7 @@ export default {
   getActiveCustomize,
   getActiveFormat,
   getActiveImages,
+  getActiveAboutUs,
   getActiveItemsMenu,
   findText,
   getStateForSelectedElement,
