@@ -24,6 +24,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import TopBar from './components/top-bar';
 import SpeechRecognizer from '../services/speech-recognizer';
+import { getI18nText } from './i18n/i18n';
 
 function renderComponents() {
   const itemsMenu = getActiveItemsMenu();
@@ -51,16 +52,10 @@ function renderComponents() {
   const MainComponent = (<Main itemsMenu={itemsMenu}
     removeModule={removeImportedModule}
   />);
-  /*const $titleNav = $('#title-nav');
-  let textTitleNav= '';
-  if (getSelectedLang() === 'es-AR') {
-    textTitleNav = 'Mi Configuración';
-  } else {
-    textTitleNav = 'My Setting';
-  }
-  $titleNav.text(textTitleNav);*/
-  //ReactDOM.render((<span >Mi Configuración</span>), $titleNav);
   ReactDOM.render(MainComponent, $mainContent[0]);
+
+  const titleNavComponent = (<span>{getI18nText('my-setting')}</span>);
+  ReactDOM.render( titleNavComponent, document.getElementById('titleNav'));
 }
 
 function initSpeechRecognition() {
