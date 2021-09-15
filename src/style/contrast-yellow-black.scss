@@ -3,16 +3,21 @@ button,select,input {
     color:yellow !important;
     border-color: #333 !important;
 }
-audio::-webkit-media-controls-play-button,
-audio::-webkit-media-controls-panel {
+audio::-webkit-media-controls-play-button, audio::-webkit-media-controls-panel {
   background-color: yellow;
 }
 audio{
   border: 2px solid black;
 }
-h1,h2,h3,h4,h5,h6,p,ul,ol,li,i,span,a,div,body,pre,code,svg,input[type=text],input::placeholder{
+h1,h2,h3,h4,h5,h6,p,ul,ol,li,i,span,a,div,body,pre,code,svg,input[type=text],
+input::placeholder{
     background-color: yellow !important;
     color:black !important;
+}
+a:hover, .nav.side-menu > li > a:hover{
+  color: #333 !important;
+  font-weight:bold !important;
+  text-decoration-line: underline !important;
 }
 th{
     background-color: black !important;
@@ -32,10 +37,14 @@ td{
 .nav-md ul.nav.child_menu li:before {
     background: black !important;
 }
-.nav.side-menu > li.active > a{
+.nav.side-menu > li.active > a {
     background-color: #333 !important;
     color:yellow !important;
     background: black !important;
+}
+.nav.side-menu > li.active > a > i.fa, .nav.side-menu > li.active > a > span.fa {
+  background: black !important;
+  color: yellow !important;
 }
 .x_panel,.nav_menu,.module-description table,.snippet-code,.s-notice{
     border: 1px solid #333 !important;
@@ -49,7 +58,7 @@ td{
 ::-webkit-scrollbar-thumb,::-webkit-scrollbar-button,::-webkit-scrollbar-corner {
     background-color: black !important;
 }
-/*radiobutton*/
+/*radiobutton and checkbox*/
 input[type=radio],
 input[type=checkbox] {
   display:none;
