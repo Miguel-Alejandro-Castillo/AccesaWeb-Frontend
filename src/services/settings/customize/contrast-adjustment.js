@@ -1,10 +1,13 @@
 import React from 'react';
 import { getI18nText } from '../../../docs/i18n/i18n';
 import $ from 'jquery';
+
+const propertySettingLocalStorage = 'input.name.contrast';
+const valueDefaultSetting = 'sinContraste';
 const options = [
   {
     label: getI18nText('unselected'),
-    value: 'sinContraste'
+    value: valueDefaultSetting
   },
   {
     label: getI18nText('whiteBlack'),
@@ -23,8 +26,6 @@ const options = [
     value: 'blackYellow'
   }
 ];
-const propertySettingLocalStorage = 'input.name.contrast';
-const valueDefaultSetting = 'sinContraste';
 
 function Form({ valueContrast, onChangeContrast }) {
   return (
@@ -61,25 +62,35 @@ function ContrastFunction() {
 }
 
 function action(valueSetting) {
-  var style = document.createElement('link');
-  style.rel = 'stylesheet';
-  style.id = 'contrast-accesa';
-  style.type = 'text/css';
+  const id = 'link-contrast-accesa';
+  let url = '';
   if (valueSetting === 'blackWhite') {
-    style.href = window.chrome.extension.getURL('contrast-black-white.css');
+    url = window.chrome.extension.getURL('contrast-black-white.css');
   } else if (valueSetting === 'blackYellow') {
-    style.href = window.chrome.extension.getURL('contrast-black-yellow.css');
+    url = window.chrome.extension.getURL('contrast-black-yellow.css');
   } else if (valueSetting === 'yellowBlack') {
-    style.href = window.chrome.extension.getURL('contrast-yellow-black.css');
+    url = window.chrome.extension.getURL('contrast-yellow-black.css');
   } else if (valueSetting === 'whiteBlack') {
-    style.href = window.chrome.extension.getURL('contrast-white-black.css');
+    url = window.chrome.extension.getURL('contrast-white-black.css');
   } else {
-    $('#contrast-accesa').prop('disabled', true);
-    $('#contrast-accesa').remove();
+    url = '';
   }
-  if (valueSetting !== 'unselected') {
-    (document.head || document.documentElement).appendChild(style);
+
+  if (url) {
+    let style = document.getElementById(id);
+    if (!style) {
+      style = document.createElement('link');
+      style.rel = 'stylesheet';
+      style.id = id;
+      style.type = 'text/css';
+      (document.head || document.documentElement).appendChild(style);
+    }
+    style.href = url;
+  } else {
+    $('#' + id).prop('disabled', true);
+    $('#' + id).remove();
   }
+
 }
 
 export default {
@@ -99,5 +110,5 @@ export default {
   contexts: [{ functionComponent: ContrastFunction }],
   propertySettingLocalStorage: propertySettingLocalStorage,
   valueDefaultSetting: valueDefaultSetting,
-  'action': action
+  action: action
 };
