@@ -15,7 +15,8 @@ import {
   onContinuousModeChange,
   onChangeInput,
   isOnRecognition,
-  onChangeOnRecognition
+  onChangeOnRecognition,
+  onResetSettings
 } from '../services/appSettings';
 import Main from './components/main';
 import Menu from './components/menu';
@@ -73,5 +74,15 @@ onImportedModulesChange(renderComponents);
 onChangeInput(renderComponents);
 onChangeOnRecognition(() => {
   initSpeechRecognition();
+  renderComponents();
+});
+onResetSettings(() => {
+  /* modularizar, pero que funque XD */
+  getActiveItemsMenu().forEach( itemMenu => {
+    itemMenu.items.filter( setting => setting.propertySettingLocalStorage && setting.valueDefaultSetting ).forEach(setting => {
+      localStorage.setItem(setting.propertySettingLocalStorage, setting.valueDefaultSetting);
+    });
+  });
+  /* ------------------------------- */
   renderComponents();
 });

@@ -58,16 +58,16 @@ export default class Main extends React.Component {
     return _.compact(aux_items);
   }
 
-  resetExtension() {
-    //setea todos los datos por defecto
-    console.log('lila');
+  resetSettings() {
+    document.dispatchEvent(new Event('resetSettings'));
   }
+
   render() {
     return (
       <div className='right_col module-description' role='main'>
         <div className='speech-recognizer-options desc-main'>
           <p className='speech-recognizer-mode-description'>{getI18nText('accesa-web-description')}</p>
-          <button className='btn btn-default' onClick={this.resetExtension}>{getI18nText('reset-extension')}</button>
+          <button className='btn btn-default' onClick={() => this.resetSettings()}>{getI18nText('reset-extension')}</button>
         </div>
       {
           this.props.itemsMenu

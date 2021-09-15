@@ -4,6 +4,7 @@ import $ from 'jquery';
 import _ from 'lodash';
 
 const propertySettingLocalStorage = 'input.name.lineSpacing';
+const valueDefaultSetting = '';
 const options = [
   {
     label: 'Ninguno',
@@ -57,7 +58,7 @@ function action(valueSetting) {
   });
 }
 function valueSpacing() {
-  return !_.isEmpty(localStorage.getItem(propertySettingLocalStorage)) ? localStorage.getItem(propertySettingLocalStorage) : '';
+  return !_.isEmpty(localStorage.getItem(propertySettingLocalStorage)) ? localStorage.getItem(propertySettingLocalStorage) : valueDefaultSetting;
 }
 
 function ChangeLineSpacingFunction() {
@@ -82,6 +83,7 @@ const lineSpacingSetting = {
   },
   contexts: [{ functionComponent: ChangeLineSpacingFunction }],
   propertySettingLocalStorage: propertySettingLocalStorage,
+  valueDefaultSetting: valueDefaultSetting,
   action: action
 };
 export default lineSpacingSetting;

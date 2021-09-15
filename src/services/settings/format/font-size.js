@@ -3,6 +3,7 @@ import $ from 'jquery';
 import _ from 'lodash';
 
 const propertySettingLocalStorage = 'input.name.resizeText';
+const valueDefaultSetting = '1.0';
 
 function Form({valueResizeText, onChangeResizeText}) {
   return (
@@ -25,7 +26,7 @@ function setResizeText(value) {
 }
 
 function valueResizeText() {
-  return localStorage.getItem(propertySettingLocalStorage) ? localStorage.getItem(propertySettingLocalStorage) : '1.0';
+  return localStorage.getItem(propertySettingLocalStorage) ? localStorage.getItem(propertySettingLocalStorage) : valueDefaultSetting;
 }
 
 function ResizeTextFunction() {
@@ -64,5 +65,6 @@ export default {
   },
   contexts: [{ functionComponent: ResizeTextFunction }],
   propertySettingLocalStorage: propertySettingLocalStorage,
+  valueDefaultSetting: valueDefaultSetting,
   action: action
 };

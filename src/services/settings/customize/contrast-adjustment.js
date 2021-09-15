@@ -24,6 +24,7 @@ const options = [
   }
 ];
 const propertySettingLocalStorage = 'input.name.contrast';
+const valueDefaultSetting = 'sinContraste';
 
 function Form({ valueContrast, onChangeContrast }) {
   return (
@@ -51,7 +52,7 @@ function setContrast(value) {
 }
 
 function valueContrast() {
-  return localStorage.getItem(propertySettingLocalStorage) ? localStorage.getItem(propertySettingLocalStorage) : '';
+  return localStorage.getItem(propertySettingLocalStorage) ? localStorage.getItem(propertySettingLocalStorage) : valueDefaultSetting;
 }
 function ContrastFunction() {
   return (
@@ -97,5 +98,6 @@ export default {
   },
   contexts: [{ functionComponent: ContrastFunction }],
   propertySettingLocalStorage: propertySettingLocalStorage,
+  valueDefaultSetting: valueDefaultSetting,
   'action': action
 };

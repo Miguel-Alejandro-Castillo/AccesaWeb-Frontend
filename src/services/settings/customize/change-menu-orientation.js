@@ -24,6 +24,7 @@ const options = [
   }
 ];
 const propertySettingLocalStorage = 'input.name.menuOrientation';
+const valueDefaultSetting = 'unselected';
 
 function Form({ valueMenuOrientation, onChangeMenuOrientation }) {
   return (
@@ -51,7 +52,7 @@ function setMenuOrientation(value) {
 }
 
 function valueMenuOrientation() {
-  return localStorage.getItem(propertySettingLocalStorage) ? localStorage.getItem(propertySettingLocalStorage) : '';
+  return localStorage.getItem(propertySettingLocalStorage) ? localStorage.getItem(propertySettingLocalStorage) : valueDefaultSetting;
 }
 function ChangeMenuOrientationFunction() {
   return (
@@ -91,5 +92,6 @@ export default {
   },
   contexts: [{ functionComponent: ChangeMenuOrientationFunction }],
   propertySettingLocalStorage: propertySettingLocalStorage,
+  valueDefaultSetting: valueDefaultSetting,
   'action': action
 };

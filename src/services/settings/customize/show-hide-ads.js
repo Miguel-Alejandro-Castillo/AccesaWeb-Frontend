@@ -4,6 +4,7 @@ import $ from 'jquery';
 import _ from 'lodash';
 
 const propertySettingLocalStorage = 'input.name.hideAds';
+const valueDefaultSetting = 'true';
 
 function Form({isHideAds, onChangeHideAds}) {
   return (
@@ -77,5 +78,6 @@ export default {
   },
   contexts: [{ functionComponent: ShowHideAdsFunction }],
   propertySettingLocalStorage: propertySettingLocalStorage,
+  valueDefaultSetting: valueDefaultSetting,
   action: action
 };

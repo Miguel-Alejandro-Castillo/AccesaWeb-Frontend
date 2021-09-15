@@ -86,6 +86,10 @@ export function onChangeInput(callback) {
   document.addEventListener('changeInput', () => callback());
 }
 
+export function onResetSettings(callback) {
+  document.addEventListener('resetSettings', () => callback());
+}
+
 export function getInitialContext() {
   return 'root';
 }
@@ -162,4 +166,12 @@ export function getSettingsValues() {
     });
   });
   return result;
+}
+
+export function initPropertiesSettings() {
+  getActiveItemsMenu().forEach( itemMenu => {
+    itemMenu.items.filter( setting => setting.propertySettingLocalStorage && setting.valueDefaultSetting ).forEach(setting => {
+      localStorage.setItem(setting.propertySettingLocalStorage, setting.valueDefaultSetting);
+    });
+  });
 }

@@ -7,7 +7,9 @@ import {
   onChangeInput,
   getSettingsValues,
   onChangeOnRecognition,
-  isOnRecognition
+  isOnRecognition,
+  onResetSettings,
+  initPropertiesSettings
 } from './appSettings';
 import _ from 'lodash';
 import log from 'loglevel';
@@ -210,6 +212,10 @@ chrome.runtime.onMessage.addListener(handleMessageFromContent);
 
 chrome.tabs.onRemoved.addListener(sendTurnedOn);
 
+chrome.runtime.onInstalled.addListener(() => {
+  initPropertiesSettings();
+});
+
 sendLang();
 sendSettingsValues();
 sendTurnedOn();
@@ -217,3 +223,7 @@ onLanguageChange(sendLang);
 onImportedModulesChange(sendImportedModules);
 onChangeInput(sendSettingsValues);
 onChangeOnRecognition(sendRecognition);
+onResetSettings(() => {
+  sendSettingsValues();
+  sendRecognition();
+});

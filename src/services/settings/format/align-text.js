@@ -3,6 +3,7 @@ import { getI18nText } from '../../../docs/i18n/i18n';
 //import $ from 'jquery';
 
 const propertySettingLocalStorage = 'input.name.alignText';
+const valueDefaultSetting = 'left';
 
 function Form({onClickAlignText}) {
   return (
@@ -55,5 +56,6 @@ export default {
   },
   contexts: [{ functionComponent: ChangeAlignFunction }],
   propertySettingLocalStorage: propertySettingLocalStorage,
+  valueDefaultSetting: valueDefaultSetting,
   action: action
 };

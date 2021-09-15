@@ -3,6 +3,7 @@ import { getI18nText } from '../../docs/i18n/i18n';
 //import $ from 'jquery';
 
 const propertySettingLocalStorage = 'input.name.onAccesibility';
+const valueDefaultSetting = 'true';
 
 function Form({isOnAccesibility, onChangeOnAccesibility}) {
   return (
@@ -68,5 +69,6 @@ export default {
   },
   contexts: [{ functionComponent: OnOffAccesibility }],
   propertySettingLocalStorage: propertySettingLocalStorage,
+  valueDefaultSetting: valueDefaultSetting,
   'action': action
 };

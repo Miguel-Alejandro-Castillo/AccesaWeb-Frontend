@@ -4,6 +4,7 @@ import $ from 'jquery';
 import _ from 'lodash';
 
 const propertySettingLocalStorage = 'input.name.paragraphSpacing';
+const  valueDefaultSetting = '';
 const options = [
   {
     label: 'Ninguno',
@@ -58,7 +59,7 @@ function action(valueSetting) {
 }
 
 function valueSpacing() {
-  return _.isEmpty(localStorage.getItem(propertySettingLocalStorage)) ? '' : localStorage.getItem(propertySettingLocalStorage);
+  return _.isEmpty(localStorage.getItem(propertySettingLocalStorage)) ? valueDefaultSetting : localStorage.getItem(propertySettingLocalStorage);
 }
 
 function ChangeParagraphSpacingFunction() {
@@ -83,5 +84,6 @@ export default {
   },
   contexts: [{ functionComponent: ChangeParagraphSpacingFunction }],
   propertySettingLocalStorage: propertySettingLocalStorage,
-  'action': action
+  valueDefaultSetting: valueDefaultSetting,
+  action: action
 };

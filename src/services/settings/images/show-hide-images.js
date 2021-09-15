@@ -4,6 +4,7 @@ import $ from 'jquery';
 import _ from 'lodash';
 
 const propertySettingLocalStorage = 'input.name.hideImages';
+const  valueDefaultSetting = 'true';
 
 function Form({isHideImages, onChangeHideImages}) {
   return (
@@ -76,5 +77,6 @@ export default {
   },
   contexts: [{ functionComponent: ShowHideImageFunction }],
   propertySettingLocalStorage: propertySettingLocalStorage,
-  'action': action
+  valueDefaultSetting: valueDefaultSetting,
+  action: action
 };

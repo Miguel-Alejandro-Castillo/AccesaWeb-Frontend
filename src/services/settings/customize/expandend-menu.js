@@ -3,6 +3,7 @@ import { getI18nText } from '../../../docs/i18n/i18n';
 //import $ from 'jquery';
 
 const propertySettingLocalStorage = 'input.name.expandedMenu';
+const valueDefaultSetting = 'true';
 
 function Form({isExpandedMenu, onChangeExpandedMenu}) {
   return (
@@ -68,5 +69,6 @@ export default {
   },
   contexts: [{ functionComponent: ShowExpandedMenuFunction }],
   propertySettingLocalStorage: propertySettingLocalStorage,
+  valueDefaultSetting: valueDefaultSetting,
   'action': action
 };

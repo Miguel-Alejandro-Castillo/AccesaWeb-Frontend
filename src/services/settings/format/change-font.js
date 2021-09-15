@@ -16,6 +16,7 @@ const options = [
   }
 ];
 const propertySettingLocalStorage = 'input.name.font';
+const valueDefaultSetting = 'sinSeleccionar';
 
 function Form({ valueFont, onChangeFont }) {
   return (
@@ -43,7 +44,7 @@ function setFont(value) {
 }
 
 function valueFont() {
-  return localStorage.getItem(propertySettingLocalStorage) ? localStorage.getItem(propertySettingLocalStorage) : '';
+  return localStorage.getItem(propertySettingLocalStorage) ? localStorage.getItem(propertySettingLocalStorage) : valueDefaultSetting;
 }
 function FontFunction() {
   return (
@@ -74,5 +75,6 @@ export default {
   },
   contexts: [{ functionComponent: FontFunction }],
   propertySettingLocalStorage: propertySettingLocalStorage,
-  'action': action
+  valueDefaultSetting: valueDefaultSetting,
+  action: action
 };
