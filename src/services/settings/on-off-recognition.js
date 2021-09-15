@@ -33,7 +33,7 @@ function Form({isOnRecognition, onChangeOnRecognition, continuousMode, setContin
       </div>
       <div className='radio'>
         <label>
-          <input type='radio' name={'recognitionMode'} onChange={() => onChangeOnRecognition(false)}/> <span>{getI18nText('off')}</span>
+          <input type='radio' name={'recognitionMode'} checked={!isOnRecognition} onChange={() => onChangeOnRecognition(false)}/> <span>{getI18nText('off')}</span>
         </label>
       </div>
       { isOnRecognition ? <SpeechForm/> : null }
