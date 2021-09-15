@@ -4,11 +4,11 @@ import $ from 'jquery';
 import _ from 'lodash';
 
 const propertySettingLocalStorage = 'input.name.lineSpacing';
-const valueDefaultSetting = '';
+const valueDefaultSetting = '*';
 const options = [
   {
     label: 'Ninguno',
-    value: ''
+    value: valueDefaultSetting
   },
   {
     label: '1,5',
@@ -54,7 +54,7 @@ function action(valueSetting) {
     const element = $(this);
     if ( _.isEmpty(element.data('defaultLineHeight')) )
       element.data('defaultLineHeight', element.css('line-height'));
-    element.css('line-height', _.isEmpty(valueSetting) ? element.data('defaultLineHeight') : valueSetting);
+    element.css('line-height', valueSetting === valueDefaultSetting ? element.data('defaultLineHeight') : valueSetting);
   });
 }
 function valueSpacing() {

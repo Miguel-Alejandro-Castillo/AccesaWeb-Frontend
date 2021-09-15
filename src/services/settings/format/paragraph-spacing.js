@@ -4,11 +4,11 @@ import $ from 'jquery';
 import _ from 'lodash';
 
 const propertySettingLocalStorage = 'input.name.paragraphSpacing';
-const  valueDefaultSetting = '';
+const  valueDefaultSetting = '*';
 const options = [
   {
     label: 'Ninguno',
-    value: ''
+    value: valueDefaultSetting
   },
   {
     label: '2.0',
@@ -54,7 +54,7 @@ function action(valueSetting) {
     const element = $(this);
     if ( _.isEmpty(element.data('defaultMarginBottom')) )
       element.data('defaultMarginBottom', element.css('margin-bottom'));
-    element.css('margin-bottom', _.isEmpty(valueSetting) ? element.data('defaultMarginBottom') : valueSetting);
+    element.css('margin-bottom', valueSetting === valueDefaultSetting ? element.data('defaultMarginBottom') : valueSetting);
   });
 }
 
