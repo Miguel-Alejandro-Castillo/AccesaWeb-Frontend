@@ -8,12 +8,12 @@ export default {
   items: items,
   i18n: {
     en: {
-      'name': 'About us AccesaWeb',
-      'titleMain': 'About us AccesaWeb'
+      'name': 'About us',
+      'titleMain': 'About us'
     },
     es: {
-      'name': 'Acerca de AccesaWeb',
-      'titleMain': 'Acerca de AccesaWeb'
+      'name': 'Acerca de',
+      'titleMain': 'Acerca de'
     }
   }
 };
