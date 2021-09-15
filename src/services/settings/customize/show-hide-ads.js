@@ -41,8 +41,8 @@ function setHideAds(value) {
 }
 
 function action(valueSetting) {
-  /* solo oculta publicidades de google */
-  $("ins[class='adsbygoogle']").each(function() {
+  /* oculta publicidades de diario El Dia y Clarin */
+  $("ins[class='adsbygoogle'],a[href*='ads.e-planning.net'],a[href*='adclick.g.doubleclick.net'],div[id*='google_ads_iframe']").each(function() {
     const elem = $(this);
     if (_.isEmpty(elem.data('defaultDisplay')))
       elem.data('defaultDisplay', elem.css('display'));  //Guardar el Display por default
