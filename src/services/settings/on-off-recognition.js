@@ -3,6 +3,9 @@ import { getI18nText } from '../../docs/i18n/i18n';
 import { getContinuousMode, setContinuousMode, isOnRecognition, setOnRecognition } from '../appSettings';
 //import $ from 'jquery';
 
+const propertySettingLocalStorage = 'onRecognition';
+const valueDefaultSetting = 'false';
+
 function Form({isOnRecognition, onChangeOnRecognition, continuousMode, setContinuousMode}) {
   const SpeechForm = () => (
     <div>
@@ -68,5 +71,7 @@ export default {
       'description': 'Encender/apagar el reconocimiento de voz'
     }
   },
-  contexts: [{ functionComponent: OnOffRecognition }]
+  contexts: [{ functionComponent: OnOffRecognition }],
+  propertySettingLocalStorage: propertySettingLocalStorage,
+  valueDefaultSetting: valueDefaultSetting
 };

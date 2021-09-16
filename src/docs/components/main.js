@@ -59,6 +59,7 @@ export default class Main extends React.Component {
   }
 
   resetSettings() {
+    localStorage.setItem('isResetSettings', true);
     document.dispatchEvent(new Event('resetSettings'));
   }
 

@@ -87,6 +87,11 @@ export function onChangeInput(callback) {
 }
 
 export function onResetSettings(callback) {
+  window.addEventListener('storage', event => {
+    if (event.key === 'isResetSettings') {
+      callback();
+    }
+  }, false);
   document.addEventListener('resetSettings', () => callback());
 }
 
