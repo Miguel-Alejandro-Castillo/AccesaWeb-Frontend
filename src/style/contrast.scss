@@ -1,0 +1,204 @@
+// excess height to improve interactive area / accessibility
+$height: 30px;
+$thumb-height: 13px;
+$track-height: 3px;
+
+// colours
+$upper-color: rgb(110, 107, 107);
+$color: black;
+$border: #333;
+$background: white;
+$selection: #b1b1b1;
+$shadow: rgb(51, 51, 51 / 65%) 0 2px 0, inset rgb(255, 255, 255 / 16%) 0 1px 0;
+
+:root {
+  --color: #{$color};
+  --background: #{$background};
+}
+
+$upper-background: linear-gradient(to bottom, $upper-color, $upper-color) 100% 50% / 100% $track-height no-repeat transparent;
+$lower-background: linear-gradient(to bottom,  var(--background), var(--background)) 100% 50% / 100% $track-height no-repeat transparent;
+
+button,select,input {
+    background-color: var(--background) !important;
+    color: var(--color) !important;
+    border-color: $border !important;
+}
+.btn-default {
+  background: var(--color) !important;
+  color: var(--background) !important;
+  border: 1px solid var(--background) !important;
+  border-radius: 2%;
+}
+.btn-primary{
+  background: var(--background) !important;
+  color: var(--color) !important;
+  border: 1px solid var(--background) !important;
+  border-radius: 2%;
+}
+audio::-webkit-media-controls-play-button, audio::-webkit-media-controls-panel {
+  background-color: #dfdfdf;
+}
+h1,h2,h3,h4,h5,h6,p,ul,ol,li,i,span,a,div,body,pre,code,svg,input[type=text],
+input::placeholder{
+    background-color: var(--color) !important;
+    color: var(--background) !important;
+}
+p::selection, h1::selection, h2::selection, h3::selection, h4::selection,
+h5::selection, h6::selection, a::selection, strong::selection,
+input[type=text]::selection, code::selection, #text::selection,
+span::selection, pre::selection{
+  background: rgb(168, 166, 166);
+  color: var(--background) !important;
+}
+a:hover, .nav.side-menu > li > a:hover{
+  color: $border !important;
+  font-weight:bold !important;
+  text-decoration-line: underline !important;
+}
+th{
+    background-color: var(--background) !important;
+    color: var(--color) !important;
+    border: 2px solid $border !important;
+    border-bottom: 2px solid $border !important;
+}
+td{
+    background-color: var(--color) !important;
+    color: var(--background) !important;
+    border: 1px solid $border !important;
+}
+.fc-light {
+    color: var(--background) !important;
+    background: var(--color) !important;
+}
+.nav-md ul.nav.child_menu li:before {
+    background: var(--background) !important;
+}
+.nav.side-menu > li.active > a {
+    background-color: $border !important;
+    color: var(--color) !important;
+    background: var(--background) !important;
+    box-shadow: $shadow !important;
+}
+.nav.side-menu > li.active > a > i.fa, .nav.side-menu > li.active > a > span.fa {
+  background: var(--background) !important;
+  color: var(--color) !important;
+}
+.x_panel,.nav_menu,.module-description table,.snippet-code,.s-notice{
+    border: 1px solid $border !important;
+}
+.x_title{
+    border-bottom:2px solid $border !important;
+}
+::-webkit-scrollbar-track{
+    background-color: var(--color) !important;
+}
+::-webkit-scrollbar-thumb,::-webkit-scrollbar-button,::-webkit-scrollbar-corner {
+    background-color: var(--background) !important;
+}
+.nav-md ul.nav.child_menu li:after {
+  border-left: 1px solid #262727fa !important;
+}
+/*radiobutton and checkbox*/
+input[type=radio],
+input[type=checkbox] {
+  display:none;
+}
+input[type=radio] + span,
+input[type=checkbox] + span {
+  display:inline-block;
+  position: relative;
+  margin-left: 21px;
+}
+input[type=radio] + span:before,
+input[type=checkbox] + span:before {
+  content:'';
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  background-color: var(--color);
+  left: -20px;
+  top: 1px;
+  border: 1px solid var(--background);
+}
+input[type=radio] + span:before {
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  -khtml-border-radius: 50%;
+}
+input[type=radio]:checked + span:after,
+input[type=checkbox]:checked + span:after {
+  content:'';
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  background-color: var(--background);
+  left: -18px;
+  top: 3px;
+  border: 1px solid var(--background);
+}
+input[type=radio]:checked + span:after {
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  -khtml-border-radius: 50%;
+}
+
+/*range*/
+
+// Webkit cannot style progress so we fake it with a long shadow
+// on the thumb element
+@function webkit-slider-thumb-shadow($i: 1) {
+  $val: #{$i}px 0 0 -#{($thumb-height - $track-height) / 2} #{$upper-color};
+  @if $i == 1 {
+    @for $k from 2 through 1000 {
+      $val: #{$val}, webkit-slider-thumb-shadow($k);
+    }
+  }
+  @return $val;
+}
+
+input[type=range]{
+  display: block;
+  appearance: none;
+  width: 100%;
+  margin: 0;
+  height: $height;
+  overflow: hidden;
+  cursor: pointer;
+  background: transparent !important;
+  &:focus {
+    outline: none;
+  }
+}
+
+// Webkit
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: $height;
+  background: $lower-background;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  position: relative;
+  appearance: none;
+  height: $thumb-height;
+  width: $thumb-height;
+  background: $border;
+  border-radius: 100%;
+  border: 0;
+  top: 50%;
+  margin-top: (-$thumb-height/2);
+  box-shadow: webkit-slider-thumb-shadow();
+  transition: background-color 150ms;
+}
+#value {
+  left: 0%;
+  top: 41%;
+  color: var(--background);
+  transition: 0.5s color ease;
+}
+footer,footer > a, footer > div{
+background: $border !important;
+}

@@ -63,16 +63,28 @@ function ContrastFunction() {
 
 function action(valueSetting) {
   const id = 'link-contrast-accesa';
-  let url = '';
+  const documentElementStyle = document.documentElement.style;
+
+  let url = window.chrome.extension.getURL('contrast.css');
   if (valueSetting === 'blackWhite') {
-    url = window.chrome.extension.getURL('contrast-black-white.css');
+    documentElementStyle.setProperty('--color', 'black');
+    documentElementStyle.setProperty('--background', 'white');
+
   } else if (valueSetting === 'blackYellow') {
-    url = window.chrome.extension.getURL('contrast-black-yellow.css');
+    documentElementStyle.setProperty('--color', 'black');
+    documentElementStyle.setProperty('--background', 'yellow');
+
   } else if (valueSetting === 'yellowBlack') {
-    url = window.chrome.extension.getURL('contrast-yellow-black.css');
+    documentElementStyle.setProperty('--color', 'yellow');
+    documentElementStyle.setProperty('--background', 'black');
+
   } else if (valueSetting === 'whiteBlack') {
-    url = window.chrome.extension.getURL('contrast-white-black.css');
+    documentElementStyle.setProperty('--color', 'white');
+    documentElementStyle.setProperty('--background', 'black');
+
   } else {
+    documentElementStyle.removeProperty('--color');
+    documentElementStyle.removeProperty('--background');
     url = '';
   }
 
