@@ -1,62 +1,98 @@
+// excess height to improve interactive area / accessibility
+$height: 30px;
+$thumb-height: 13px;
+$track-height: 3px;
+
+// colours
+$upper-color: rgb(110, 107, 107);
+$color: yellow;
+$border: #333;
+$background: black;
+$selection: #b1b1b1;
+$shadow: rgb(51, 51, 51 / 65%) 0 2px 0, inset rgb(255, 255, 255 / 16%) 0 1px 0;
+
+$upper-background: linear-gradient(to bottom, $upper-color, $upper-color) 100% 50% / 100% $track-height no-repeat transparent;
+$lower-background: linear-gradient(to bottom, $background, $background) 100% 50% / 100% $track-height no-repeat transparent;
+
 button,select,input {
-    background-color: black !important;
-    color:yellow !important;
-    border-color: #333 !important;
+    background-color: $background !important;
+    color:$color !important;
+    border-color: $border !important;
+}
+.btn-default {
+  background: $color !important;
+  color: $background !important;
+  border: 1px solid $background !important;
+  border-radius: 2%;
+}
+.btn-primary{
+  background: $background !important;
+  color: $color !important;
+  border: 1px solid $background !important;
+  border-radius: 2%;
 }
 audio::-webkit-media-controls-play-button, audio::-webkit-media-controls-panel {
-  background-color: yellow;
-}
-audio{
-  border: 2px solid black;
+  background-color: $selection;
 }
 h1,h2,h3,h4,h5,h6,p,ul,ol,li,i,span,a,div,body,pre,code,svg,input[type=text],
 input::placeholder{
-    background-color: yellow !important;
-    color:black !important;
+    background-color: $color !important;
+    color:$background !important;
+}
+p::selection, h1::selection, h2::selection, h3::selection, h4::selection,
+h5::selection, h6::selection, a::selection, strong::selection,
+input[type=text]::selection, code::selection, #text::selection,
+span::selection, pre::selection{
+  background: $selection;
+  color: $background !important;
 }
 a:hover, .nav.side-menu > li > a:hover{
-  color: #333 !important;
+  color: $color !important;
   font-weight:bold !important;
   text-decoration-line: underline !important;
 }
 th{
-    background-color: black !important;
-    color: yellow !important;
-    border: 2px solid #333 !important;
-    border-bottom: 2px solid #333 !important;
+    background-color: $background !important;
+    color: $color !important;
+    border: 2px solid $border !important;
+    border-bottom: 2px solid $border !important;
 }
 td{
-    background-color: yellow !important;
-    color:black !important;
-    border: 1px solid #333 !important;
+    background-color: $color !important;
+    color:$background !important;
+    border: 1px solid $border !important;
 }
 .fc-light {
-    color:black !important;
-    background: yellow !important;
+    color:$background !important;
+    background: $color !important;
 }
 .nav-md ul.nav.child_menu li:before {
-    background: black !important;
+    background: $background !important;
 }
 .nav.side-menu > li.active > a {
-    background-color: #333 !important;
-    color:yellow !important;
-    background: black !important;
+    background-color: $border !important;
+    color:$color !important;
+    background: $background !important;
+    box-shadow: $shadow !important;
 }
 .nav.side-menu > li.active > a > i.fa, .nav.side-menu > li.active > a > span.fa {
-  background: black !important;
-  color: yellow !important;
+  background: $background !important;
+  color: $color !important;
 }
 .x_panel,.nav_menu,.module-description table,.snippet-code,.s-notice{
-    border: 1px solid #333 !important;
+    border: 1px solid $border !important;
 }
 .x_title{
-    border-bottom:2px solid #333 !important;
+    border-bottom:2px solid $border !important;
 }
 ::-webkit-scrollbar-track{
-    background-color: yellow !important;
+    background-color: $color !important;
 }
 ::-webkit-scrollbar-thumb,::-webkit-scrollbar-button,::-webkit-scrollbar-corner {
-    background-color: black !important;
+    background-color: $background !important;
+}
+.nav-md ul.nav.child_menu li:after {
+  border-left: 1px solid $border !important;
 }
 /*radiobutton and checkbox*/
 input[type=radio],
@@ -75,10 +111,10 @@ input[type=checkbox] + span:before {
   position: absolute;
   width: 13px;
   height: 13px;
-  background-color: yellow;
+  background-color: $color;
   left: -20px;
   top: 1px;
-  border: 1px solid black;
+  border: 1px solid $background;
 }
 input[type=radio] + span:before {
   -moz-border-radius: 50%;
@@ -92,14 +128,72 @@ input[type=checkbox]:checked + span:after {
   position: absolute;
   width: 9px;
   height: 9px;
-  background-color: black;
+  background-color: $background;
   left: -18px;
   top: 3px;
-  border: 1px solid black;
+  border: 1px solid $background;
 }
 input[type=radio]:checked + span:after {
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
   border-radius: 50%;
   -khtml-border-radius: 50%;
+}
+
+/*range*/
+
+// Webkit cannot style progress so we fake it with a long shadow
+// on the thumb element
+@function webkit-slider-thumb-shadow($i: 1) {
+  $val: #{$i}px 0 0 -#{($thumb-height - $track-height) / 2} #{$upper-color};
+  @if $i == 1 {
+    @for $k from 2 through 1000 {
+      $val: #{$val}, webkit-slider-thumb-shadow($k);
+    }
+  }
+  @return $val;
+}
+
+input[type=range]{
+  display: block;
+  appearance: none;
+  width: 100%;
+  margin: 0;
+  height: $height;
+  overflow: hidden;
+  cursor: pointer;
+  background: transparent !important;
+  &:focus {
+    outline: none;
+  }
+}
+
+// Webkit
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: $height;
+  background: $lower-background;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  position: relative;
+  appearance: none;
+  height: $thumb-height;
+  width: $thumb-height;
+  background: $border;
+  border-radius: 100%;
+  border: 0;
+  top: 50%;
+  margin-top: (-$thumb-height/2);
+  box-shadow: webkit-slider-thumb-shadow();
+  transition: background-color 150ms;
+}
+#value {
+  left: 0%;
+  top: 41%;
+  color: $background;
+  transition: 0.5s color ease;
+}
+footer,footer > a, footer > div{
+background: $border !important;
 }

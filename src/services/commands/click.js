@@ -39,7 +39,10 @@ const esHtmlExample = `
   <h4>Opción</h4>
   <p class="box">
     Usar comando "click" o "click opción" <br />
-    <input type="checkbox" /> Opción
+    <label>
+      <input type="checkbox" />
+      <span>Opción</span>
+    </label>
   </p>
   <h4>Color</h4>
   <p class="box">
@@ -114,7 +117,10 @@ const enHtmlExample = `
   <h4>Checkbox</h4>
   <p class="box">
     Use the command "click" or "click checkbox" <br />
-    <input type="checkbox" /> Opción
+    <label>
+      <input type="checkbox" />
+      <span> Option </span>
+    </label>
   </p>
   <h4>Color</h4>
   <p class="box">

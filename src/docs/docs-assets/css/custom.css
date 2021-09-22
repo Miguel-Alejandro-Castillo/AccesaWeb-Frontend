@@ -1,7 +1,10 @@
 @charset "UTF-8";
 .left_col {
-  background: #337ab7; }
-
+  background: #337ab7; 
+}
+.module-description{
+  margin-bottom: 3%;
+}
 select#contrast option[value="blackWhite"]   { 
   background-color: black;
   color: white;
