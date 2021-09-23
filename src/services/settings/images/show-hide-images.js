@@ -40,18 +40,33 @@ function setHideImages(value) {
   }
 }
 
-function action(valueSetting) {
-  $('img').each(function() {
-    const img = $(this);
-    if (_.isEmpty(img.data('defaultDisplay')))
-      img.data('defaultDisplay', img.css('display'));  //Guardar el Display por default
-    if (_.isEmpty(img.data('defaultVisibility')))
-      img.data('defaultVisibility', img.css('visibility'));  //Guardar el Visibility por default
-
+function showHideElement(el, valueSetting) {
+  if (el[0].nodeName === 'IMG') {
+    if (_.isEmpty(el.data('defaultDisplay')))
+      el.data('defaultDisplay', el.css('display'));  //Guardar el Display por default
+    if (_.isEmpty(el.data('defaultVisibility')))
+      el.data('defaultVisibility', el.css('visibility'));  //Guardar el Visibility por default
     if (valueSetting === 'false')
-      img.css({ 'display': 'none', 'visibility': 'hidden' });
+      el.css({ 'display': 'none', 'visibility': 'hidden' });
     else
-      img.css({ 'display': img.data('defaultDisplay'), 'visibility': img.data('defaultVisibility')});
+      el.css({ 'display': el.data('defaultDisplay'), 'visibility': el.data('defaultVisibility')});
+  } else {
+    if (_.isEmpty(el.data('defaultBackgroundImage')))
+      el.data('defaultBackgroundImage', el.css('background-image'));
+    if (valueSetting === 'false')
+      el.css('background-image', 'none');
+    else
+      el.css('background-image', el.data('defaultBackgroundImage'));
+  }
+}
+
+function action(valueSetting) {
+  $('*').filter( function() {
+    const el = $(this);
+    return el[0].nodeName === 'IMG' || el.css('background-image');
+  }).each(function() {
+    const el = $(this);
+    showHideElement(el, valueSetting);
   });
 }
 

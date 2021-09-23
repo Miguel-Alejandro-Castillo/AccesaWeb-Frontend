@@ -8,7 +8,7 @@ const valueDefaultSetting = 'true';
 
 //Quitar logos de redes sociales segun Transita Web
 //$redes_sociales = array( "FACEBOOK", "TWITTER", "WHATSAPP", "YOUTUBE", "INSTAGRAM", "LINKEDIN","QZONE", "GOOGLE", "PINTEREST", "BADOO","PIN IT", "GOOGLE PLUS", "PLUS");
-const  socialNetworks = [ 'facebook', 'twitter', 'whatsapp', 'youtube', 'instagram', 'telegram', 'linkedin', 'qzone', 'pinterest', 'badoo' ];
+const  socialNetworks = [ 'facebook', 'twitter', 'whatsapp', 'youtube', 'instagram', 'telegram', 'linkedin', 'qzone', 'pinterest', 'badoo', 'tiktok', 'github' ];
 
 function Form({isHideSocialNetworks, onChangeHideSocialNetworks}) {
   return (
