@@ -45,6 +45,18 @@ function initUi() {
 
   $appStyle.load(mainCssUrl);
 
+  const link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = getURL('/accesibility.css');
+  document.head.appendChild(link);
+
+  const $iStyle = $('<style type="text/css"></style>');
+  $iStyle.load(link.href, function() {
+    //Fixear get all iframe, no trae todos los frames, corregir!!
+    $('iframe').contents().find('head').append($iStyle);
+  });
+
   return {
     shadowRootElement,
     appContainer: $appContainer[0]

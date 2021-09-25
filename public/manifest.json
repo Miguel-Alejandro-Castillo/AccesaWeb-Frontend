@@ -46,7 +46,7 @@
   },
   "content_scripts": [{
     "matches": ["<all_urls>"],
-    "run_at": "document_end",
+    "run_at": "document_idle",
     "match_about_blank": true,
     "css": ["body.css"],
     "js": ["content.js"]
@@ -54,6 +54,7 @@
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
   "web_accessible_resources": [
     "app.css",
+    "accesibility.css",
     "contrast.css",
     "contrast-black-white.css",
     "contrast-white-black.css",

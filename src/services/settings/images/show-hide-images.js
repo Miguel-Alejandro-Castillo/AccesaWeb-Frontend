@@ -1,7 +1,6 @@
 import React from 'react';
 import { getI18nText } from '../../../docs/i18n/i18n';
 import $ from 'jquery';
-import _ from 'lodash';
 
 const propertySettingLocalStorage = 'input.name.hideImages';
 const  valueDefaultSetting = 'true';
@@ -40,34 +39,25 @@ function setHideImages(value) {
   }
 }
 
-function showHideElement(el, valueSetting) {
-  if (el[0].nodeName === 'IMG') {
-    if (_.isEmpty(el.data('defaultDisplay')))
-      el.data('defaultDisplay', el.css('display'));  //Guardar el Display por default
-    if (_.isEmpty(el.data('defaultVisibility')))
-      el.data('defaultVisibility', el.css('visibility'));  //Guardar el Visibility por default
-    if (valueSetting === 'false')
-      el.css({ 'display': 'none', 'visibility': 'hidden' });
-    else
-      el.css({ 'display': el.data('defaultDisplay'), 'visibility': el.data('defaultVisibility')});
-  } else {
-    if (_.isEmpty(el.data('defaultBackgroundImage')))
-      el.data('defaultBackgroundImage', el.css('background-image'));
-    if (valueSetting === 'false')
-      el.css('background-image', 'none');
-    else
-      el.css('background-image', el.data('defaultBackgroundImage'));
-  }
-}
-
 function action(valueSetting) {
-  $('*').filter( function() {
-    const el = $(this);
-    return el[0].nodeName === 'IMG' || el.css('background-image');
-  }).each(function() {
-    const el = $(this);
-    showHideElement(el, valueSetting);
+  var imgs = $('img');
+  var elems = $('*').filter(function() {
+    var el = $(this);
+    return el.css('background-image');
   });
+  var imgsIframe = $('iframe').contents().find('img');
+  var elemsIframe = $('iframe').contents().find('*');
+  if (valueSetting === 'false') {
+    imgs.addClass('hide-element-aw');
+    elems.addClass('remove-background-image-aw');
+    imgsIframe.addClass('hide-element-aw');
+    elemsIframe.addClass('remove-background-image-aw');
+  } else {
+    imgs.removeClass('hide-element-aw');
+    elems.removeClass('remove-background-image-aw');
+    imgsIframe.removeClass('hide-element-aw');
+    elemsIframe.removeClass('remove-background-image-aw');
+  }
 }
 
 function ShowHideImageFunction() {
