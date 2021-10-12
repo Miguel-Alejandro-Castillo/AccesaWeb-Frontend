@@ -1,3 +1,8 @@
+$font: opendyslexic;
+:root {
+  --fontType: #{$font};
+}
+
 .hide-element-aw {
   display: none !important;
   visibility: hidden !important;
@@ -5,4 +10,36 @@
 
 .remove-background-image-aw {
   background-image: none !important;
+}
+
+@font-face {
+  font-family: 'opendyslexic';
+	src: url('../docs/docs-assets/fonts/open-dyslexic/OpenDyslexic-Regular.otf');
+	font-style: normal;
+	font-weight: normal;
+} 
+
+@font-face {
+	font-family: 'opendyslexic';
+	src: url('../docs/docs-assets/fonts/open-dyslexic/OpenDyslexic-Italic.otf');
+	font-style: italic;
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: 'opendyslexic';
+	src: url('../docs/docs-assets/fonts/open-dyslexic/OpenDyslexic-Bold.otf');
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'opendyslexic';
+	src: url('../docs/docs-assets/fonts/open-dyslexic/OpenDyslexic-Bold-Italic.otf');
+	font-weight: bold;
+	font-style: italic;
+}
+
+.font-aw {
+	font-family: var(--fontType) !important;
 }

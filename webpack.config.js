@@ -249,6 +249,7 @@ const config = {
       { test: /\.woff(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=' + 0 + '&mimetype=application/font-woff&name=assets/[hash].[ext]' },
       { test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=' + 0 + '&mimetype=application/font-woff&name=assets/[hash].[ext]' },
       { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=' + 0 + '&mimetype=application/octet-stream&name=assets/[hash].[ext]' },
+      { test: /\.otf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=' + 0 + '&mimetype=application/octet-stream&name=assets/[hash].[ext]' },
       { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file?&name=assets/[hash].[ext]' },
       { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=' + 0 + '&mimetype=image/svg+xml&&name=assets/[hash].[ext]' }
 

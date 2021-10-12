@@ -1,22 +1,24 @@
 import React from 'react';
 import { getI18nText } from '../../../docs/i18n/i18n';
-//import $ from 'jquery';
+import $ from 'jquery';
+
+const propertySettingLocalStorage = 'input.name.font';
+const valueDefaultSetting = '*';
+
 const options = [
   {
     label: getI18nText('unselected'),
-    value: 'sinSeleccionar'
+    value: valueDefaultSetting
   },
   {
     label: getI18nText('arial'),
-    value: 'arial'
+    value: 'Arial'
   },
   {//letra para los dislexicos hay que ver como se incorpora o como se usa
     label: getI18nText('dyslexic'),
-    value: 'dislexyc'
+    value: 'opendyslexic'
   }
 ];
-const propertySettingLocalStorage = 'input.name.font';
-const valueDefaultSetting = 'sinSeleccionar';
 
 function Form({ valueFont, onChangeFont }) {
   return (
@@ -53,9 +55,11 @@ function FontFunction() {
 }
 
 function action(valueSetting) {
-  if (valueSetting === 'arial') {
-    //setea la letra
-  } else {
+  const elements = $('*').not('[class*="fa fa-"]');
+  elements.removeClass('font-aw');
+  if ( valueSetting !== '*' ) {
+    document.documentElement.style.setProperty('--fontType', valueSetting);
+    elements.addClass('font-aw');
   }
 }
 
