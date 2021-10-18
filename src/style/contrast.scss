@@ -5,15 +5,20 @@ $track-height: 3px;
 
 // colours
 $upper-color: rgb(110, 107, 107);
-$color: black;
 $border: #333;
+$color: black;
 $background: white;
 $selection: #b1b1b1;
+$selection-c: black;
 $shadow: rgb(51, 51, 51 / 65%) 0 2px 0, inset rgb(255, 255, 255 / 16%) 0 1px 0;
 
 :root {
   --color: #{$color};
   --background: #{$background};
+  --border: #{$border};
+  --upper-color: #{$upper-color};
+  --selection-bg: #{$selection};
+  --selection-c: #{$selection-c};
 }
 
 $upper-background: linear-gradient(to bottom, $upper-color, $upper-color) 100% 50% / 100% $track-height no-repeat transparent;
@@ -22,7 +27,7 @@ $lower-background: linear-gradient(to bottom,  var(--background), var(--backgrou
 button,select,input {
     background-color: var(--background) !important;
     color: var(--color) !important;
-    border-color: $border !important;
+    border-color: var(var(--border)) !important;
 }
 .btn-default {
   background: var(--color) !important;
@@ -48,24 +53,24 @@ p::selection, h1::selection, h2::selection, h3::selection, h4::selection,
 h5::selection, h6::selection, a::selection, strong::selection,
 input[type=text]::selection, code::selection, #text::selection,
 span::selection, pre::selection{
-  background: rgb(168, 166, 166);
-  color: var(--background) !important;
+  background: var(--selection-bg)  ;
+  color: var(--selection-c) !important;
 }
 a:hover, .nav.side-menu > li > a:hover{
-  color: $border !important;
+  color: var(--border) !important;
   font-weight:bold !important;
   text-decoration-line: underline !important;
 }
 th{
     background-color: var(--background) !important;
     color: var(--color) !important;
-    border: 2px solid $border !important;
-    border-bottom: 2px solid $border !important;
+    border: 2px solid var(--border) !important;
+    border-bottom: 2px solid var(--border) !important;
 }
 td{
     background-color: var(--color) !important;
     color: var(--background) !important;
-    border: 1px solid $border !important;
+    border: 1px solid var(--border) !important;
 }
 .fc-light {
     color: var(--background) !important;
@@ -75,7 +80,7 @@ td{
     background: var(--background) !important;
 }
 .nav.side-menu > li.active > a {
-    background-color: $border !important;
+    background-color: var(--border) !important;
     color: var(--color) !important;
     background: var(--background) !important;
     box-shadow: $shadow !important;
@@ -85,10 +90,10 @@ td{
   color: var(--color) !important;
 }
 .x_panel,.nav_menu,.module-description table,.snippet-code,.s-notice{
-    border: 1px solid $border !important;
+    border: 1px solid var(--border) !important;
 }
 .x_title{
-    border-bottom:2px solid $border !important;
+    border-bottom:2px solid var(--border) !important;
 }
 ::-webkit-scrollbar-track{
     background-color: var(--color) !important;
@@ -97,7 +102,7 @@ td{
     background-color: var(--background) !important;
 }
 .nav-md ul.nav.child_menu li:after {
-  border-left: 1px solid #262727fa !important;
+  border-left: 1px solid var(--border) !important;
 }
 /*radiobutton and checkbox*/
 input[type=radio],
@@ -185,7 +190,7 @@ input[type=range]::-webkit-slider-thumb {
   appearance: none;
   height: $thumb-height;
   width: $thumb-height;
-  background: $border;
+  background: var(--border);
   border-radius: 100%;
   border: 0;
   top: 50%;
@@ -200,5 +205,5 @@ input[type=range]::-webkit-slider-thumb {
   transition: 0.5s color ease;
 }
 footer,footer > a, footer > div{
-background: $border !important;
+background: var(--border) !important;
 }

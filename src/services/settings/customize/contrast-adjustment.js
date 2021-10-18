@@ -69,22 +69,27 @@ function action(valueSetting) {
   if (valueSetting === 'blackWhite') {
     documentElementStyle.setProperty('--color', 'black');
     documentElementStyle.setProperty('--background', 'white');
+    documentElementStyle.setProperty('--border', 'silver');
 
   } else if (valueSetting === 'blackYellow') {
     documentElementStyle.setProperty('--color', 'black');
     documentElementStyle.setProperty('--background', 'yellow');
+    documentElementStyle.setProperty('--border', 'gold');
 
   } else if (valueSetting === 'yellowBlack') {
     documentElementStyle.setProperty('--color', 'yellow');
     documentElementStyle.setProperty('--background', 'black');
+    documentElementStyle.setProperty('--border', '#333');
 
   } else if (valueSetting === 'whiteBlack') {
     documentElementStyle.setProperty('--color', 'white');
     documentElementStyle.setProperty('--background', 'black');
-
+    documentElementStyle.setProperty('--border', 'grey');
   } else {
     documentElementStyle.removeProperty('--color');
     documentElementStyle.removeProperty('--background');
+    documentElementStyle.removeProperty('--border');
+
     url = '';
   }
 
