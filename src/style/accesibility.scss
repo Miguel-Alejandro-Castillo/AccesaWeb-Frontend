@@ -1,6 +1,8 @@
 $font: opendyslexic;
+$textAlign: inherit;
 :root {
   --fontType: #{$font};
+  --textAlign: #{$textAlign};
 }
 
 .hide-element-aw {
@@ -42,4 +44,8 @@ $font: opendyslexic;
 
 .font-aw {
 	font-family: var(--fontType) !important;
+}
+
+.text-align-aw {
+	text-align: var(--textAlign) !important;
 }
