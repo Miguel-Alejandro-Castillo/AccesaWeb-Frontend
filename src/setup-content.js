@@ -21,6 +21,39 @@ function getInitialData(cb) {
   window.chrome.runtime.sendMessage({getInitialData: true}, cb);
 }
 
+function initStyle(callback) {
+  //const $style = $('<style type="text/css"></style>');
+  /*
+  const $style = document.createElement('style');
+  $style.type = 'text/css';
+  $style.load(getURL('/accesibility.css'), function() {
+    $('head').append($style);
+    window.addEventListener('load', (event) => {
+      setTimeout(function() {
+        console.log('Se ejecuto esto');
+        $('iframe').contents().find('head').append($style);
+        callback();
+      }, 250);
+    });
+  });
+  */
+
+  const link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = getURL('/accesibility.css');
+  document.head.appendChild(link);
+
+  window.addEventListener('load', (event) => {
+    const $iStyle = $('<style id="styleIframeAccesaWeb" type="text/css"></style>');
+    $iStyle.load(link.href, function() {
+      $('iframe').contents().find('head').append($iStyle);
+      callback();
+    });
+  });
+  callback();
+}
+
 function initUi() {
   const mainCssUrl = getURL('/app.css');
   const nativeCommandsHandlerUrl = getURL('/native-commands-handler.js');
@@ -45,17 +78,6 @@ function initUi() {
 
   $appStyle.load(mainCssUrl);
 
-  const link = document.createElement('link');
-  link.rel = 'stylesheet';
-  link.type = 'text/css';
-  link.href = getURL('/accesibility.css');
-  document.head.appendChild(link);
-
-  const $iStyle = $('<style type="text/css"></style>');
-  $iStyle.load(link.href, function() {
-    //Fixear get all iframe, no trae todos los frames, corregir!!
-    $('iframe').contents().find('head').append($iStyle);
-  });
 
   return {
     shadowRootElement,
@@ -133,11 +155,11 @@ function initApp(initialData) {
   };
   const store = configureStore({});
   looseFocus(initialData);
-  executeSettingAction(initialData);
   initState(store, initialData);
   initEvents(store, containers.shadowRootElement, containers.appContainer, initialData);
   if ( _.has(initialData, 'isOnRecognition') && initialData.isOnRecognition )
     ReactDOM.render(<Provider store={store}><Main /></Provider>, containers.appContainer);
+  initStyle(() => executeSettingAction(initialData));
 }
 
 getInitialData(initApp);
