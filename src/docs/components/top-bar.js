@@ -9,7 +9,10 @@ export default class TopBar extends React.Component {
     currentLanguage: React.PropTypes.string.isRequired,
     setLanguage: React.PropTypes.func.isRequired
   }
-
+  resetSettings() {
+    localStorage.setItem('isResetSettings', true);
+    document.dispatchEvent(new Event('resetSettings'));
+  }
   render() {
     const currentLanguage = this.props.currentLanguage.split('-')[0];
     const enButton = classnames('btn', {
@@ -29,6 +32,13 @@ export default class TopBar extends React.Component {
             </label>
             <label onClick={() => this.props.setLanguage('es')} className={esButton}>
               <input type='radio'/>{getI18nText('i18n-spanish')}
+            </label>
+          </div>
+        </li>
+        <li>
+          <div className='btn-group' data-toggle='buttons'>
+            <label onClick={() => this.resetSettings()}className={enButton}>
+              {getI18nText('reset-extension')}
             </label>
           </div>
         </li>

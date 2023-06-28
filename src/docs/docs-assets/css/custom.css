@@ -30,14 +30,14 @@ h1.title-main{
 }
 .li-main{
   margin-left: 1%;
-  margin-right: 40%;
+  margin-right: 25%;
 }
 .desc-main{
   margin-top: 1%;
   text-align: center;
 }
 .nav-sm .container.body .col-md-3.left_col {
-  width: 70px;
+  width: 7em;
   padding: 0;
   z-index: 9999;
   position: absolute; }
@@ -192,11 +192,8 @@ h1.title-main{
   border-bottom: 1px solid #D9DEE4;
   margin-bottom: 10px;
   width: 100%;
-  position: relative; }
+  }
 
-@media (min-width: 480px) {
-  .nav_menu {
-    position: static; } }
 .nav-md .container.body .col-md-3.left_col {
   width: 230px;
   padding: 0;
@@ -585,7 +582,9 @@ a:hover, a:focus {
   height: 55px;
   margin: 0;
 }
-
+a.site_title{
+  padding-left: 1em;
+}
 .site_title:hover, .site_title:focus {
   text-decoration: none; }
 
@@ -636,6 +635,10 @@ a:hover, a:focus {
 
 .toggle a i {
   font-size: 26px; }
+
+.nav.toggle{
+  padding-left: 17%;
+}
 
 .nav.child_menu > li > a {
   color: rgba(255, 255, 255, 0.75);

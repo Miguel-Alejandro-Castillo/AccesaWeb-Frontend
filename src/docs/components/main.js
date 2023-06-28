@@ -58,18 +58,13 @@ export default class Main extends React.Component {
     return _.compact(aux_items);
   }
 
-  resetSettings() {
-    localStorage.setItem('isResetSettings', true);
-    document.dispatchEvent(new Event('resetSettings'));
-  }
-
   render() {
     return (
-      <div className='right_col module-description' role='main'>
-        <div className='speech-recognizer-options desc-main'>
-          <p className='speech-recognizer-mode-description'>{getI18nText('accesa-web-description')}</p>
-          <button className='btn btn-default' onClick={() => this.resetSettings()}>{getI18nText('reset-extension')}</button>
-        </div>
+      <div className='right_col module-description' role='main'> 
+      <div className='speech-recognizer-options desc-main'>
+        <p className='speech-recognizer-mode-description'>{getI18nText('accesa-web-description')}</p>
+      </div>
+      
       {
           this.props.itemsMenu
             .map(itemMenu => (
