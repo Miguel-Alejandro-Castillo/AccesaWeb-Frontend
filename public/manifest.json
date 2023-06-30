@@ -2,13 +2,12 @@
   "name": "Accesa Web",
   "short_name": "AW",
   "version": "1.0.0",
-  "manifest_version": 2,
+  "manifest_version": 3,
   "default_locale": "en",
   "author": "Castillo Miguel, Martinez Emilia",
   "description": "Accesa Web: complemento para accesibilizar y adaptar páginas web",
   "homepage_url": "https://github.com/Miguel-Alejandro-Castillo/AccesaWeb-Frontend.git",
   "permissions" : [
-    "<all_urls>",
     "bookmarks",
     "clipboardRead",
     "clipboardWrite",
@@ -18,8 +17,11 @@
     "topSites",
     "unlimitedStorage"
   ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
   "background": {
-    "scripts": ["background.js"]
+    "service_worker": "background.js"
   },
   "options_page": "docs.html",
   "icons": {
@@ -32,7 +34,7 @@
     "256": "icons/icon256x256.png",
     "512": "icons/icon512x512.png"
   },
-  "browser_action": {
+  "action": {
     "default_icons/icon": {
       "16": "icons/icon16x16.png",
       "20": "icons/icon20x20.png",
@@ -51,17 +53,26 @@
     "css": ["body.css"],
     "js": ["content.js"]
   }],
-  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'"
+  },
   "web_accessible_resources": [
-    "app.css",
-    "accesibility.css",
-    "contrast.css",
-    "speech-recognizer.html",
-    "native-commands-handler.js",
-    "font-awesome/fontawesome-webfont.eot",
-    "font-awesome/fontawesome-webfont.woff2",
-    "font-awesome/fontawesome-webfont.woff",
-    "font-awesome/fontawesome-webfont.ttf",
-    "font-awesome/fontawesome-webfont.svg"
+    {
+      "resources": [
+        "app.css",
+        "accesibility.css",
+        "contrast.css",
+        "speech-recognizer.html",
+        "native-commands-handler.js",
+        "font-awesome/fontawesome-webfont.eot",
+        "font-awesome/fontawesome-webfont.woff2",
+        "font-awesome/fontawesome-webfont.woff",
+        "font-awesome/fontawesome-webfont.ttf",
+        "font-awesome/fontawesome-webfont.svg"
+      ],
+      "matches": [
+        "*://*/*"
+      ]
+    }
   ]
 }

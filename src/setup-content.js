@@ -133,7 +133,7 @@ function initEvents(store, rootElement, appContainer, data) {
     document.addEventListener('keydown', keydownHandler, true);
     document.addEventListener('focus', focusElementHandler, true);
   }
-  window.chrome.extension.onMessage.addListener(changeBackgroundHandler);
+  window.chrome.runtime.onMessage.addListener(changeBackgroundHandler);
 }
 
 function executeSettingAction(data) {

@@ -1,3 +1,3 @@
 export function executeBackgroundAction(action) {
-  window.chrome.extension.sendMessage(action);
+  window.chrome.runtime.sendMessage(action);
 }

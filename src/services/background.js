@@ -40,7 +40,7 @@ const actionHandlers = {
   startSpeechRecognition
 };
 
-const docsUrl = chrome.extension.getURL('docs.html');
+const docsUrl = chrome.runtime.getURL('docs.html');
 let lastSpeechRecognizerState;
 
 function previousTab(sender) {
@@ -196,7 +196,7 @@ function handleMessageFromContent(actions, sender, sendResponse) {
   return true;
 }
 
-chrome.browserAction.onClicked.addListener(function(tab) {
+chrome.action.onClicked.addListener(function(tab) {
   tabs.query({url: docsUrl}, function(docsTabs) {
     if (_.isEmpty(docsTabs)) {
       chrome.tabs.create({

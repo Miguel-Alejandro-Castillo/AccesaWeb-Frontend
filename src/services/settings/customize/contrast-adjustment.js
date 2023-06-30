@@ -65,7 +65,7 @@ function action(valueSetting) {
   const id = 'link-contrast-accesa';
   const documentElementStyle = document.documentElement.style;
 
-  let url = window.chrome.extension.getURL('contrast.css');
+  let url = window.chrome.runtime.getURL('contrast.css');
   if (valueSetting === 'blackWhite') {
     documentElementStyle.setProperty('--color', 'black');
     documentElementStyle.setProperty('--background', 'white');

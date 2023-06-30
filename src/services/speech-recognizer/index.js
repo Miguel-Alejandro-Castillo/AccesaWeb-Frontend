@@ -24,11 +24,11 @@ function getSpeechRecognition() {
 }
 
 function listenForExternalMessages() {
-  window.chrome.extension.onMessage.addListener(handlePostMessage);
+  window.chrome.runtime.onMessage.addListener(handlePostMessage);
 }
 
 function stopListenForExternalMessages() {
-  window.chrome.extension.onMessage.removeListener(handlePostMessage);
+  window.chrome.runtime.onMessage.removeListener(handlePostMessage);
 }
 
 const defaultState = {
@@ -41,7 +41,7 @@ const defaultState = {
 };
 
 function notifySpeechRecognizerState(state = {}) {
-  window.chrome.extension.sendMessage({
+  window.chrome.runtime.sendMessage({
     shareSpeechRecognizerState: {
       ...defaultState,
       ...state,
