@@ -15,6 +15,7 @@
     "history",
     "tabs",
     "topSites",
+    "storage",
     "unlimitedStorage"
   ],
   "host_permissions": [

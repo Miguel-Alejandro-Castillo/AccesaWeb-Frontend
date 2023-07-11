@@ -1,3 +1,4 @@
+/*global chrome*/
 import _ from 'lodash';
 import safeEval from 'safe-eval';
 import { getActiveItemsMenu } from './commands/index';
@@ -7,17 +8,31 @@ const languages = {
   es: 'es-AR'
 };
 
-export function getSelectedLang() {
-  return localStorage.lang || navigator.languages[0] || navigator.language || 'en-US';
+/*  No me compila esta funcion anonima con async/await - Miguel
+let localStorage2 = {
+  getAllItems: () => chrome.storage.local.get(),
+  getItem: async function(key) {
+    const result = await chrome.storage.local.get(key);
+    return result.key;
+  },
+  setItem: (key, val) => chrome.storage.local.set({[key]: val}),
+  removeItems: (keys) => chrome.storage.local.remove(keys)
+};
+*/
+
+export async function getSelectedLang() {
+  const result = await chrome.storage.local.get("lang");
+  console.log(result.key);
+  return result || navigator.languages[0] || navigator.language || 'en-US';
 }
 
 export function getAvailableLanguages() {
   return ['en', 'es'];
 }
 
-export function setLanguage(lang) {
+export async function setLanguage(lang) {
   if (getSelectedLang() !== lang) {
-    localStorage.setItem('lang', languages[lang] || lang);
+    await chrome.storage.local.set({[lang]: languages[lang] || lang});
     document.dispatchEvent(new Event('languageChange'));
   }
 }
@@ -33,13 +48,14 @@ export function onLanguageChange(callback) {
   });
 }
 
-export function getContinuousMode() {
-  return localStorage.continuousMode === 'false' ? false : true;
+export async function getContinuousMode() {
+  const result = await chrome.storage.local.get("continuousMode");
+  return result === 'false' ? false : true;
 }
 
-export function setContinuousMode(status) {
+export async function setContinuousMode(status) {
   if (getContinuousMode() !== status) {
-    localStorage.setItem('continuousMode', status);
+    await chrome.storage.local.set({[continuousMode]: status});
     document.dispatchEvent(new Event('continuousModeChange'));
   }
 }
@@ -57,13 +73,14 @@ export function removeOnContinuousModeChange(callback) {
   document.removeEventListener('continuousModeChange', callback);
 }
 
-export function isOnRecognition() {
-  return localStorage.getItem('onRecognition') === 'false' ? false : true;
+export async function isOnRecognition() {
+  const result = await chrome.storage.local.get("onRecognition");
+  return result === 'false' ? false : true;
 }
 
-export function setOnRecognition(value) {
+export async function setOnRecognition(value) {
   if (isOnRecognition() !== value) {
-    localStorage.setItem('onRecognition', value);
+    await chrome.storage.local.set({[onRecognition]: value});
     document.dispatchEvent(new Event('changeOnRecognition'));
   }
 }
@@ -99,12 +116,15 @@ export function getInitialContext() {
   return 'root';
 }
 
-function getImportedModuleIds() {
-  return localStorage.modules && JSON.parse(localStorage.modules) || [];
+async function getImportedModuleIds() {
+  const result = await chrome.storage.local.get("modules");
+  return result && JSON.parse(result) || [];
+  
+
 }
 
-function setImportedModuleIds(ids) {
-  localStorage.setItem('modules', JSON.stringify(ids));
+async function setImportedModuleIds(ids) {
+  await chrome.storage.local.set({[modules]: JSON.stringify(ids)});
 }
 
 function notifyImportedModulesChange() {
@@ -117,18 +137,19 @@ function getModuleFromSource(source) {
   return module;
 }
 
-export function importModule(source) {
+export async function importModule(source) {
   const importedModules = getImportedModuleIds();
   const moduleId = `module-${Date.now()}`;
   importedModules.push(moduleId);
-  localStorage.setItem(moduleId, source);
+  await chrome.storage.local.set({[moduleId]: source});
   setImportedModuleIds(importedModules);
   notifyImportedModulesChange();
   return moduleId;
 }
 
-function getImportedModule(id) {
-  const module = getModuleFromSource(localStorage[id]);
+async function getImportedModule(id) {
+  const result = await chrome.storage.local.get("id");
+  const module = getModuleFromSource(result);
   module.id = id;
   module.imported = true;
   return module;
@@ -138,8 +159,9 @@ export function getImportedModules() {
   return getImportedModuleIds().map(getImportedModule);
 }
 
-export function getImportedSourceModules() {
-  return getImportedModuleIds().map(id => localStorage[id]);
+export async function getImportedSourceModules() {
+  const result = await chrome.storage.local.get("id");
+  return getImportedModuleIds().map(id => result);
 }
 
 export function onImportedModulesChange(callback) {
@@ -151,8 +173,8 @@ export function onImportedModulesChange(callback) {
   document.addEventListener('importedModulesOnChange', () => callback(getImportedModules()));
 }
 
-export function removeImportedModule(id) {
-  localStorage.removeItem(id);
+export async function removeImportedModule(id) {
+  await chrome.storage.local.remove(id);
   const moduleIds = _.without(getImportedModuleIds(), id);
   setImportedModuleIds(moduleIds);
   notifyImportedModulesChange();
@@ -166,8 +188,8 @@ export function moduleCanBeImported(source) {
 export function getSettingsValues() {
   const result = {};
   getActiveItemsMenu().forEach( itemMenu => {
-    itemMenu.items.filter( setting => setting.propertySettingLocalStorage ).forEach(setting => {
-      result[setting.propertySettingLocalStorage] = localStorage.getItem(setting.propertySettingLocalStorage);
+    itemMenu.items.filter( setting => setting.propertySettingLocalStorage ).forEach(async setting => {
+      result[setting.propertySettingLocalStorage] = await chrome.storage.local.get(setting.propertySettingLocalStorage);
     });
   });
   return result;
@@ -175,8 +197,8 @@ export function getSettingsValues() {
 
 export function initPropertiesSettings() {
   getActiveItemsMenu().forEach( itemMenu => {
-    itemMenu.items.filter( setting => setting.propertySettingLocalStorage && setting.valueDefaultSetting ).forEach(setting => {
-      localStorage.setItem(setting.propertySettingLocalStorage, setting.valueDefaultSetting);
+    itemMenu.items.filter( setting => setting.propertySettingLocalStorage && setting.valueDefaultSetting ).forEach(async setting => {
+      await chrome.storage.local.set({[setting.propertySettingLocalStorage]: setting.valueDefaultSetting});
     });
   });
 }

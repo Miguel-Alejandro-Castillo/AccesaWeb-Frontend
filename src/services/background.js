@@ -1,3 +1,4 @@
+/*global chrome*/
 import {
   getImportedSourceModules,
   getInitialContext,
@@ -20,7 +21,8 @@ if (process.env.DEVTOOLS) {
   log.disableAll();
 }
 
-const chrome = window.chrome;
+//const chrome = window.chrome;
+
 const tabs = chrome.tabs;
 
 const actionHandlers = {
