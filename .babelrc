@@ -1,6 +1,6 @@
 {
   "presets": ["es2015", "react"],
-  "plugins": ["transform-class-properties", "transform-es2015-destructuring", "transform-object-rest-spread", "add-module-exports"],
+  "plugins": ["transform-class-properties", "transform-es2015-destructuring", "transform-object-rest-spread", "add-module-exports", "transform-async-to-generator"],
   "env": {
     // only enable it when process.env.NODE_ENV is 'development' or undefined
     "development": {

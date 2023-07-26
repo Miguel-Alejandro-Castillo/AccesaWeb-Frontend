@@ -60,11 +60,11 @@ export default class Main extends React.Component {
 
   render() {
     return (
-      <div className='right_col module-description' role='main'> 
+      <div className='right_col module-description' role='main'>
       <div className='speech-recognizer-options desc-main'>
         <p className='speech-recognizer-mode-description'>{getI18nText('accesa-web-description')}</p>
       </div>
-      
+
       {
           this.props.itemsMenu
             .map(itemMenu => (

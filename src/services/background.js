@@ -21,8 +21,6 @@ if (process.env.DEVTOOLS) {
   log.disableAll();
 }
 
-//const chrome = window.chrome;
-
 const tabs = chrome.tabs;
 
 const actionHandlers = {
