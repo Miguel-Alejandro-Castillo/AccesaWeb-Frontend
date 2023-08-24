@@ -1,0 +1,124 @@
+.color-picker {
+  display: block;
+  padding-bottom: 2em;
+  width: 44.8em;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+
+    h3 {
+      font-weight: normal;
+      padding: 0.5em;
+    }
+    span {
+      align-self: center;
+    }
+  }
+
+  p {
+    margin: 0.5em 1em 0 0;
+    text-align: right;
+
+    .selected-color-title {
+      vertical-align: middle;
+      padding-top: 3px;
+      display: inline-block;
+    }
+
+    .selected-color {
+      width: 3em;
+      height: 1.5em;
+      background: green;
+      display: inline-block;
+      border: 1px solid #555;
+      margin-left: 0.5em;
+      vertical-align: middle;
+    }
+  }
+  .colors-container {
+    border: 1px solid #bbb;
+    margin: 0.5em;
+    padding: 0.5em;
+    background: #fff;
+    border-radius: 0.4em;
+    box-shadow: inset 0 0 0.3em #ccc;
+
+    .x-axis {
+      margin-bottom: 0.5em;
+      display: flex;
+      justify-content: space-between;
+      margin-left: 2.6em;
+      list-style: none;
+
+      li {
+        display: inline;
+        .button {
+          padding: 0.1em 0.3em;
+        }
+      }
+
+      li.selected {
+        .button {
+          font-weight: bold;
+          border: 1px solid #333;
+        }
+      }
+    }
+    .y-axis-and-colors-container {
+      display: flex;
+      justify-content: space-between;
+
+      .y-axis {
+        width: 2em;
+        justify-content: space-between;
+        display: flex;
+        flex-direction: column;
+        list-style: none;
+
+        li {
+          .button {
+            width: 1.2em;
+            text-align: center;
+            padding: 0.1em 0.3em;
+          }
+        }
+
+        li.selected {
+          .button {
+            font-weight: bold;
+            border: 1px solid #333;
+          }
+        }
+      }
+      .colors {
+        width: 40em;
+        list-style: none;
+
+        li {
+          display: inline-block;
+          width: 2em;
+          height: 2em;
+          margin: 0;
+          padding: 0;
+          margin-bottom: -6px;
+
+          &.xSelected {
+            border-left: 1px solid #333;
+            border-right: 1px solid #333;
+            width: calc(2em - 2px);
+
+            &.ySelected {
+              box-shadow: inset 0 0 0px 1px #000;
+            }
+          }
+          &.ySelected {
+            border-top: 1px solid #333;
+            border-bottom: 1px solid #333;
+            height: calc(2em - 2px);
+          }
+        }
+      }
+    }
+  }
+}

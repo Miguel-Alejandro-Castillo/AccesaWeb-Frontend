@@ -1,0 +1,11 @@
+.graph {
+  width: 95%;
+  .body {
+    height: calc(100% - 7em);
+    border: 1px solid #ccc;
+    margin: 0.5em;
+    padding: 0.5em;
+    background: #fff;
+    border-radius: 0.4em;
+  }
+}

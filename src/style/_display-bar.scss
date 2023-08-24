@@ -1,0 +1,20 @@
+.display-upper-bar {
+  font-family: sans-serif;
+  color: #111;
+  border: 1px solid #bbb;
+  border-radius: 5px;
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5em;
+  background: linear-gradient(#ffffff 0%, #f9f9f9 100%);
+  box-shadow: 0 0 16px 0 #ddd;
+  align-items: flex-start;
+  padding-bottom: 1em;
+  margin-bottom: -0.3em;
+  z-index: 5;
+
+  .button + .button {
+    margin-left: 0.5em;
+  }
+}

@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+  - "6"
+before_script:
+  - npm run build-prod-all-owner
+  - npm run build-travis
+  - "npm run serve-dist > /dev/null &"
+script:
+  - echo "UNIT TESTS - via karma - with code coverage"
+  - npm test
+  - echo "UNIT TESTS - via mocha"
+  - npm run mocha
+after_success:
+  - cat ./build/reports/coverage/**/lcov.info | ./node_modules/.bin/coveralls
