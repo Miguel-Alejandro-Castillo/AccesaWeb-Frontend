@@ -26,7 +26,7 @@ import textOptions from '../commands/text-options';
 import timeOptions from '../commands/time-options';
 import topSites from '../commands/top-sites';
 import weekOptions from '../commands/week-options';
-import multimedia from '../commands/font-picker';
+import multimedia from '../commands/multimedia';
 
 const items = [
   bookmarks,
