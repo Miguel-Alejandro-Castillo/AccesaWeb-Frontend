@@ -26,6 +26,7 @@ import textOptions from '../commands/text-options';
 import timeOptions from '../commands/time-options';
 import topSites from '../commands/top-sites';
 import weekOptions from '../commands/week-options';
+import multimedia from '../commands/font-picker';
 
 const items = [
   bookmarks,
@@ -55,7 +56,8 @@ const items = [
   textOptions,
   timeOptions,
   topSites,
-  weekOptions
+  weekOptions,
+  multimedia
 ];
 export default {
   name: 'i18n-name',

@@ -52,6 +52,7 @@ import { getImportedModules } from '../appSettings';
 import menuAboutUs from '../menus/menuAboutUs';
 import aboutUs from '../settings/about-us';
 import changeFont from '../settings/format/change-font';
+import multimedia from './multimedia';
 let commands = {};
 let contextNames = {};
 let handlersOnSelectElement = {};
@@ -97,7 +98,8 @@ const coreCommands = [
   textOptions,
   timeOptions,
   topSites,
-  weekOptions
+  weekOptions,
+  multimedia
 ];
 const coreAccesibility = [
   onOffRecognition,
