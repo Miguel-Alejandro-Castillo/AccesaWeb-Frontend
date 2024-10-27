@@ -2,9 +2,6 @@ import $ from 'jquery';
 
 function showImages() {
   $('img').show();
-  $('[style*="background-image"]').filter(function() {
-    return $(this).css('background-image') !== 'none';
-  }).show();
   $('[style*="url("]').filter(function() {
     var style = $(this).attr('style');
     return /\.(jpg|jpeg|png|gif|bmp|webp|tiff|svg|heic|heif|raw)\b/i.test(style);
@@ -15,9 +12,6 @@ function showImages() {
     var iframe = $(this);
     var iframeContent = iframe.contents();
     iframeContent.find('img').show();
-    iframeContent.find('[style*="background-image"]').filter(function() {
-      return $(this).css('background-image') !== 'none';
-    }).show();
     iframeContent.find('[style*="url("]').filter(function() {
       var style = $(this).attr('style');
       return /\.(jpg|jpeg|png|gif|bmp|webp|tiff|svg|heic|heif|raw)\b/i.test(style);
@@ -29,9 +23,6 @@ function showImages() {
 
 function hideImages() {
   $('img').hide();
-  $('[style*="background-image"]').filter(function() {
-    return $(this).css('background-image') !== 'none';
-  }).hide();
   $('[style*="url("]').filter(function() {
     var style = $(this).attr('style');
     return /\.(jpg|jpeg|png|gif|bmp|webp|tiff|svg|heic|heif|raw)\b/i.test(style);
@@ -42,9 +33,6 @@ function hideImages() {
     var iframe = $(this);
     var iframeContent = iframe.contents();
     iframeContent.find('img').hide();
-    iframeContent.find('[style*="background-image"]').filter(function() {
-      return $(this).css('background-image') !== 'none';
-    }).hide();
     iframeContent.find('[style*="url("]').filter(function() {
       var style = $(this).attr('style');
       return /\.(jpg|jpeg|png|gif|bmp|webp|tiff|svg|heic|heif|raw)\b/i.test(style);
@@ -52,6 +40,22 @@ function hideImages() {
     iframeContent.find('svg').hide();
     iframeContent.find('canvas').hide();
   });
+}
+
+function showAds() {
+
+}
+
+function hideAds() {
+
+}
+
+function showSocialNetworks() {
+
+}
+
+function hideSocialNetworks() {
+  
 }
 
 export default {
@@ -88,7 +92,7 @@ export default {
           'command.show-images': 'mostrar imagenes',
           'help.show-images': 'Mostrar todas las imagenes de una pagina',
           'group.show-images': 'Imagenes',
-          'command.hide-images': 'ocultar images',
+          'command.hide-images': 'ocultar image',
           'help.hide-images': 'Ocultar todas las imagenes de una pagina',
           'group.hide-images': 'Imagenes'
         }
