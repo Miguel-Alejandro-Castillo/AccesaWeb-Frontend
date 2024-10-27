@@ -63,12 +63,12 @@ function action(valueSetting) {
   }
   var element = $('*');
   element.each(function() {
-    if ($(this).get(0).tagName === 'NAV'){
-      $(this).attr('role', 'navigation'); 
+    if ($(this).get(0).tagName === 'NAV') {
+      $(this).attr('role', 'navigation');
     }
     const id = $(this).attr('id');
     const classNames = $(this).attr('class');
-    if( /captcha/i.test(id) || /captcha/i.test(classNames) ){
+    if (/captcha/i.test(id) || /captcha/i.test(classNames)) {
       $(this).attr('aria-label', 'captcha');
     }
   });
