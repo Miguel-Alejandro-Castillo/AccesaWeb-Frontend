@@ -14,6 +14,10 @@ import {
 import fontAwesome from './services/font-awesome';
 import { getActiveItemsMenu } from './services/commands/index';
 import _ from 'lodash';
+import {
+  showImages,
+  hideImages
+} from './actions/content_actions';
 
 const getURL = window.chrome.runtime.getURL;
 
@@ -163,3 +167,12 @@ function initApp(initialData) {
 }
 
 getInitialData(initApp);
+
+document.addEventListener( 'modificarDOM', function(e){
+  if(e.detail.action === "hideImages"){
+    hideImages();
+  }
+  if(e.detail.action === "showImages"){
+    showImages();
+  }
+});

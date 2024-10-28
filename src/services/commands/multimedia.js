@@ -1,61 +1,12 @@
-import $ from 'jquery';
 
 function showImages() {
-  $('img').show();
-  $('[style*="url("]').filter(function() {
-    var style = $(this).attr('style');
-    return /\.(jpg|jpeg|png|gif|bmp|webp|tiff|svg|heic|heif|raw)\b/i.test(style);
-  }).show();
-  $('svg').show();
-  $('canvas').show();
-  $('iframe').each(function() {
-    var iframe = $(this);
-    var iframeContent = iframe.contents();
-    iframeContent.find('img').show();
-    iframeContent.find('[style*="url("]').filter(function() {
-      var style = $(this).attr('style');
-      return /\.(jpg|jpeg|png|gif|bmp|webp|tiff|svg|heic|heif|raw)\b/i.test(style);
-    }).show();
-    iframeContent.find('svg').show();
-    iframeContent.find('canvas').show();
-  });
+  var event = new CustomEvent('modificarDOM', { detail: {action: 'showImages'}});
+  document.dispatchEvent(event);
 }
 
 function hideImages() {
-  $('img').hide();
-  $('[style*="url("]').filter(function() {
-    var style = $(this).attr('style');
-    return /\.(jpg|jpeg|png|gif|bmp|webp|tiff|svg|heic|heif|raw)\b/i.test(style);
-  }).hide();
-  $('svg').hide();
-  $('canvas').hide();
-  $('iframe').each(function() {
-    var iframe = $(this);
-    var iframeContent = iframe.contents();
-    iframeContent.find('img').hide();
-    iframeContent.find('[style*="url("]').filter(function() {
-      var style = $(this).attr('style');
-      return /\.(jpg|jpeg|png|gif|bmp|webp|tiff|svg|heic|heif|raw)\b/i.test(style);
-    }).hide();
-    iframeContent.find('svg').hide();
-    iframeContent.find('canvas').hide();
-  });
-}
-
-function showAds() {
-
-}
-
-function hideAds() {
-
-}
-
-function showSocialNetworks() {
-
-}
-
-function hideSocialNetworks() {
-  
+  var event = new CustomEvent('modificarDOM', { detail: {action: 'hideImages'}});
+  document.dispatchEvent(event);
 }
 
 export default {
@@ -89,12 +40,12 @@ export default {
           'group.hide-images': 'Images'
         },
         es: {
-          'command.show-images': 'mostrar imagenes',
-          'help.show-images': 'Mostrar todas las imagenes de una pagina',
-          'group.show-images': 'Imagenes',
-          'command.hide-images': 'ocultar image',
-          'help.hide-images': 'Ocultar todas las imagenes de una pagina',
-          'group.hide-images': 'Imagenes'
+          'command.show-images': 'mostrar imágenes',
+          'help.show-images': 'Mostrar todas las imágenes de una pagina',
+          'group.show-images': 'Imágenes',
+          'command.hide-images': 'ocultar imágenes',
+          'help.hide-images': 'Ocultar todas las imágenes de una pagina',
+          'group.hide-images': 'Imágenes'
         }
       }
     }
