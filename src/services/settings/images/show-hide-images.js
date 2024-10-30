@@ -3,6 +3,7 @@ import { getI18nText } from '../../../docs/i18n/i18n';
 import $ from 'jquery';
 
 const propertySettingLocalStorage = 'input.name.hideImages';
+
 const  valueDefaultSetting = 'true';
 
 function Form({isHideImages, onChangeHideImages}) {
@@ -39,6 +40,7 @@ function setHideImages(value) {
   }
 }
 
+/*
 function action(valueSetting) {
   var imgs = $('img');
   var elems = $('*').filter(function() {
@@ -57,6 +59,18 @@ function action(valueSetting) {
     elems.removeClass('remove-background-image-aw');
     imgsIframe.removeClass('hide-element-aw');
     elemsIframe.removeClass('remove-background-image-aw');
+  }
+}
+*/
+
+function action(valueSetting) {
+  var event; 
+  if (valueSetting === 'false') {
+    event = new CustomEvent('modificarDOM', { detail: {action: 'hideImages'}});
+    document.dispatchEvent(event);
+  } else {
+    event = new CustomEvent('modificarDOM', { detail: {action: 'showImages'}});
+    document.dispatchEvent(event);
   }
 }
 

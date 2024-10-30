@@ -10,19 +10,30 @@ import {
 } from './actions/commands_actions';
 import {
   init as initBackground,
-  handleBackgroundData } from './actions/background_actions';
+  handleBackgroundData
+} from './actions/background_actions';
 import fontAwesome from './services/font-awesome';
 import { getActiveItemsMenu } from './services/commands/index';
 import _ from 'lodash';
 import {
   showImages,
-  hideImages
+  hideImages,
+  showAds,
+  hideAds,
+  showSocialNetworks,
+  hideSocialNetworks,
+  changeAlign,
+  changeFont,
+  changeFontSize,
+  changeLineSpacing,
+  changeParagraphSpacing,
+  changeContrast
 } from './actions/content_actions';
 
 const getURL = window.chrome.runtime.getURL;
 
 function getInitialData(cb) {
-  window.chrome.runtime.sendMessage({getInitialData: true}, cb);
+  window.chrome.runtime.sendMessage({ getInitialData: true }, cb);
 }
 
 function initStyle(callback) {
@@ -74,7 +85,7 @@ function initUi() {
   $('head').append($(`<style>${fontAwesome(getURL)}</style>`));
   $('body').append($rootElement);
 
-  const shadowRootElement = $rootElement[0].attachShadow({mode: 'open'});
+  const shadowRootElement = $rootElement[0].attachShadow({ mode: 'open' });
   const $shadowRootElement = $(shadowRootElement);
 
   $shadowRootElement.append($appStyle);
@@ -89,7 +100,7 @@ function initUi() {
   };
 }
 
-function looseFocus({turnedOn}) {
+function looseFocus({ turnedOn }) {
   if (turnedOn) {
     $('body').focus();
   }
@@ -108,19 +119,19 @@ function initEvents(store, rootElement, appContainer, data) {
 
   const keydownHandler = (event) => {
     if (event.keyCode === 17) {
-      window.chrome.runtime.sendMessage({startSpeechRecognition: true});
+      window.chrome.runtime.sendMessage({ startSpeechRecognition: true });
     }
   };
 
   const changeBackgroundHandler = data => {
     if (data.importedModules) {
-      getInitialData(initialData => initState(store, {...initialData, rootElement}));
+      getInitialData(initialData => initState(store, { ...initialData, rootElement }));
     }
     executeSettingAction(data);
     store.dispatch(handleBackgroundData(data));
 
-    if ( _.has(data, 'isOnRecognition') ) {
-      if ( data.isOnRecognition ) {
+    if (_.has(data, 'isOnRecognition')) {
+      if (data.isOnRecognition) {
         document.addEventListener('keydown', keydownHandler, true);
         document.addEventListener('focus', focusElementHandler, true);
         ReactDOM.render(<Provider store={store}><Main /></Provider>, appContainer);
@@ -132,7 +143,7 @@ function initEvents(store, rootElement, appContainer, data) {
     }
   };
 
-  if ( _.has(data, 'isOnRecognition') && data.isOnRecognition ) {
+  if (_.has(data, 'isOnRecognition') && data.isOnRecognition) {
     //$(document).keydown(keydownHandler);
     document.addEventListener('keydown', keydownHandler, true);
     document.addEventListener('focus', focusElementHandler, true);
@@ -141,9 +152,9 @@ function initEvents(store, rootElement, appContainer, data) {
 }
 
 function executeSettingAction(data) {
-  if ( _.has(data, 'settingsValues') && !_.isEmpty(data.settingsValues)) {
-    getActiveItemsMenu().forEach( itemMenu => {
-      itemMenu.items.filter( setting => setting.action && setting.propertySettingLocalStorage ).forEach( setting => {
+  if (_.has(data, 'settingsValues') && !_.isEmpty(data.settingsValues)) {
+    getActiveItemsMenu().forEach(itemMenu => {
+      itemMenu.items.filter(setting => setting.action && setting.propertySettingLocalStorage).forEach(setting => {
         const valueSetting = data.settingsValues[setting.propertySettingLocalStorage];
         setting.action(valueSetting);
       });
@@ -161,18 +172,50 @@ function initApp(initialData) {
   looseFocus(initialData);
   initState(store, initialData);
   initEvents(store, containers.shadowRootElement, containers.appContainer, initialData);
-  if ( _.has(initialData, 'isOnRecognition') && initialData.isOnRecognition )
+  if (_.has(initialData, 'isOnRecognition') && initialData.isOnRecognition)
     ReactDOM.render(<Provider store={store}><Main /></Provider>, containers.appContainer);
   initStyle(() => executeSettingAction(initialData));
 }
 
 getInitialData(initApp);
 
-document.addEventListener( 'modificarDOM', function(e){
-  if(e.detail.action === "hideImages"){
+document.addEventListener('modificarDOM', function(e) {
+  switch (e.detail.action) {
+  case 'hideImages':
     hideImages();
-  }
-  if(e.detail.action === "showImages"){
+    break;
+  case 'showImages':
     showImages();
+    break;
+  case 'showAds':
+    showAds();
+    break;
+  case 'hideAds':
+    hideAds();
+    break;
+  case 'showSocialNetworks':
+    showSocialNetworks();
+    break;
+  case 'hideSocialNetworks':
+    hideSocialNetworks();
+    break;
+  case 'changeAlign':
+    changeAlign();
+    break;
+  case 'changeFont':
+    changeFont();
+    break;
+  case 'changeFontSize':
+    changeFontSize();
+    break;
+  case 'changeLineSpacing':
+    changeLineSpacing();
+    break;
+  case 'changeParagraphSpacing':
+    changeParagraphSpacing();
+    break;
+  case 'changeContrast':
+    changeContrast();
+    break;
   }
 });

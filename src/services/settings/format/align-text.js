@@ -50,7 +50,7 @@ export default {
   i18n: {
     en: {
       'name': 'Align text',
-      'description': 'Align text'
+      'description': 'Align the text of the visited pages'
     },
     es: {
       'name': 'Alineacion',
