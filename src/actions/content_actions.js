@@ -2,7 +2,12 @@ import $ from 'jquery';
 
 const  socialNetworks = [ 'facebook', 'twitter', 'whatsapp', 'youtube', 'instagram', 'telegram', 'linkedin', 'qzone', 'pinterest', 'badoo', 'tiktok', 'github' ];
 
+function showHideImages(param) {
+  param ? showImages() : hideImages();
+}
+
 function showImages() {
+  //Falta revisar como se guarda esto
   localStorage.setItem('input.name.hideImages', 'true');
   $('img').show();
   $('[style*="url("]').filter(function() {
@@ -22,9 +27,11 @@ function showImages() {
     iframeContent.find('svg').show();
     iframeContent.find('canvas').show();
   });
+  //localStorage.setItem('input.name.hideImages', 'false');
 }
 
 function hideImages() {
+  //Falta revisar como se guarda esto
   localStorage.setItem('input.name.hideImages', 'false');
   $('img').hide();
   $('[style*="url("]').filter(function() {
@@ -44,6 +51,7 @@ function hideImages() {
     iframeContent.find('svg').hide();
     iframeContent.find('canvas').hide();
   });
+  //localStorage.setItem('input.name.hideImages', 'true');
 }
 
 function showAds() {
@@ -119,6 +127,7 @@ function changeContrast() {
 
 }
 
+/*
 export default {
   showImages,
   hideImages,
@@ -132,4 +141,10 @@ export default {
   changeLineSpacing,
   changeParagraphSpacing,
   changeContrast
+};
+*/
+
+// Mapeo de acciones a funciones
+export const actionMap = {
+  'showImages': showHideImages
 };

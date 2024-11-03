@@ -37,11 +37,16 @@ const actionHandlers = {
   previousTab,
   removeBookmark,
   shareSpeechRecognizerState,
-  startSpeechRecognition
+  startSpeechRecognition,
+  modifyDOM
 };
 
 const docsUrl = chrome.extension.getURL('docs.html');
 let lastSpeechRecognizerState;
+
+function modifyDOM(sender, actionValue, sendResponse) {
+  sendDataToTabs({modifyDOM: actionValue});
+}
 
 function previousTab(sender) {
   tabs.query({lastFocusedWindow: true}, function(selectedTabs) {

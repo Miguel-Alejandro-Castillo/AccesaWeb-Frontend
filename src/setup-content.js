@@ -16,18 +16,7 @@ import fontAwesome from './services/font-awesome';
 import { getActiveItemsMenu } from './services/commands/index';
 import _ from 'lodash';
 import {
-  showImages,
-  hideImages,
-  showAds,
-  hideAds,
-  showSocialNetworks,
-  hideSocialNetworks,
-  changeAlign,
-  changeFont,
-  changeFontSize,
-  changeLineSpacing,
-  changeParagraphSpacing,
-  changeContrast
+  actionMap
 } from './actions/content_actions';
 
 const getURL = window.chrome.runtime.getURL;
@@ -141,6 +130,16 @@ function initEvents(store, rootElement, appContainer, data) {
         ReactDOM.unmountComponentAtNode(appContainer);
       }
     }
+
+    if (_.has(data, 'modifyDOM')) {
+      const action = actionMap[data.modifyDOM.action];
+      if (action) {
+        action(data.modifyDOM.param);
+      } else {
+        console.warn(`No se encontró la acción: ${data.modifyDOM.action}`);
+      }
+    }
+
   };
 
   if (_.has(data, 'isOnRecognition') && data.isOnRecognition) {
@@ -179,7 +178,8 @@ function initApp(initialData) {
 
 getInitialData(initApp);
 
-document.addEventListener('modificarDOM', function(e) {
+/*
+document.addEventListener( 'modificarDOM', function(e){
   switch (e.detail.action) {
   case 'hideImages':
     hideImages();
@@ -218,4 +218,6 @@ document.addEventListener('modificarDOM', function(e) {
     changeContrast();
     break;
   }
+  document.dispatchEvent(new Event('reloadComponents'));
 });
+*/

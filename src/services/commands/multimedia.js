@@ -1,3 +1,68 @@
+import { executeBackgroundAction } from './background';
+
+/*
+function sendMessage(message) {
+  var channel = new BroadcastChannel('channelModifyDOM');
+  channel.postMessage(message);
+  channel.close(); // Cerrar el canal después de enviar el mensaje
+}
+*/
+
+function showImages() {
+  executeBackgroundAction({
+    modifyDOM: {
+      action: 'showImages',
+      param: true
+    }
+  });
+}
+
+function hideImages() {
+  executeBackgroundAction({
+    modifyDOM: {
+      action: 'showImages',
+      param: false
+    }
+  });
+}
+
+function showAds() {
+  executeBackgroundAction({
+    modifyDOM: {
+      action: 'showAds',
+      param: true
+    }
+  });
+}
+
+function hideAds() {
+  executeBackgroundAction({
+    modifyDOM: {
+      action: 'showAds',
+      param: false
+    }
+  });
+}
+
+function showSocialNetworks() {
+  executeBackgroundAction({
+    modifyDOM: {
+      action: 'showSocialNetworks',
+      param: true
+    }
+  });
+}
+
+function hideSocialNetworks() {
+  executeBackgroundAction({
+    modifyDOM: {
+      action: 'showSocialNetworks',
+      param: false
+    }
+  });
+}
+
+/*
 function showImages() {
   var event = new CustomEvent('modificarDOM', { detail: { action: 'showImages' } });
   document.dispatchEvent(event);
@@ -27,6 +92,7 @@ function hideSocialNetworks() {
   var event = new CustomEvent('modificarDOM', { detail: { action: 'hideSocialNetworks' } });
   document.dispatchEvent(event);
 }
+*/
 
 export default {
   name: 'i18n-name',
