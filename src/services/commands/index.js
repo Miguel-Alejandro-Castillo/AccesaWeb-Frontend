@@ -53,6 +53,9 @@ import menuAboutUs from '../menus/menuAboutUs';
 import aboutUs from '../settings/about-us';
 import changeFont from '../settings/format/change-font';
 import multimedia from './multimedia';
+import format from './format';
+import customize from './customize';
+import accessibility from './accessibility';
 let commands = {};
 let contextNames = {};
 let handlersOnSelectElement = {};
@@ -99,7 +102,10 @@ const coreCommands = [
   timeOptions,
   topSites,
   weekOptions,
-  multimedia
+  multimedia,
+  format,
+  customize,
+  accessibility
 ];
 const coreAccesibility = [
   onOffRecognition,

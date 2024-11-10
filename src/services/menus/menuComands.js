@@ -27,6 +27,10 @@ import timeOptions from '../commands/time-options';
 import topSites from '../commands/top-sites';
 import weekOptions from '../commands/week-options';
 import multimedia from '../commands/multimedia';
+import format from '../commands/format';
+import customize from '../commands/customize';
+import accessibility from '../commands/accessibility';
+
 
 const items = [
   bookmarks,
@@ -57,7 +61,10 @@ const items = [
   timeOptions,
   topSites,
   weekOptions,
-  multimedia
+  multimedia,
+  format,
+  customize,
+  accessibility
 ];
 export default {
   name: 'i18n-name',
