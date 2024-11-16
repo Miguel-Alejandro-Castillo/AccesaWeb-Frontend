@@ -1,5 +1,8 @@
 import { executeBackgroundAction } from './background';
 
+const keysAlignTextOption = ['none', 'left', 'justify' , 'center' , 'rigth'];
+const keysFontOption = ['none', 'arial', 'dislexic'];
+
 function changeAlign(state, command) {
   executeBackgroundAction({
     modifyDOM: {
@@ -72,7 +75,7 @@ export default {
           help: 'i18n-help.change-font-size',
           action: () => { },
           switchToContext: 'font-size',
-          group: 'i18n-group.font'
+          group: 'i18n-group.font-size'
         },
         {
           name: 'i18n-command.change-line-spacing',
@@ -86,69 +89,70 @@ export default {
           help: 'i18n-help.change-paragraph-spacing',
           action: () => { },
           switchToContext: 'paragraph-spacing',
-          group: 'i18n-group.spacing'
+          group: 'i18n-group.paragraph-spacing'
         }
       ],
       i18n: {
         en: {
           'command.change-align': 'Change align',
           'help.change-align': 'Align the text of the visited pages',
-          'group.align': 'Change align',
-          'command.change-font': 'Change font',
+          'group.align': 'Format',
+          'command.change-font': 'change font',
           'help.change-font': 'Change font type.',
-          'group.font': 'Change font',
-          'command.change-font-size': 'Font size',
+          'group.font': 'Format',
+          'command.change-font-size': 'font size',
           'help.change-font-size': 'Change font size',
-          'group.font': 'Font size',
+          'group.font-size': 'Format',
           'command.change-line-spacing': 'Line spacing',
           'help.change-line-spacing': 'Add line spacing',
-          'group.spacing': 'Line spacing',
-          'command.change-paragraph-spacing': 'Paragraph spacing',
+          'group.spacing': 'Format',
+          'command.change-paragraph-spacing': 'paragraph spacing',
           'help.change-paragraph-spacing': 'Add paragragraph spacing',
-          'group.spacing': 'Paragraph spacing'
+          'group.paragraph-spacing': 'Format'
         },
         es: {
           'command.change-align': 'cambiar alineación',
           'help.change-align': 'Alinear el texto de las paginas visitadas',
-          'group.align': 'Cambiar alineación',
+          'group.align': 'Formato',
           'command.change-font': 'cambiar fuente',
           'help.change-font': 'Cambia el tipo de letra.',
-          'group.font': 'Cambiar fuente',
-          'command.change-font-size': 'cambiar tamaño del texto',
-          'help.change-font-size': 'Cambiar el tamaño del texto',
-          'group.font': 'Tamaño de fuente',
+          'group.font': 'Formato',
+          'command.change-font-size': 'cambiar tamaño de fuente',
+          'help.change-font-size': 'Cambiar el tamaño de la fuente',
+          'group.font-size': 'Formato',
           'command.change-line-spacing': 'cambiar espaciado',
           'help.change-line-spacing': 'Agregar espaciado entre renglones',
-          'group.spacing': 'Espaciado',
+          'group.spacing': 'Formato',
           'command.change-paragraph-spacing': 'cambiar espaciado entre párrafos',
           'help.change-paragraph-spacing': 'Agregar espaciado entre parrafos',
-          'group.spacing': 'Espaciado entre parrafos'
+          'group.paragraph-spacing': 'Formato'
         }
       }
     },
     {
       context: 'align',
       name: 'i18n-name',
-      commands: [{
+      commands: [...alignOptionsMap
+        /*{
         name: '*',
         help: 'i18n-help.*',
         group: 'i18n-group',
         action: changeAlign,
         switchToContext: 'root'
-      }],
+      }*/],
       i18n: {
         en: {
           'name': 'Align',
-          'help.*': 'Indicate the alignment you want to set: left, centered, justified or right',
+          'help.*': 'Indicate the alignment you want to set.',
           'group': 'Align',
-          'align-params': 'Please indicate the alignment you wish to configure',
+          'align-params': 'Please indicate the alignment you wish to configure: left, centered, justified or right',
           'exit': 'Exit'
         },
         es: {
           'name': 'Alineación',
-          'help.*': 'Indique la alineación que desea configurar: izquierda, centrado, justificado o derecha',
+          'help.*': 'Indique la alineación que desea configurar.',
           'group': 'Alineación',
-          'align-params': 'Indique la alineación que desea configurar',
+          'align-params': 'Indique la alineación que desea configurar: izquierda, centrado, justificado o derecha.',
           'exit': 'Salir'
         }
       }
@@ -166,16 +170,16 @@ export default {
       i18n: {
         en: {
           'name': 'Font',
-          'help.*': 'Please select the font you want to set: arial or dyslexic',
+          'help.*': 'Please select the font you want to set.',
           'group': 'Font',
-          'align-params': 'Please select the font you want to set',
+          'font-params': 'Please select the font you want to set: arial or dyslexic',
           'exit': 'Exit'
         },
         es: {
           'name': 'Fuente',
-          'help.*': 'Indique la fuente que desea configurar: arial o dyslexic',
+          'help.*': 'Indique la fuente que desea configurar.',
           'group': 'Fuente',
-          'open-params': 'Indique la fuente que desea configurar.',
+          'font-params': 'Indique la fuente que desea configurar: arial o dyslexic',
           'exit': 'Salir'
         }
       }
@@ -195,14 +199,14 @@ export default {
           'name': 'Font size',
           'help.*': 'Please select a font size between 50 and 150',
           'group': 'Font',
-          'align-params': 'Please select a font size between 50 and 150',
+          'font-size-params': 'Please select a font size between 50 and 150',
           'exit': 'Exit'
         },
         es: {
           'name': 'Tamaño de fuente',
           'help.*': 'Indique un tamaño de fuente entre 50 y 150',
           'group': 'Fuente',
-          'open-params': 'Indique un tamaño de fuente entre 50 y 150',
+          'font-size-params': 'Indique un tamaño de fuente entre 50 y 150',
           'exit': 'Salir'
         }
       }
@@ -222,14 +226,14 @@ export default {
           'name': 'Line spacing',
           'help.*': 'Specify a spacing between the values ​​1.5 and 2',
           'group': 'Spacing',
-          'align-params': 'Specify a spacing between the values ​​1.5 and 2',
+          'spacing-params': 'Specify a spacing between the values ​​1.5 and 2',
           'exit': 'Exit'
         },
         es: {
           'name': 'Espaciado',
           'help.*': 'Indique un espaciado entre los valores 1,5 y 2',
           'group': 'Espaciado',
-          'open-params': 'Indique un espaciado entre los valores 1,5 y 2',
+          'spacing-params': 'Indique un espaciado entre los valores 1,5 y 2',
           'exit': 'Salir'
         }
       }
@@ -249,14 +253,14 @@ export default {
           'name': 'Paragraph spacing',
           'help.*': 'Specify a spacing between the values ​2 and 2.5',
           'group': 'Spacing',
-          'align-params': 'Specify a spacing between the values ​​2 and 2.5',
+          'paragraph-spacing-params': 'Specify a spacing between the values ​​2 and 2.5',
           'exit': 'Exit'
         },
         es: {
           'name': 'Espaciado entre párrafos',
           'help.*': 'Indique un espaciado entre los valores 2 y 2,5',
           'group': 'Espaciado',
-          'open-params': 'Indique un espaciado entre los valores 2 y 2,5',
+          'paragraph-spacing-params': 'Indique un espaciado entre los valores 2 y 2,5',
           'exit': 'Salir'
         }
       }

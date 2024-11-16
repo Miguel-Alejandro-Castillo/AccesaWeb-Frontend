@@ -41,18 +41,18 @@ export default {
         }],
       i18n: {
         en: {
-          'command.disable-accessibility': 'Disable accessibility',
+          'command.disable-accessibility': 'disable accessibility',
           'help.disable-accessibility': 'disable HTML accessibility',
           'group.disable-accessibility': 'Accessibility',
-          'command.enable-accessibility': 'Enable accessibility',
-          'help.enable-accessibility': 'enable HTML accessibility',
+          'command.enable-accessibility': 'enable accessibility',
+          'help.enable-accessibility': 'Enable HTML accessibility',
           'group.enable-accessibility': 'Accessibility'
         },
         es: {
           'command.disable-accessibility': 'Desactivar accesibilidad',
           'help.disable-accessibility': 'Desactiva la accesibilidad HTML',
           'group.disable-accessibility': 'Accesibilidad',
-          'command.enable-accessibility': 'Activar accesibilidad',
+          'command.enable-accessibility': 'activar accesibilidad',
           'help.enable-accessibility': 'Activa la accesibilidad HTML',
           'group.enable-accessibility': 'Accesibilidad'
         }
@@ -66,7 +66,7 @@ export default {
     },
     es: {
       'name': 'Accesibilidad',
-      'description': 'EEste modulo permite activar la accesibilidad HTML'
+      'description': 'Este modulo permite activar la accesibilidad HTML'
     }
   }
 };

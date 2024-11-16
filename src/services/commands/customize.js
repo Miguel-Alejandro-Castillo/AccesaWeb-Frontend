@@ -21,26 +21,26 @@ export default {
           name: 'i18n-command.change-contrast',
           help: 'i18n-help.change-contrast',
           action: () => { },
-          switchToContext: 'changeContrast',
-          group: 'i18n-group.change-contrast'
+          switchToContext: 'change-contrast',
+          group: 'i18n-group.customize'
         }
       ],
       i18n: {
         en: {
           'command.change-contrast': 'change contrast',
           'help.change-contrast': 'Change contrast',
-          'group.contrast': 'Contrast'
+          'group.customize': 'Customize'
         },
         es: {
           'command.change-contrast': 'cambiar contraste',
           'help.change-contrast': 'Cambia el contraste',
-          'group.contrast': 'Contraste'
+          'group.customize': 'Personalizar'
 
         }
       }
     },
     {
-      context: 'changeContrast',
+      context: 'change-contrast',
       name: 'i18n-name',
       commands: [{
         name: '*',
@@ -52,16 +52,16 @@ export default {
       i18n: {
         en: {
           'name': 'change contrast',
-          'help.*': 'Select the type of contrast you want to set from the options: black on white, white on black, black on yellow, or yellow on black',
-          'group': 'Contrast',
-          'changeContrast-params': 'Please indicate the type of contrast you want to set',
+          'help.*': 'Select the type of contrast you want to set.',
+          'group': 'Customize',
+          'change-contrast-params': 'Please indicate the type of contrast you want to set from the opcion: black on white, white on black, black on yellow, or yellow on black.',
           'exit': 'Exit'
         },
         es: {
           'name': 'cambiar contraste',
-          'help.*': 'Indique el tipo de contraste que desea configurar entre las opciones: negro sobre blanco, blanco sobre negro, negro sobre amarillo o amarillo sobre negro',
-          'group': 'Contraste',
-          'changeContrast-params': 'Indique el tipo de contraste que desea configurar',
+          'help.*': 'Indique el tipo de contraste que desea configurar.',
+          'group': 'Personalizar',
+          'change-contrast-params': 'Indique el tipo de contraste que desea configurar entre las opciones: negro sobre blanco, blanco sobre negro, negro sobre amarillo o amarillo sobre negro',
           'exit': 'Salir'
         }
       }

@@ -7,6 +7,7 @@ import CommandFeedback from './command-feedback';
 import DatePicker from './date-picker';
 import Display from './display';
 import Downloads from './downloads';
+import HelpCommand from './help-command';
 import Help from './help';
 import HelpBar from './help-bar';
 import History from './history';
@@ -286,6 +287,13 @@ export default class Main extends React.Component {
     }
   }
 
+  renderHelpCommandOptions() {
+    const contexts = ['font-size', 'align', 'font', 'change-contrast', 'paragraph-spacing', 'line-spacing'];
+    if (contexts.includes(this.props.context)) {
+      return <HelpCommand getI18nText={this.getI18nText} context={this.props.context} />;
+    }
+  }
+
   render() {
     if (!this.props.turnedOn) {
       return null;
@@ -315,6 +323,7 @@ export default class Main extends React.Component {
           { this.renderRangeOptions() }
           { this.renderDatePicker() }
           { this.renderPickLabelOptions() }
+          { this.renderHelpCommandOptions() }
           <Display {...this.props} />
         </div>
       </div>
