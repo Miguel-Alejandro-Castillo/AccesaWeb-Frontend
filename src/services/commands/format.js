@@ -1,22 +1,75 @@
 import { executeBackgroundAction } from './background';
+import { getI18nText } from '../../docs/i18n/i18n';
+import _ from 'lodash';
 
-const keysAlignTextOption = ['none', 'left', 'justify' , 'center' , 'rigth'];
-const keysFontOption = ['none', 'arial', 'dislexic'];
+const textAlignOptions = ['none', 'left', 'justify', 'center', 'right'];
 
-function changeAlign(state, command) {
+const fontOptions = ['none', 'arial', 'opendyslexic'];
+
+const textAlignCommands = textAlignOptions.map(option => ({
+  name: `i18n-command.change-align-${option}`,
+  help: `i18n-help.change-align-${option}`,
+  group: 'i18n-group.change-align',
+  action: (state, command) => changeTextAlign(state, command, option)
+}));
+
+const fontCommands = fontOptions.map(option => ({
+  name: `i18n-command.change-font-${option}`,
+  help: `i18n-help.change-font-${option}`,
+  group: 'i18n-group.change-font',
+  action: (state, command) => changeFont(state, command, option)
+}));
+
+function i18nEnTextAlign() {
+  return textAlignOptions.reduce((acc, option) => {
+    acc[`command.change-align-${option}`] = option;
+    acc[`help.change-align-${option}`] = getI18nText(option, {}, 'en');
+    acc['group.change-align'] = 'Align';
+    return acc;
+  }, {});
+}
+
+function i18nEsTextAlign() {
+  return textAlignOptions.reduce((acc, option) => {
+    acc[`command.change-align-${option}`] = _.lowerCase(getI18nText(option, {}, 'es'));
+    acc[`help.change-align-${option}`] = getI18nText(option, {}, 'es');
+    acc['group.change-align'] = 'Alineación';
+    return acc;
+  }, {});
+}
+
+function i18nEnFont() {
+  return fontOptions.reduce((acc, option) => {
+    acc[`command.change-font-${option}`] = _.lowerCase(getI18nText(option, {}, 'en'));
+    acc[`help.change-font-${option}`] = getI18nText(option, {}, 'en');
+    acc['group.change-font'] = 'Font';
+    return acc;
+  }, {});
+}
+
+function i18nEsFont() {
+  return fontOptions.reduce((acc, option) => {
+    acc[`command.change-font-${option}`] = _.lowerCase(getI18nText(option, {}, 'es'));
+    acc[`help.change-font-${option}`] = getI18nText(option, {}, 'es');
+    acc['group.change-font'] = 'Fuente';
+    return acc;
+  }, {});
+}
+
+function changeTextAlign(state, command, value) {
   executeBackgroundAction({
     modifyDOM: {
       action: 'changeTextAlign',
-      param: command
+      param: value
     }
   });
 }
 
-function changeFont(state, command) {
+function changeFont(state, command, value) {
   executeBackgroundAction({
     modifyDOM: {
       action: 'changeFont',
-      param: command
+      param: value
     }
   });
 }
@@ -65,7 +118,7 @@ export default {
         },
         {
           name: 'i18n-command.change-font',
-          help: 'i18n-help.font',
+          help: 'i18n-help.change-font',
           action: () => { },
           switchToContext: 'font',
           group: 'i18n-group.font'
@@ -132,7 +185,7 @@ export default {
     {
       context: 'align',
       name: 'i18n-name',
-      commands: [...alignOptionsMap
+      commands: [...textAlignCommands
         /*{
         name: '*',
         help: 'i18n-help.*',
@@ -142,45 +195,51 @@ export default {
       }*/],
       i18n: {
         en: {
-          'name': 'Align',
+          name: 'Align',
           'help.*': 'Indicate the alignment you want to set.',
-          'group': 'Align',
-          'align-params': 'Please indicate the alignment you wish to configure: left, centered, justified or right',
-          'exit': 'Exit'
+          group: 'Align',
+          'align-params': 'Please indicate the alignment you wish to configure: none, left, center, justify or right.',
+          'exit': 'Exit',
+          ...i18nEnTextAlign()
         },
         es: {
-          'name': 'Alineación',
+          name: 'Alineación',
           'help.*': 'Indique la alineación que desea configurar.',
           'group': 'Alineación',
-          'align-params': 'Indique la alineación que desea configurar: izquierda, centrado, justificado o derecha.',
-          'exit': 'Salir'
+          'align-params': 'Indique la alineación que desea configurar: ninguno, izquierda, centrado, justificado o derecha.',
+          'exit': 'Salir',
+          ...i18nEsTextAlign()
         }
       }
     },
     {
       context: 'font',
       name: 'i18n-name',
-      commands: [{
+      commands: [
+        ...fontCommands
+        /*{
         name: '*',
         help: 'i18n-help.*',
         group: 'i18n-group',
         action: changeFont,
         switchToContext: 'root'
-      }],
+      }*/],
       i18n: {
         en: {
           'name': 'Font',
           'help.*': 'Please select the font you want to set.',
           'group': 'Font',
           'font-params': 'Please select the font you want to set: arial or dyslexic',
-          'exit': 'Exit'
+          'exit': 'Exit',
+          ...i18nEnFont()
         },
         es: {
           'name': 'Fuente',
           'help.*': 'Indique la fuente que desea configurar.',
           'group': 'Fuente',
           'font-params': 'Indique la fuente que desea configurar: arial o dyslexic',
-          'exit': 'Salir'
+          'exit': 'Salir',
+          ...i18nEsFont()
         }
       }
     },
@@ -275,4 +334,4 @@ export default {
       'description': 'Este modulo permite personalizar el formato del texto'
     }
   }
-};  
+};

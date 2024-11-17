@@ -26,7 +26,7 @@ function changeTextAlign(param) {
       $(this).data('original-text-align', $(this).css('text-align'));
     }
     // Cambiar el alineamiento de texto
-    $(this).css('text-align', param);
+    $(this).css('text-align', param === 'none' ? $(this).data('original-text-align') : param);
   });
 }
 
@@ -42,7 +42,7 @@ function changeFont(param) {
       $(this).data('original-font-family', $(this).css('font-family'));
     }
     // Cambiar el tipo de fuente
-    $(this).css('font-family', param);
+    $(this).css('font-family', param === 'none' ? $(this).data('original-font-family') : param);
   });
 }
 
@@ -73,7 +73,7 @@ function changeLineSpacing(param) {
     if (!elem.data('original-line-height')) {
       elem.data('original-line-height', elem.css('line-height'));
     }
-    elem.css('line-height', param === '*' ? elem.data('original-line-height') : param);
+    elem.css('line-height', param === '*' ? elem.data('original-line-height') : param + 'em');
   });
 }
 

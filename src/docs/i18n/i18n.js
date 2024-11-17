@@ -12,8 +12,8 @@ function getKeyToResolve(key = '') {
   return _.last(key.split(i18nSeparator));
 }
 
-export function getI18nText(key = '', i18nKeys = {}) {
-  const currentLanguage = getCurrentLanguage();
+export function getI18nText(key = '', i18nKeys = {}, language = null) {
+  const currentLanguage = language ? language : getCurrentLanguage();
   const keyToResolve = getKeyToResolve(key);
   if (!keyToResolve) {
     return key;

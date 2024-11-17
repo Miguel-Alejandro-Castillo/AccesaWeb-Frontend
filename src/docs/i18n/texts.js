@@ -52,7 +52,8 @@ export default {
     'turned-on': 'Turned On',
     'turned-off': 'Turned Off',
     'unselected': 'Unselected',
-    'up': 'Up'
+    'up': 'Up',
+    'opendyslexic': 'Open Dyslexic'
   },
   es: {
     'accept': 'Aceptar',
@@ -108,6 +109,7 @@ export default {
     'turned-on': 'Encendido',
     'turned-off': 'Apagado',
     'unselected': 'Sin seleccionar',
-    'up':'Arriba'
+    'up':'Arriba',
+    'opendyslexic': 'Open Dyslexic'
   }
 };
