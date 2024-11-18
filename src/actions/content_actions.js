@@ -116,7 +116,7 @@ function changeContrast(param) {
     documentElementStyle.setProperty('--background', 'black');
     documentElementStyle.setProperty('--border', 'grey');
     break;
-  default:
+  case 'none':
     documentElementStyle.removeProperty('--color');
     documentElementStyle.removeProperty('--background');
     documentElementStyle.removeProperty('--border');

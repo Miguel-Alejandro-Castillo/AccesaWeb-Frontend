@@ -1,10 +1,29 @@
 import { executeBackgroundAction } from './background';
+import { getI18nText } from '../../docs/i18n/i18n';
+import _ from 'lodash';
 
-function changeContrast(state, command) {
+const contrastOptions = ['none', 'whiteBlack', 'blackWhite', 'yellowBlack', 'blackYellow'];
+
+const contrastCommands = contrastOptions.map(option => ({
+  name: `i18n-command.change-contrast-${option}`,
+  help: `i18n-help.change-contrast-${option}`,
+  group: 'i18n-group',
+  action: (state, command) => changeContrast(state, command, option)
+}));
+
+function i18nContrast(language) {
+  return contrastOptions.reduce((acc, option) => {
+    acc[`command.change-contrast-${option}`] = _.lowerCase(getI18nText(option, {}, language));
+    acc[`help.change-contrast-${option}`] = getI18nText(option, {}, language);
+    return acc;
+  }, {});
+}
+
+function changeContrast(state, command, value) {
   executeBackgroundAction({
     modifyDOM: {
       action: 'changeContrast',
-      param: command
+      param: value
     }
   });
 }
@@ -42,27 +61,34 @@ export default {
     {
       context: 'change-contrast',
       name: 'i18n-name',
-      commands: [{
-        name: '*',
-        help: 'i18n-help.*',
-        group: 'i18n-group',
-        action: changeContrast,
-        switchToContext: 'root'
-      }],
+      commands: [
+        ...contrastCommands
+        /*
+        {
+          name: '*',
+          help: 'i18n-help.*',
+          group: 'i18n-group',
+          action: changeContrast,
+          switchToContext: 'root'
+        }
+        */
+      ],
       i18n: {
         en: {
           'name': 'change contrast',
           'help.*': 'Select the type of contrast you want to set.',
           'group': 'Customize',
           'change-contrast-params': 'Please indicate the type of contrast you want to set from the opcion: black on white, white on black, black on yellow, or yellow on black.',
-          'exit': 'Exit'
+          'exit': 'Exit',
+          ...i18nContrast('en')
         },
         es: {
           'name': 'cambiar contraste',
           'help.*': 'Indique el tipo de contraste que desea configurar.',
           'group': 'Personalizar',
           'change-contrast-params': 'Indique el tipo de contraste que desea configurar entre las opciones: negro sobre blanco, blanco sobre negro, negro sobre amarillo o amarillo sobre negro',
-          'exit': 'Salir'
+          'exit': 'Salir',
+          ...i18nContrast('es')
         }
       }
     }
