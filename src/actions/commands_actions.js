@@ -3,6 +3,8 @@ import _ from 'lodash';
 import metaphone from 'metaphone';
 import stringSimilarity from 'string-similarity';
 import wordsToNumbers from 'words-to-numbers';
+import { convertLetterToNumber } from '../util/letter-to-number';
+
 import {
   init as initCommands,
   executeCommand,
@@ -41,6 +43,8 @@ function normalizeCommand(commands, state, lang) {
   }
 
   const isEnglish = lang.includes('en');
+  const isSpanish = lang.includes('es');
+
   const allowedCommands = getCommands(state.allowedCommands, state.expandedCommands)
     .map(command => ({
       command,
@@ -50,7 +54,11 @@ function normalizeCommand(commands, state, lang) {
   const allowedCommandsPhonetic = allowedCommands.map(command => command.phonetic);
 
   const spokenCommands = commands.map(command => {
-    const textCommand = isEnglish && _.isFinite(wordsToNumbers(command)) ? `${wordsToNumbers(command)}` : command.text;
+    if (isSpanish && _.has(command, 'text') && _.isFinite(convertLetterToNumber(command.text)))
+      command.text = `${convertLetterToNumber(command.text)}`;
+
+    //const textCommand = isEnglish && _.isFinite(wordsToNumbers(command)) ? `${wordsToNumbers(command)}` : command.text;
+    const textCommand = isEnglish && typeof command === 'string' && _.isFinite(wordsToNumbers(command)) ? `${wordsToNumbers(command)}` : command.text;
     return {
       command: textCommand,
       phonetic: getPhonetic(textCommand)

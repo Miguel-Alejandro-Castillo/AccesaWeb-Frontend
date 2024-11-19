@@ -6,6 +6,8 @@ const textAlignOptions = ['none', 'left', 'justify', 'center', 'right'];
 
 const fontOptions = ['none', 'arial', 'opendyslexic'];
 
+const lineSpacingOptions = ['none', '1', '1.25', '1.5', '1.75', '2'];
+
 const textAlignCommands = textAlignOptions.map(option => ({
   name: `i18n-command.change-align-${option}`,
   help: `i18n-help.change-align-${option}`,
@@ -18,6 +20,13 @@ const fontCommands = fontOptions.map(option => ({
   help: `i18n-help.change-font-${option}`,
   group: 'i18n-group.change-font',
   action: (state, command) => changeFont(state, command, option)
+}));
+
+const lineSpacingCommands = lineSpacingOptions.map(option => ({
+  name: `i18n-command.change-line-spacing-${option}`,
+  help: `i18n-help.change-line-spacing-${option}`,
+  group: 'i18n-group.change-line-spacing',
+  action: (state, command, background, allTheCommands) => changeLineSpacing(state, command, option, allTheCommands)
 }));
 
 function i18nEnTextAlign() {
@@ -56,6 +65,14 @@ function i18nEsFont() {
   }, {});
 }
 
+function i18nLineSpacing(language) {
+  return lineSpacingOptions.reduce((acc, option) => {
+    acc[`command.change-line-spacing-${option}`] = _.isFinite(parseFloat(option)) ? option : _.lowerCase(getI18nText(option, {}, language));
+    acc[`help.change-line-spacing-${option}`] = _.isFinite(parseFloat(option)) ? option : getI18nText(option, {}, language);
+    return acc;
+  }, {});
+}
+
 function changeTextAlign(state, command, value) {
   executeBackgroundAction({
     modifyDOM: {
@@ -83,11 +100,11 @@ function changeFontSize(state, command) {
   });
 }
 
-function changeLineSpacing(state, command) {
+function changeLineSpacing(state, command, value, allTheCommands) {
   executeBackgroundAction({
     modifyDOM: {
       action: 'changeLineSpacing',
-      param: command
+      param: value
     }
   });
 }
@@ -273,27 +290,32 @@ export default {
     {
       context: 'line-spacing',
       name: 'i18n-name',
-      commands: [{
-        name: '*',
-        help: 'i18n-help.*',
-        group: 'i18n-group',
-        action: changeLineSpacing,
-        switchToContext: 'root'
-      }],
+      commands: [
+        ...lineSpacingCommands
+        /*{
+          name: '*',
+          help: 'i18n-help.*',
+          group: 'i18n-group',
+          action: changeLineSpacing,
+          switchToContext: 'root'
+        }*/
+      ],
       i18n: {
         en: {
           'name': 'Line spacing',
           'help.*': 'Specify a spacing between the values ​​1.5 and 2',
-          'group': 'Spacing',
+          'group.change-line-spacing': 'Spacing',
           'spacing-params': 'Specify a spacing between the values ​​1.5 and 2',
-          'exit': 'Exit'
+          'exit': 'Exit',
+          ...i18nLineSpacing('en')
         },
         es: {
           'name': 'Espaciado',
           'help.*': 'Indique un espaciado entre los valores 1,5 y 2',
-          'group': 'Espaciado',
+          'group.change-line-spacing': 'Espaciado',
           'spacing-params': 'Indique un espaciado entre los valores 1,5 y 2',
-          'exit': 'Salir'
+          'exit': 'Salir',
+          ...i18nLineSpacing('es')
         }
       }
     },

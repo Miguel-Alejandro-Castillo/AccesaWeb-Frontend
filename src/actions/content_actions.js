@@ -73,7 +73,7 @@ function changeLineSpacing(param) {
     if (!elem.data('original-line-height')) {
       elem.data('original-line-height', elem.css('line-height'));
     }
-    elem.css('line-height', param === '*' ? elem.data('original-line-height') : param + 'em');
+    elem.css('line-height', param === 'none' ? elem.data('original-line-height') : param + 'em');
   });
 }
 
