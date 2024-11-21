@@ -47,21 +47,19 @@ function changeFont(param) {
 }
 
 function changeFontSize(param) {
-  $('*').filter(function() {
+  const rootFontSize = parseFloat(getComputedStyle(document.documentElement).fontSize); // Obtener el tamaño de fuente del elemento raíz
+  $('body *').filter(function() {
     return $(this).text().trim().length > 0;
   }).each(function() {
     if (!$(this).data('original-font-size')) {
       $(this).data('original-font-size', $(this).css('font-size'));
     }
-    $(this).css('font-size', param + 'rem');
-    /*
-    $(this).css({
-      'overflow': 'hidden',
-      'text-overflow': 'ellipsis',
-      'white-space': 'nowrap',
-      'word-wrap': 'break-word'
-    });
-    */
+
+    const originalFontSize = parseFloat($(this).data('original-font-size')) / rootFontSize;
+
+    const newFontSize = (originalFontSize * param) / 100;
+
+    $(this).css('font-size', param === 'none' ? $(this).data('original-font-size') : newFontSize + 'rem');
   });
 }
 
@@ -85,7 +83,7 @@ function changeParagraphSpacing(param) {
     if (!elem.data('original-margin-bottom')) {
       elem.data('original-margin-bottom', elem.css('margin-bottom'));
     }
-    elem.css('margin-bottom', param === '*' ? elem.data('original-margin-bottom') : param);
+    elem.css('margin-bottom', param === 'none' ? elem.data('original-margin-bottom') : param + 'em');
   });
 }
 
