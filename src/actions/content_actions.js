@@ -1,5 +1,7 @@
 import $ from 'jquery';
 
+const chrome = window.chrome;
+
 const socialNetworks = ['facebook', 'twitter', 'whatsapp', 'youtube', 'instagram', 'telegram', 'linkedin', 'qzone', 'pinterest', 'badoo', 'tiktok', 'github'];
 
 function showHideImages(param) {
@@ -163,8 +165,6 @@ function showImages() {
 }
 
 function hideImages() {
-  //Falta revisar como se guarda esto
-  localStorage.setItem('input.name.hideImages', 'false');
   $('img').hide();
   $('[style*="url("]').filter(function() {
     var style = $(this).attr('style');
@@ -195,8 +195,7 @@ function hideAds() {
 }
 
 function showSocialNetworks() {
-  //localStorage.setItem('input.name.hideSocialNetworks', false);
-  $("a[href!='']").filter(function() {
+  $("a[href]:not([href=''])").filter(function() {
     let hrefValue = $(this).attr('href');
     hrefValue = hrefValue.toLowerCase();
     return socialNetworks.some(function(socialNetwork) {
@@ -207,7 +206,7 @@ function showSocialNetworks() {
 
 function hideSocialNetworks() {
   //localStorage.setItem('input.name.hideSocialNetworks', true);
-  $("a[href!='']").filter(function() {
+  $("a[href]:not([href=''])").filter(function() {
     let hrefValue = $(this).attr('href');
     hrefValue = hrefValue.toLowerCase();
     return socialNetworks.some(function(socialNetwork) {
@@ -401,3 +400,32 @@ export const actionMap = {
   changeContrast: changeContrast,
   enableAccesibilityHTML: enableDisableAccesibilityHTML
 };
+
+export const USER_SETTINGS_DEFAULT = {
+  userSettings: {
+    showImages: true,
+    showAds: true,
+    showSocialNetworks: true,
+    changeTextAlign: 'none',
+    changeFont: 'none',
+    changeFontSize: 'none',
+    changeLineSpacing: 'none',
+    changeParagraphSpacing: 'none',
+    changeContrast: 'none',
+    enableAccesibilityHTML: true 
+  }
+};
+
+export function applyUserSettings() {
+  chrome.storage.local.get('userSettings', function(result) {
+    if (result.userSettings) {
+      console.log('User settings retrieved:', result.userSettings);
+      Object.entries(actionMap).forEach(([key, value]) => {
+        value(result.userSettings[key]);
+        console.log(`Key: ${key}, Value: ${value}`);
+      });
+    } else {
+      console.log('No user settings found.');
+    }
+  });
+}

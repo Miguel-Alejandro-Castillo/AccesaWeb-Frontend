@@ -14,6 +14,10 @@ import {
 import _ from 'lodash';
 import log from 'loglevel';
 
+import {
+  USER_SETTINGS_DEFAULT
+} from '../actions/content_actions';
+
 if (process.env.DEVTOOLS) {
   log.enableAll();
 } else {
@@ -44,8 +48,30 @@ const actionHandlers = {
 const docsUrl = chrome.extension.getURL('docs.html');
 let lastSpeechRecognizerState;
 
+// Función para actualizar una propiedad anidada
+function updateNestedProperty(key, nestedKey, nestedValue, callback) {
+  chrome.storage.local.get(key, function(result) {
+    if (result[key]) {
+      // Convertir la notación de punto en un array de claves
+      const keys = nestedKey.split('.');
+      let obj = result[key];
+
+      // Recorrer las claves y actualizar el valor
+      for (let i = 0; i < keys.length - 1; i++) {
+        obj = obj[keys[i]];
+      }
+      obj[keys[keys.length - 1]] = nestedValue;
+
+      // Guardar el objeto modificado de nuevo en el almacenamiento
+      chrome.storage.local.set({ [key]: result[key] }, callback);
+    }
+  });
+}
+
 function modifyDOM(sender, actionValue, sendResponse) {
-  sendDataToTabs({modifyDOM: actionValue});
+  updateNestedProperty('userSettings', actionValue.action, actionValue.param, function() {
+    sendDataToTabs({modifyDOM: actionValue});
+  });
 }
 
 function previousTab(sender) {
@@ -218,6 +244,9 @@ chrome.runtime.onMessage.addListener(handleMessageFromContent);
 chrome.tabs.onRemoved.addListener(sendTurnedOn);
 
 chrome.runtime.onInstalled.addListener(() => {
+  chrome.storage.local.set(USER_SETTINGS_DEFAULT, function() {
+    console.log('User Settings is set to ', USER_SETTINGS_DEFAULT);
+  });
   initPropertiesSettings();
 });
 

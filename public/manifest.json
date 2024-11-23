@@ -16,6 +16,7 @@
     "history",
     "tabs",
     "topSites",
+    "storage",
     "unlimitedStorage"
   ],
   "background": {

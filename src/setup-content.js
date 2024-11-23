@@ -16,7 +16,7 @@ import fontAwesome from './services/font-awesome';
 import { getActiveItemsMenu } from './services/commands/index';
 import _ from 'lodash';
 import {
-  actionMap
+  actionMap, applyUserSettings
 } from './actions/content_actions';
 
 const getURL = window.chrome.runtime.getURL;
@@ -174,50 +174,8 @@ function initApp(initialData) {
   if (_.has(initialData, 'isOnRecognition') && initialData.isOnRecognition)
     ReactDOM.render(<Provider store={store}><Main /></Provider>, containers.appContainer);
   initStyle(() => executeSettingAction(initialData));
+
+  applyUserSettings();
 }
 
 getInitialData(initApp);
-
-/*
-document.addEventListener( 'modificarDOM', function(e){
-  switch (e.detail.action) {
-  case 'hideImages':
-    hideImages();
-    break;
-  case 'showImages':
-    showImages();
-    break;
-  case 'showAds':
-    showAds();
-    break;
-  case 'hideAds':
-    hideAds();
-    break;
-  case 'showSocialNetworks':
-    showSocialNetworks();
-    break;
-  case 'hideSocialNetworks':
-    hideSocialNetworks();
-    break;
-  case 'changeAlign':
-    changeAlign();
-    break;
-  case 'changeFont':
-    changeFont();
-    break;
-  case 'changeFontSize':
-    changeFontSize();
-    break;
-  case 'changeLineSpacing':
-    changeLineSpacing();
-    break;
-  case 'changeParagraphSpacing':
-    changeParagraphSpacing();
-    break;
-  case 'changeContrast':
-    changeContrast();
-    break;
-  }
-  document.dispatchEvent(new Event('reloadComponents'));
-});
-*/
