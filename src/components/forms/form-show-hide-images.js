@@ -20,6 +20,19 @@ class FormShowHideImages extends Component {
         this.setState({ showImages: result.userSettings.showImages });
       }
     });
+
+    chrome.storage.local.onChanged.addListener((changes, areaName) => {
+      if (changes.userSettings) {
+        const oldUserSettings = changes.userSettings.oldValue;
+        const newUserSettings = changes.userSettings.newValue;
+        if (oldUserSettings && newUserSettings) {
+          if (oldUserSettings.showImages !== newUserSettings.showImages) {
+            this.setState({ showImages: newUserSettings.showImages });
+            console.log(`La propiedad 'showImages' cambió de ${oldUserSettings.showImages} a ${newUserSettings.showImages}`);
+          }
+        }
+      }
+    });
   }
 
   handleChange(value) {
