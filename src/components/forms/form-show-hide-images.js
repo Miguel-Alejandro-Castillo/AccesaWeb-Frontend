@@ -11,6 +11,7 @@ class FormShowHideImages extends Component {
       showImages: true // Valor por defecto mientras se carga el valor real
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleStorageChange = this.handleStorageChange.bind(this); // Enlazar el método
   }
 
   componentDidMount() {
