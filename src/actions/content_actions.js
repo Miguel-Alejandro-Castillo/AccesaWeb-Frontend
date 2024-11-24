@@ -141,8 +141,6 @@ function changeContrast(param) {
 }
 
 function showImages() {
-  //Falta revisar como se guarda esto
-  localStorage.setItem('input.name.hideImages', 'true');
   $('img').show();
   $('[style*="url("]').filter(function() {
     var style = $(this).attr('style');
@@ -161,7 +159,6 @@ function showImages() {
     iframeContent.find('svg').show();
     iframeContent.find('canvas').show();
   });
-  //localStorage.setItem('input.name.hideImages', 'false');
 }
 
 function hideImages() {
@@ -183,7 +180,6 @@ function hideImages() {
     iframeContent.find('svg').hide();
     iframeContent.find('canvas').hide();
   });
-  //localStorage.setItem('input.name.hideImages', 'true');
 }
 
 function showAds() {
@@ -412,7 +408,7 @@ export const USER_SETTINGS_DEFAULT = {
     changeLineSpacing: 'none',
     changeParagraphSpacing: 'none',
     changeContrast: 'none',
-    enableAccesibilityHTML: true 
+    enableAccesibilityHTML: true
   }
 };
 

@@ -1,44 +1,5 @@
 import React from 'react';
-import { getI18nText } from '../../../docs/i18n/i18n';
-import $ from 'jquery';
-
-const propertySettingLocalStorage = 'input.name.hideImages';
-
-const  valueDefaultSetting = 'true';
-
-function Form({isHideImages, onChangeHideImages}) {
-  return (
-    <div>
-      <div className='radio'>
-        <label>
-          <input type='radio' checked={isHideImages} onChange={() => onChangeHideImages(true)}/> <span>{getI18nText('show')}</span>
-        </label>
-      </div>
-      <div className='radio'>
-        <label>
-          <input type='radio' checked={!isHideImages} onChange={() => onChangeHideImages(false)}/> <span>{getI18nText('hide')}</span>
-        </label>
-      </div>
-    </div>
-  );
-}
-
-Form.propTypes = {
-  isHideImages: React.PropTypes.bool.isRequired,
-  onChangeHideImages: React.PropTypes.func.isRequired
-};
-
-
-function isHideImages() {
-  return localStorage.getItem(propertySettingLocalStorage) === 'false' ? false : true;
-}
-
-function setHideImages(value) {
-  if (isHideImages() !== value) {
-    localStorage.setItem(propertySettingLocalStorage, value);
-    document.dispatchEvent(new Event('changeInput'));
-  }
-}
+import FormShowHideImages from '../../../components/forms/form-show-hide-images';
 
 /*
 function action(valueSetting) {
@@ -63,20 +24,9 @@ function action(valueSetting) {
 }
 */
 
-function action(valueSetting) {
-  var event; 
-  if (valueSetting === 'false') {
-    event = new CustomEvent('modificarDOM', { detail: {action: 'hideImages'}});
-    document.dispatchEvent(event);
-  } else {
-    event = new CustomEvent('modificarDOM', { detail: {action: 'showImages'}});
-    document.dispatchEvent(event);
-  }
-}
-
-function ShowHideImageFunction() {
+function ShowHideImagesFunction() {
   return (
-    <Form isHideImages={isHideImages()} onChangeHideImages={setHideImages}/>
+    <FormShowHideImages/>
   );
 }
 
@@ -94,8 +44,5 @@ export default {
       'description': 'Mostrar/ocultar imagenes'
     }
   },
-  contexts: [{ functionComponent: ShowHideImageFunction }],
-  propertySettingLocalStorage: propertySettingLocalStorage,
-  valueDefaultSetting: valueDefaultSetting,
-  action: action
+  contexts: [{ functionComponent: ShowHideImagesFunction }]
 };

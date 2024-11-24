@@ -1,98 +1,31 @@
 import { executeBackgroundAction } from './background';
 
-/*
-function sendMessage(message) {
-  var channel = new BroadcastChannel('channelModifyDOM');
-  channel.postMessage(message);
-  channel.close(); // Cerrar el canal después de enviar el mensaje
-}
-*/
-
-function showImages() {
+export function showHideImages(value) {
   executeBackgroundAction({
     modifyDOM: {
       action: 'showImages',
-      param: true
+      param: value
     }
   });
 }
 
-function hideImages() {
-  executeBackgroundAction({
-    modifyDOM: {
-      action: 'showImages',
-      param: false
-    }
-  });
-}
-
-function showAds() {
+function showHideAds(value) {
   executeBackgroundAction({
     modifyDOM: {
       action: 'showAds',
-      param: true
+      param: value
     }
   });
 }
 
-function hideAds() {
-  executeBackgroundAction({
-    modifyDOM: {
-      action: 'showAds',
-      param: false
-    }
-  });
-}
-
-function showSocialNetworks() {
+function showHideSocialNetworks(value) {
   executeBackgroundAction({
     modifyDOM: {
       action: 'showSocialNetworks',
-      param: true
+      param: value
     }
   });
 }
-
-function hideSocialNetworks() {
-  executeBackgroundAction({
-    modifyDOM: {
-      action: 'showSocialNetworks',
-      param: false
-    }
-  });
-}
-
-/*
-function showImages() {
-  var event = new CustomEvent('modificarDOM', { detail: { action: 'showImages' } });
-  document.dispatchEvent(event);
-}
-
-function hideImages() {
-  var event = new CustomEvent('modificarDOM', { detail: { action: 'hideImages' } });
-  document.dispatchEvent(event);
-}
-
-function showAds() {
-  var event = new CustomEvent('modificarDOM', { detail: { action: 'showAds' } });
-  document.dispatchEvent(event);
-}
-
-function hideAds() {
-  var event = new CustomEvent('modificarDOM', { detail: { action: 'hideAds' } });
-  document.dispatchEvent(event);
-}
-
-function showSocialNetworks() {
-  var event = new CustomEvent('modificarDOM', { detail: { action: 'showSocialNetworks' } });
-  document.dispatchEvent(event);
-}
-
-function hideSocialNetworks() {
-  var event = new CustomEvent('modificarDOM', { detail: { action: 'hideSocialNetworks' } });
-  document.dispatchEvent(event);
-}
-*/
 
 export default {
   name: 'i18n-name',
@@ -104,37 +37,37 @@ export default {
       commands: [
         {
           name: 'i18n-command.show-images',
-          action: showImages,
+          action: (state, command) => showHideImages(true),
           help: 'i18n-help.show-images',
           group: 'i18n-group.show-images'
         },
         {
           name: 'i18n-command.hide-images',
-          action: hideImages,
+          action: (state, command) => showHideImages(false),
           help: 'i18n-help.hide-images',
           group: 'i18n-group.hide-images'
         },
         {
           name: 'i18n-command.show-ads',
-          action: showAds,
+          action: (state, command) => showHideAds(true),
           help: 'i18n-help.show-ads',
           group: 'i18n-group.show-ads'
         },
         {
           name: 'i18n-command.hide-ads',
-          action: hideAds,
+          action: (state, command) => showHideAds(false),
           help: 'i18n-help.hide-ads',
           group: 'i18n-group.hide-ads'
         },
         {
           name: 'i18n-command.show-social-networks',
-          action: showSocialNetworks,
+          action: (state, command) => showHideSocialNetworks(true),
           help: 'i18n-help.show-social-networks',
           group: 'i18n-group.show-social-networks'
         },
         {
           name: 'i18n-command.hide-social-networks',
-          action: hideSocialNetworks,
+          action: (state, command) => showHideSocialNetworks(false),
           help: 'i18n-help.hide-social-networks',
           group: 'i18n-group.hide-social-networks'
         }
