@@ -20,19 +20,23 @@ class FormShowHideImages extends Component {
         this.setState({ showImages: result.userSettings.showImages });
       }
     });
+    
+    // Escuchar cambios en el almacenamiento
+    chrome.storage.onChanged.addListener(this.handleStorageChange);
+  }
 
-    chrome.storage.local.onChanged.addListener((changes, areaName) => {
-      if (changes.userSettings) {
-        const oldUserSettings = changes.userSettings.oldValue;
-        const newUserSettings = changes.userSettings.newValue;
-        if (oldUserSettings && newUserSettings) {
-          if (oldUserSettings.showImages !== newUserSettings.showImages) {
-            this.setState({ showImages: newUserSettings.showImages });
-            console.log(`La propiedad 'showImages' cambió de ${oldUserSettings.showImages} a ${newUserSettings.showImages}`);
-          }
-        }
+  componentWillUnmount() {
+    // Eliminar el listener de cambios en el almacenamiento
+    chrome.storage.onChanged.removeListener(this.handleStorageChange);
+  }
+
+  handleStorageChange(changes, namespace) {
+    if (namespace === 'local' && changes.userSettings) {
+      const newSettings = changes.userSettings.newValue;
+      if (newSettings && typeof newSettings.showImages !== 'undefined') {
+        this.setState({ showImages: newSettings.showImages });
       }
-    });
+    }
   }
 
   handleChange(value) {
