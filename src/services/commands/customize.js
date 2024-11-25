@@ -8,7 +8,7 @@ const contrastCommands = contrastOptions.map(option => ({
   name: `i18n-command.change-contrast-${option}`,
   help: `i18n-help.change-contrast-${option}`,
   group: 'i18n-group',
-  action: (state, command) => changeContrast(state, command, option)
+  action: () => changeContrast(option)
 }));
 
 function i18nContrast(language) {
@@ -19,7 +19,7 @@ function i18nContrast(language) {
   }, {});
 }
 
-function changeContrast(state, command, value) {
+export function changeContrast(value) {
   executeBackgroundAction({
     modifyDOM: {
       action: 'changeContrast',
@@ -63,15 +63,6 @@ export default {
       name: 'i18n-name',
       commands: [
         ...contrastCommands
-        /*
-        {
-          name: '*',
-          help: 'i18n-help.*',
-          group: 'i18n-group',
-          action: changeContrast,
-          switchToContext: 'root'
-        }
-        */
       ],
       i18n: {
         en: {

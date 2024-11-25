@@ -58,7 +58,6 @@ class FormChangeFont extends Component {
     this.setState({ changeFont: value });
     changeFont(value);
   }
-  
   render() {
     const { changeFont } = this.state;
     return (

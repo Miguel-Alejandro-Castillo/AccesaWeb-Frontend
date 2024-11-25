@@ -42,7 +42,7 @@ class FormChangeTextAlign extends Component {
   handleChange(value) {
     this.setState({ changeTextAlign: value });
     changeTextAlign(value);
-  }  
+  }
   render() {
     const { changeTextAlign } = this.state;
     return (

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { getI18nText } from '../../docs/i18n/i18n';
-import { changeParagraphSpacing } from '../../services/commands/format';
+import { changeContrast } from '../../services/commands/customize';
 
 const chrome = window.chrome;
 const options = [
@@ -9,34 +9,38 @@ const options = [
     value: 'none'
   },
   {
-    label: '2.0',
-    value: '2'
+    label: getI18nText('whiteBlack'),
+    value: 'whiteBlack'
   },
   {
-    label: '2.25',
-    value: '2.25'
+    label: getI18nText('blackWhite'),
+    value: 'blackWhite'
   },
   {
-    label: '2.5',
-    value: '2.50'
+    label: getI18nText('yellowBlack'),
+    value: 'yellowBlack'
+  },
+  {
+    label: getI18nText('blackYellow'),
+    value: 'blackYellow'
   }
 ];
 
-class FormChangeParagraphSpacing extends Component {
+class FormChangeContrast extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      changeParagraphSpacing: 'none' // Valor por defecto mientras se carga el valor real
+      changeContrast: 'none' // Valor por defecto mientras se carga el valor real
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleStorageChange = this.handleStorageChange.bind(this); // Enlazar el método
   }
 
   componentDidMount() {
-    // Cargar el valor de changeParagraphSpacing desde chrome.storage
+    // Cargar el valor de showImages desde chrome.storage
     chrome.storage.local.get('userSettings', (result) => {
-      if (result.userSettings && typeof result.userSettings.changeParagraphSpacing !== 'undefined') {
-        this.setState({ changeParagraphSpacing: result.userSettings.changeParagraphSpacing });
+      if (result.userSettings && typeof result.userSettings.changeContrast !== 'undefined') {
+        this.setState({ changeContrast: result.userSettings.changeContrast });
       }
     });
     // Escuchar cambios en el almacenamiento
@@ -51,24 +55,25 @@ class FormChangeParagraphSpacing extends Component {
   handleStorageChange(changes, namespace) {
     if (namespace === 'local' && changes.userSettings) {
       const newSettings = changes.userSettings.newValue;
-      if (newSettings && typeof newSettings.changeParagraphSpacing !== 'undefined') {
-        this.setState({ changeParagraphSpacing: newSettings.changeParagraphSpacing });
+      if (newSettings && typeof newSettings.changeContrast !== 'undefined') {
+        this.setState({ changeContrast: newSettings.changeContrast });
       }
     }
   }
 
   handleChange(event) {
     const value = event.target.value;
-    this.setState({ changeParagraphSpacing: value });
-    changeParagraphSpacing(value);
+    this.setState({ changeContrast: value });
+    changeContrast(value);
   }
+
   render() {
-    const { changeParagraphSpacing } = this.state;
+    const { changeContrast } = this.state;
     return (
       <div className='form-group'>
         <div className='col-lg-3'>
-          <label>{getI18nText('select-a-spacing')}</label><br />
-          <select className="form-control {'_not-focuseable-element'}" value={changeParagraphSpacing} onChange={this.handleChange}>
+          <label>{getI18nText('select-a-contrast')}</label><br />
+          <select id='contrast' className="form-control {'_not-focuseable-element'}" value={changeContrast} onChange={this.handleChange}>
             {options.map((option) => (
               <option value={option.value} key={option.value}>{option.label}</option>
             ))}
@@ -79,4 +84,4 @@ class FormChangeParagraphSpacing extends Component {
   }
 }
 
-export default FormChangeParagraphSpacing;
+export default FormChangeContrast;
