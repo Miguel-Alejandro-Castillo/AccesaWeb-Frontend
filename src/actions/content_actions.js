@@ -216,7 +216,6 @@ function enableDisableAccesibilityHTML(param) {
 }
 
 function enableAccesibilityHTML() {
-
   // Agregar roles ARIA a elementos específicos
   $('nav:not([role]), nav[role=""]').attr('role', 'navigation');
   $('header:not([role]), header[role=""]').attr('role', 'banner');

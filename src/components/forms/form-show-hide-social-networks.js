@@ -1,24 +1,24 @@
 import React, { Component } from 'react';
 import { getI18nText } from '../../docs/i18n/i18n';
-import { showHideImages } from '../../services/commands/multimedia';
+import { showHideSocialNetworks } from '../../services/commands/multimedia';
 
 const chrome = window.chrome;
 
-class FormShowHideImages extends Component {
+class FormShowHideSocialNetworks extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showImages: true // Valor por defecto mientras se carga el valor real
+      showSocialNetworks: true // Valor por defecto mientras se carga el valor real
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleStorageChange = this.handleStorageChange.bind(this);
   }
 
   componentDidMount() {
-    // Cargar el valor de showImages desde chrome.storage
+    // Cargar el valor de showSocialNetworks desde chrome.storage
     chrome.storage.local.get('userSettings', (result) => {
-      if (result.userSettings && typeof result.userSettings.showImages !== 'undefined') {
-        this.setState({ showImages: result.userSettings.showImages });
+      if (result.userSettings && typeof result.userSettings.showSocialNetworks !== 'undefined') {
+        this.setState({ showSocialNetworks: result.userSettings.showSocialNetworks });
       }
     });
 
@@ -34,29 +34,29 @@ class FormShowHideImages extends Component {
   handleStorageChange(changes, namespace) {
     if (namespace === 'local' && changes.userSettings) {
       const newSettings = changes.userSettings.newValue;
-      if (newSettings && typeof newSettings.showImages !== 'undefined') {
-        this.setState({ showImages: newSettings.showImages });
+      if (newSettings && typeof newSettings.showSocialNetworks !== 'undefined') {
+        this.setState({ showSocialNetworks: newSettings.showSocialNetworks });
       }
     }
   }
 
   handleChange(value) {
-    this.setState({ showImages: value });
-    showHideImages(value);
+    this.setState({ showSocialNetworks: value });
+    showHideSocialNetworks(value);
   }
 
   render() {
-    const { showImages } = this.state;
+    const { showSocialNetworks } = this.state;
     return (
       <div>
         <div className='radio'>
           <label>
-            <input type='radio' checked={showImages} onChange={() => this.handleChange(true)} /> <span>{getI18nText('show')}</span>
+            <input type='radio' checked={showSocialNetworks} onChange={() => this.handleChange(true)} /> <span>{getI18nText('show')}</span>
           </label>
         </div>
         <div className='radio'>
           <label>
-            <input type='radio' checked={!showImages} onChange={() => this.handleChange(false)} /> <span>{getI18nText('hide')}</span>
+            <input type='radio' checked={!showSocialNetworks} onChange={() => this.handleChange(false)} /> <span>{getI18nText('hide')}</span>
           </label>
         </div>
       </div>
@@ -64,4 +64,4 @@ class FormShowHideImages extends Component {
   }
 }
 
-export default FormShowHideImages;
+export default FormShowHideSocialNetworks;
