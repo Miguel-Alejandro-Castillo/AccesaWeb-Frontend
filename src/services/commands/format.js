@@ -16,35 +16,35 @@ const textAlignCommands = textAlignOptions.map(option => ({
   name: `i18n-command.change-align-${option}`,
   help: `i18n-help.change-align-${option}`,
   group: 'i18n-group.change-align',
-  action: (state, command) => changeTextAlign(state, command, option)
+  action: () => changeTextAlign(option)
 }));
 
 const fontCommands = fontOptions.map(option => ({
   name: `i18n-command.change-font-${option}`,
   help: `i18n-help.change-font-${option}`,
   group: 'i18n-group.change-font',
-  action: (state, command) => changeFont(state, command, option)
-}));
+  action: () => changeFont(option)
+})); 
 
 const fontSizeCommands = fontSizeOptions.map(option => ({
   name: `i18n-command.change-font-size-${option}`,
   help: `i18n-help.change-font-size-${option}`,
   group: 'i18n-group.change-font-size',
-  action: (state, command) => changeFontSize(state, command, option)
+  action: () => changeFontSize(option)
 }));
 
 const lineSpacingCommands = lineSpacingOptions.map(option => ({
   name: `i18n-command.change-line-spacing-${option}`,
   help: `i18n-help.change-line-spacing-${option}`,
   group: 'i18n-group.change-line-spacing',
-  action: (state, command, background, allTheCommands) => changeLineSpacing(state, command, option, allTheCommands)
+  action: () => changeLineSpacing(option)
 }));
 
 const paragraphSpacingCommands = paragraphSpacingOptions.map(option => ({
   name: `i18n-command.change-paragraph-spacing-${option}`,
   help: `i18n-help.change-paragraph-spacing-${option}`,
   group: 'i18n-group.change-paragraph-spacing',
-  action: (state, command) => changeParagraphSpacing(state, command, option)
+  action: () => changeParagraphSpacing(option)
 }));
 
 function i18nEnTextAlign() {
@@ -107,7 +107,7 @@ function i18nParagraphSpacing(language) {
   }, {});
 }
 
-function changeTextAlign(state, command, value) {
+export function changeTextAlign(value) {
   executeBackgroundAction({
     modifyDOM: {
       action: 'changeTextAlign',
@@ -116,7 +116,7 @@ function changeTextAlign(state, command, value) {
   });
 }
 
-function changeFont(state, command, value) {
+export function changeFont(value) {
   executeBackgroundAction({
     modifyDOM: {
       action: 'changeFont',
@@ -125,7 +125,7 @@ function changeFont(state, command, value) {
   });
 }
 
-function changeFontSize(state, command, value) {
+export function changeFontSize(value) {
   executeBackgroundAction({
     modifyDOM: {
       action: 'changeFontSize',
@@ -134,7 +134,7 @@ function changeFontSize(state, command, value) {
   });
 }
 
-function changeLineSpacing(state, command, value) {
+export function changeLineSpacing(value) {
   executeBackgroundAction({
     modifyDOM: {
       action: 'changeLineSpacing',
@@ -143,7 +143,7 @@ function changeLineSpacing(state, command, value) {
   });
 }
 
-function changeParagraphSpacing(state, command, value) {
+export function changeParagraphSpacing(value) {
   executeBackgroundAction({
     modifyDOM: {
       action: 'changeParagraphSpacing',
@@ -237,13 +237,7 @@ export default {
       context: 'align',
       name: 'i18n-name',
       commands: [...textAlignCommands
-        /*{
-        name: '*',
-        help: 'i18n-help.*',
-        group: 'i18n-group',
-        action: changeAlign,
-        switchToContext: 'root'
-      }*/],
+      ],
       i18n: {
         en: {
           name: 'Align',
@@ -268,13 +262,7 @@ export default {
       name: 'i18n-name',
       commands: [
         ...fontCommands
-        /*{
-        name: '*',
-        help: 'i18n-help.*',
-        group: 'i18n-group',
-        action: changeFont,
-        switchToContext: 'root'
-      }*/],
+      ],
       i18n: {
         en: {
           'name': 'Font',
@@ -297,13 +285,7 @@ export default {
     {
       context: 'font-size',
       name: 'i18n-name',
-      commands: [/*{
-        name: '*',
-        help: 'i18n-help.*',
-        group: 'i18n-group',
-        action: changeFontSize,
-        switchToContext: 'root'
-      }*/
+      commands: [
         ...fontSizeCommands],
       i18n: {
         en: {
@@ -329,13 +311,7 @@ export default {
       name: 'i18n-name',
       commands: [
         ...lineSpacingCommands
-        /*{
-          name: '*',
-          help: 'i18n-help.*',
-          group: 'i18n-group',
-          action: changeLineSpacing,
-          switchToContext: 'root'
-        }*/
+       
       ],
       i18n: {
         en: {
@@ -361,13 +337,7 @@ export default {
       name: 'i18n-name',
       commands: [
         ...paragraphSpacingCommands
-        /*{
-          name: '*',
-          help: 'i18n-help.*',
-          group: 'i18n-group',
-          action: changeParagraphSpacing,
-          switchToContext: 'root'
-        }*/
+        
       ],
       i18n: {
         en: {
