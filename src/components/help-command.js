@@ -2,8 +2,8 @@ import React from 'react';
 
 export default class HelpCommand extends React.Component {
   static propTypes = {
-    getI18nText: React.PropTypes.func.isRequired, 
-    context:  React.PropTypes.string.isRequired
+    getI18nText: React.PropTypes.func.isRequired,
+    context: React.PropTypes.string.isRequired
   }
 
   render() {

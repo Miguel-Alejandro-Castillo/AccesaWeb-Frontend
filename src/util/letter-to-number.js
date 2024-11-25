@@ -11,7 +11,7 @@ const letterToNumberMap = new Map([
 ]);
 
 export function convertLetterToNumber(text) {
-  if(letterToNumberMap.has(_.lowerCase(_.trim(text))))
+  if (letterToNumberMap.has(_.lowerCase(_.trim(text))))
     return letterToNumberMap.get(_.lowerCase(_.trim(text)));
   return text;
 }
