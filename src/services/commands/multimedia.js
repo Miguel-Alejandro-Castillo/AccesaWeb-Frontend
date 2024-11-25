@@ -9,7 +9,7 @@ export function showHideImages(value) {
   });
 }
 
-function showHideAds(value) {
+export function showHideAds(value) {
   executeBackgroundAction({
     modifyDOM: {
       action: 'showAds',
@@ -18,7 +18,7 @@ function showHideAds(value) {
   });
 }
 
-function showHideSocialNetworks(value) {
+export function showHideSocialNetworks(value) {
   executeBackgroundAction({
     modifyDOM: {
       action: 'showSocialNetworks',

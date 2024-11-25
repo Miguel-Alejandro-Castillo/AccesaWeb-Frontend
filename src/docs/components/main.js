@@ -44,10 +44,10 @@ export default class Main extends React.Component {
               functionComponent: context.functionComponent
             };
           }),
-          subItems: (item.subItems  || []).map(subItem => {
+          subItems: (item.subItems || []).map(subItem => {
             subItem.name = getI18nText(subItem.name, subItem.i18n);
             subItem.description = getI18nText(subItem.description, subItem.i18n);
-            subItem.contexts.forEach( context => {
+            subItem.contexts.forEach(context => {
               context.commands = [];
             });
             return subItem;
@@ -60,23 +60,23 @@ export default class Main extends React.Component {
 
   render() {
     return (
-      <div className='right_col module-description' role='main'> 
-      <div className='speech-recognizer-options desc-main'>
-        <p className='speech-recognizer-mode-description'>{getI18nText('accesa-web-description')}</p>
-      </div>
-      
-      {
+      <div className='right_col module-description' role='main'>
+        <div className='speech-recognizer-options desc-main'>
+          <p className='speech-recognizer-mode-description'>{getI18nText('accesa-web-description')}</p>
+        </div>
+
+        {
           this.props.itemsMenu
             .map(itemMenu => (
               <div key={getI18nText(itemMenu.name, itemMenu.i18n)}>
                 <h1>{getI18nText(itemMenu.titleMain, itemMenu.i18n)}</h1>
                 {this.getItems(itemMenu.items).sort((itemA, itemB) => itemA.name < itemB.name ? -1 : 1)
                   .map(item => (
-                      <ModuleDetail
-                        module={item}
-                        removeModule={this.props.removeModule}
-                        key={getI18nText(item.name, item.i18n)}
-                      />
+                    <ModuleDetail
+                      module={item}
+                      removeModule={this.props.removeModule}
+                      key={getI18nText(item.name, item.i18n)}
+                    />
                   ))
                 }
               </div>
