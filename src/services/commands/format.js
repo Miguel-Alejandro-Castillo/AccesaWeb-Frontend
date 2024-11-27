@@ -10,41 +10,41 @@ const lineSpacingOptions = ['none', '1', '1.25', '1.5', '1.75', '2'];
 
 const paragraphSpacingOptions = ['none', '1.5', '1.75', '2', '2.25', '2.5'];
 
-const fontSizeOptions = ['none', '50', '60', '70', '80', '90', '100', '110', '120', '130', '140', '150', '160', '170', '180', '190', '200'];
+const fontSizeOptions = ['50', '60', '70', '80', '90', '100', '110', '120', '130', '140', '150', '160', '170', '180', '190', '200'];
 
 const textAlignCommands = textAlignOptions.map(option => ({
   name: `i18n-command.change-align-${option}`,
   help: `i18n-help.change-align-${option}`,
   group: 'i18n-group.change-align',
-  action: (state, command) => changeTextAlign(state, command, option)
+  action: () => changeTextAlign(option)
 }));
 
 const fontCommands = fontOptions.map(option => ({
   name: `i18n-command.change-font-${option}`,
   help: `i18n-help.change-font-${option}`,
   group: 'i18n-group.change-font',
-  action: (state, command) => changeFont(state, command, option)
+  action: () => changeFont(option)
 }));
 
 const fontSizeCommands = fontSizeOptions.map(option => ({
   name: `i18n-command.change-font-size-${option}`,
   help: `i18n-help.change-font-size-${option}`,
   group: 'i18n-group.change-font-size',
-  action: (state, command) => changeFontSize(state, command, option)
+  action: () => changeFontSize(option)
 }));
 
 const lineSpacingCommands = lineSpacingOptions.map(option => ({
   name: `i18n-command.change-line-spacing-${option}`,
   help: `i18n-help.change-line-spacing-${option}`,
   group: 'i18n-group.change-line-spacing',
-  action: (state, command, background, allTheCommands) => changeLineSpacing(state, command, option, allTheCommands)
+  action: () => changeLineSpacing(option)
 }));
 
 const paragraphSpacingCommands = paragraphSpacingOptions.map(option => ({
   name: `i18n-command.change-paragraph-spacing-${option}`,
   help: `i18n-help.change-paragraph-spacing-${option}`,
   group: 'i18n-group.change-paragraph-spacing',
-  action: (state, command) => changeParagraphSpacing(state, command, option)
+  action: () => changeParagraphSpacing(option)
 }));
 
 function i18nEnTextAlign() {
@@ -107,7 +107,7 @@ function i18nParagraphSpacing(language) {
   }, {});
 }
 
-function changeTextAlign(state, command, value) {
+export function changeTextAlign(value) {
   executeBackgroundAction({
     modifyDOM: {
       action: 'changeTextAlign',
@@ -116,7 +116,7 @@ function changeTextAlign(state, command, value) {
   });
 }
 
-function changeFont(state, command, value) {
+export function changeFont(value) {
   executeBackgroundAction({
     modifyDOM: {
       action: 'changeFont',
@@ -125,7 +125,7 @@ function changeFont(state, command, value) {
   });
 }
 
-function changeFontSize(state, command, value) {
+export function changeFontSize(value) {
   executeBackgroundAction({
     modifyDOM: {
       action: 'changeFontSize',
@@ -134,7 +134,7 @@ function changeFontSize(state, command, value) {
   });
 }
 
-function changeLineSpacing(state, command, value) {
+export function changeLineSpacing(value) {
   executeBackgroundAction({
     modifyDOM: {
       action: 'changeLineSpacing',
@@ -143,7 +143,7 @@ function changeLineSpacing(state, command, value) {
   });
 }
 
-function changeParagraphSpacing(state, command, value) {
+export function changeParagraphSpacing(value) {
   executeBackgroundAction({
     modifyDOM: {
       action: 'changeParagraphSpacing',
@@ -237,13 +237,7 @@ export default {
       context: 'align',
       name: 'i18n-name',
       commands: [...textAlignCommands
-        /*{
-        name: '*',
-        help: 'i18n-help.*',
-        group: 'i18n-group',
-        action: changeAlign,
-        switchToContext: 'root'
-      }*/],
+      ],
       i18n: {
         en: {
           name: 'Align',
@@ -268,19 +262,13 @@ export default {
       name: 'i18n-name',
       commands: [
         ...fontCommands
-        /*{
-        name: '*',
-        help: 'i18n-help.*',
-        group: 'i18n-group',
-        action: changeFont,
-        switchToContext: 'root'
-      }*/],
+      ],
       i18n: {
         en: {
           'name': 'Font',
           'help.*': 'Please select the font you want to set.',
           'group': 'Font',
-          'font-params': 'Please select the font you want to set: arial or dyslexic',
+          'font-params': 'Please select the font you want to set: none, arial or dyslexic',
           'exit': 'Exit',
           ...i18nEnFont()
         },
@@ -288,7 +276,7 @@ export default {
           'name': 'Fuente',
           'help.*': 'Indique la fuente que desea configurar.',
           'group': 'Fuente',
-          'font-params': 'Indique la fuente que desea configurar: arial o dyslexic',
+          'font-params': 'Indique la fuente que desea configurar: ninguino, arial o dyslexic',
           'exit': 'Salir',
           ...i18nEsFont()
         }
@@ -297,28 +285,22 @@ export default {
     {
       context: 'font-size',
       name: 'i18n-name',
-      commands: [/*{
-        name: '*',
-        help: 'i18n-help.*',
-        group: 'i18n-group',
-        action: changeFontSize,
-        switchToContext: 'root'
-      }*/
+      commands: [
         ...fontSizeCommands],
       i18n: {
         en: {
           'name': 'Font size',
-          'help.*': 'Please select a font size between 50 and 150',
+          'help.*': 'Please select a font size between 50% and 200%',
           'group': 'Font',
-          'font-size-params': 'Please select a font size between 50 and 150',
+          'font-size-params': 'Please select a font size between 50% and 200%',
           'exit': 'Exit',
           ...i18nFontSize('en')
         },
         es: {
           'name': 'Tamaño de fuente',
-          'help.*': 'Indique un tamaño de fuente entre 50 y 150',
+          'help.*': 'Indique un tamaño de fuente entre 50% y 200%',
           'group': 'Fuente',
-          'font-size-params': 'Indique un tamaño de fuente entre 50 y 150',
+          'font-size-params': 'Indique un tamaño de fuente entre 50% y 200%',
           'exit': 'Salir',
           ...i18nFontSize('es')
         }
@@ -329,28 +311,21 @@ export default {
       name: 'i18n-name',
       commands: [
         ...lineSpacingCommands
-        /*{
-          name: '*',
-          help: 'i18n-help.*',
-          group: 'i18n-group',
-          action: changeLineSpacing,
-          switchToContext: 'root'
-        }*/
       ],
       i18n: {
         en: {
           'name': 'Line spacing',
-          'help.*': 'Specify a spacing between the values ​​1.5 and 2',
+          'help.*': 'Specify a spacing',
           'group.change-line-spacing': 'Spacing',
-          'spacing-params': 'Specify a spacing between the values ​​1.5 and 2',
+          'line-spacing-params': 'Specify a spacing between the values ​​1 and 2',
           'exit': 'Exit',
           ...i18nLineSpacing('en')
         },
         es: {
           'name': 'Espaciado',
-          'help.*': 'Indique un espaciado entre los valores 1,5 y 2',
+          'help.*': 'Indique un espaciado',
           'group.change-line-spacing': 'Espaciado',
-          'spacing-params': 'Indique un espaciado entre los valores 1,5 y 2',
+          'spacing-params': 'Indique un espaciado entre los valores 1 y 2',
           'exit': 'Salir',
           ...i18nLineSpacing('es')
         }
@@ -361,28 +336,21 @@ export default {
       name: 'i18n-name',
       commands: [
         ...paragraphSpacingCommands
-        /*{
-          name: '*',
-          help: 'i18n-help.*',
-          group: 'i18n-group',
-          action: changeParagraphSpacing,
-          switchToContext: 'root'
-        }*/
       ],
       i18n: {
         en: {
           'name': 'Paragraph spacing',
-          'help.*': 'Specify a spacing between the values ​2 and 2.5',
+          'help.*': 'Specify a spacing',
           'group': 'Spacing',
-          'paragraph-spacing-params': 'Specify a spacing between the values ​​2 and 2.5',
+          'paragraph-spacing-params': 'Specify a spacing between the values ​1.5 and 2.5',
           'exit': 'Exit',
           ...i18nParagraphSpacing('en')
         },
         es: {
           'name': 'Espaciado entre párrafos',
-          'help.*': 'Indique un espaciado entre los valores 2 y 2,5',
+          'help.*': 'Indique un espaciado ',
           'group': 'Espaciado',
-          'paragraph-spacing-params': 'Indique un espaciado entre los valores 2 y 2,5',
+          'paragraph-spacing-params': 'Indique un espaciado entre los valores 1.5 y 2.5',
           'exit': 'Salir',
           ...i18nParagraphSpacing('es')
         }

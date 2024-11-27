@@ -350,7 +350,7 @@ export const USER_SETTINGS_DEFAULT = {
     showSocialNetworks: true,
     changeTextAlign: 'none',
     changeFont: 'none',
-    changeFontSize: 'none',
+    changeFontSize: 100,
     changeLineSpacing: 'none',
     changeParagraphSpacing: 'none',
     changeContrast: 'none',
