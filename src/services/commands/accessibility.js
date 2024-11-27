@@ -1,23 +1,13 @@
 import { executeBackgroundAction } from './background';
 
-function disableAccessibilityHTML() {
+export function enableDisableAccessibilityHTML(value) {
   executeBackgroundAction({
     modifyDOM: {
-      action: 'enableAccessibilityHTML',
-      param: false
+      action: 'enableAccesibilityHTML',
+      param: value
     }
   });
 }
-
-function enableAccessibilityHTML() {
-  executeBackgroundAction({
-    modifyDOM: {
-      action: 'enableAccessibilityHTML',
-      param: true
-    }
-  });
-}
-
 
 export default {
   name: 'i18n-name',
@@ -29,13 +19,13 @@ export default {
       commands: [
         {
           name: 'i18n-command.disable-accessibility',
-          action: disableAccessibilityHTML,
+          action: () => enableDisableAccessibilityHTML(false),
           help: 'i18n-help.disable-accessibility',
           group: 'i18n-group.disable-accessibility'
         },
         {
           name: 'i18n-command.enable-accessibility',
-          action: enableAccessibilityHTML,
+          action: () => enableDisableAccessibilityHTML(true),
           help: 'i18n-help.enable-accessibility',
           group: 'i18n-group.enable-accessibility'
         }],
@@ -49,7 +39,7 @@ export default {
           'group.enable-accessibility': 'Accessibility'
         },
         es: {
-          'command.disable-accessibility': 'Desactivar accesibilidad',
+          'command.disable-accessibility': 'desactivar accesibilidad',
           'help.disable-accessibility': 'Desactiva la accesibilidad HTML',
           'group.disable-accessibility': 'Accesibilidad',
           'command.enable-accessibility': 'activar accesibilidad',

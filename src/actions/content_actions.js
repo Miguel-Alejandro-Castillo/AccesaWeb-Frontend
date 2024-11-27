@@ -2,6 +2,8 @@ import $ from 'jquery';
 
 const chrome = window.chrome;
 
+const CLASS_ARIA_ADDED = 'aria-added-aw';
+
 const socialNetworks = ['facebook', 'twitter', 'whatsapp', 'youtube', 'instagram', 'telegram', 'linkedin', 'qzone', 'pinterest', 'badoo', 'tiktok', 'github'];
 
 function showHideImages(param) {
@@ -201,7 +203,6 @@ function showSocialNetworks() {
 }
 
 function hideSocialNetworks() {
-  //localStorage.setItem('input.name.hideSocialNetworks', true);
   $("a[href]:not([href=''])").filter(function() {
     let hrefValue = $(this).attr('href');
     hrefValue = hrefValue.toLowerCase();
@@ -215,172 +216,118 @@ function enableDisableAccesibilityHTML(param) {
   param ? enableAccesibilityHTML() : disableAccesibilityHTML();
 }
 
+function addAriaAttribute(selector, attribute, value) {
+  $(selector).each(function() {
+    if (!$(this).attr(attribute)) {
+      $(this).attr(attribute, value).addClass(CLASS_ARIA_ADDED);
+    }
+  });
+}
+
+function addAriaLabelIfContains(selector, regex, label) {
+  $(selector).each(function() {
+    const idOrClass = $(this).attr('id') || $(this).attr('class');
+    if (regex.test(idOrClass) && !$(this).attr('aria-label')) {
+      $(this).attr('aria-label', label).addClass(CLASS_ARIA_ADDED);
+    }
+  });
+}
+
 function enableAccesibilityHTML() {
   // Agregar roles ARIA a elementos específicos
-  $('nav:not([role]), nav[role=""]').attr('role', 'navigation');
-  $('header:not([role]), header[role=""]').attr('role', 'banner');
-  $('footer:not([role]), footer[role=""]').attr('role', 'contentinfo');
-  $('main:not([role]), main[role=""]').attr('role', 'main');
-  $('aside:not([role]), aside[role=""]').attr('role', 'complementary');
-  $('section:not([role]), section[role=""]').attr('role', 'region');
-  $('form:not([role]), form[role=""]').attr('role', 'form');
-  $('article:not([role]), article[role=""]').attr('role', 'article');
-  $('button:not([role]), button[role=""]').attr('role', 'button');
-  $('ul:not([role]), ul[role=""]').attr('role', 'list');
-  $('ol:not([role]), ol[role=""]').attr('role', 'list');
-  $('li:not([role]), li[role=""]').attr('role', 'listitem');
-  $('table:not([role]), table[role=""]').attr('role', 'table');
-  $('th:not([role]), th[role=""]').attr('role', 'columnheader');
-  $('td:not([role]), td[role=""]').attr('role', 'cell');
-  $('tr:not([role]), tr[role=""]').attr('role', 'row');
-  $('img:not([role]), img[role=""]').attr('role', 'img');
-  $('a:not([role]), a[role=""]').attr('role', 'link');
+  addAriaAttribute('nav:not([role]), nav[role=""]', 'role', 'navigation');
+  addAriaAttribute('header:not([role]), header[role=""]', 'role', 'banner');
+  addAriaAttribute('footer:not([role]), footer[role=""]', 'role', 'contentinfo');
+  addAriaAttribute('main:not([role]), main[role=""]', 'role', 'main');
+  addAriaAttribute('aside:not([role]), aside[role=""]', 'role', 'complementary');
+  addAriaAttribute('section:not([role]), section[role=""]', 'role', 'region');
+  addAriaAttribute('form:not([role]), form[role=""]', 'role', 'form');
+  addAriaAttribute('article:not([role]), article[role=""]', 'role', 'article');
+  addAriaAttribute('button:not([role]), button[role=""]', 'role', 'button');
+  addAriaAttribute('ul:not([role]), ul[role=""]', 'role', 'list');
+  addAriaAttribute('ol:not([role]), ol[role=""]', 'role', 'list');
+  addAriaAttribute('li:not([role]), li[role=""]', 'role', 'listitem');
+  addAriaAttribute('table:not([role]), table[role=""]', 'role', 'table');
+  addAriaAttribute('th:not([role]), th[role=""]', 'role', 'columnheader');
+  addAriaAttribute('td:not([role]), td[role=""]', 'role', 'cell');
+  addAriaAttribute('tr:not([role]), tr[role=""]', 'role', 'row');
+  addAriaAttribute('img:not([role]), img[role=""]', 'role', 'img');
+  addAriaAttribute('a:not([role]), a[role=""]', 'role', 'link');
 
   // Agregar atributos ARIA a elementos con identificadores específicos
-  $('[id!=""]').each(function() {
-    const id = $(this).attr('id');
-    if (/captcha/i.test(id)) { // Verifica si el id contiene la palabra "captcha"
-      const ariaLabel = $(this).attr('aria-label');
-      if (!ariaLabel) { // Verifica si el aria-label está vacío o no definido
-        $(this).attr('aria-label', 'captcha');
-      }
-    }
-  });
+  addAriaLabelIfContains('[id!=""]', /captcha/i, 'captcha');
 
   // Agregar atributos ARIA a elementos con clases específicas
-  $('[class!=""]').each(function() {
-    const clazz = $(this).attr('class');
-    if (/captcha/i.test(clazz)) { // Verifica si el class contiene la palabra "captcha"
-      const ariaLabel = $(this).attr('aria-label');
-      if (!ariaLabel) { // Verifica si el aria-label está vacío o no definido
-        $(this).attr('aria-label', 'captcha');
-      }
-    }
-  });
+  addAriaLabelIfContains('[class!=""]', /captcha/i, 'captcha');
 
   // Agregar atributos ARIA a elementos de formulario
   $('input[id!=""], textarea[id!=""], select[id!=""]').each(function() {
     const id = $(this).attr('id');
     const label = $(`label[for="${id}"]`);
-    if (label.length > 0) {
-      const ariaLabelledBy = $(this).attr('aria-labelledby');
-      if (!ariaLabelledBy) { // Verifica si el aria-labelledby está vacío o no definido
-        $(this).attr('aria-labelledby', id);
-      }
+    if (label.length > 0 && !$(this).attr('aria-labelledby')) {
+      $(this).attr('aria-labelledby', id).addClass(CLASS_ARIA_ADDED);
     }
   });
 
   // Agregar atributos ARIA a botones y enlaces
   $('button,a').each(function() {
     const text = $(this).text().trim();
-    if (text) {
-      const ariaLabel = $(this).attr('aria-label');
-      if (!ariaLabel) { // Verifica si el aria-label está vacío o no definido
-        $(this).attr('aria-label', text);
-      }
+    if (text && !$(this).attr('aria-label')) {
+      $(this).attr('aria-label', text).addClass(CLASS_ARIA_ADDED);
     }
   });
 
   // Agregar atributos ARIA a imágenes
   $('img').each(function() {
-    const alt = $(this).attr('alt');
-    if (!alt) {
-      $(this).attr('aria-hidden', 'true');
+    if (!$(this).attr('alt')) {
+      $(this).attr('aria-hidden', 'true').addClass(CLASS_ARIA_ADDED);
     }
   });
 
   // Agregar atributos ARIA a elementos interactivos
-  $('[tabindex]').each(function() {
-    const role = $(this).attr('role');
-    if (!role) { // Verifica si el role está vacío o no definido
-      $(this).attr('role', 'button');
-    }
-  });
+  addAriaAttribute('[tabindex]', 'role', 'button');
 
   // Agregar atributos ARIA a elementos con estados
   $('[aria-expanded]').each(function() {
     const expanded = $(this).attr('aria-expanded');
-    if (expanded === 'true') {
-      $(this).attr('aria-expanded', 'true');
-    } else {
-      $(this).attr('aria-expanded', 'false');
-    }
+    $(this).attr('aria-expanded', expanded === 'true' ? 'true' : 'false').addClass(CLASS_ARIA_ADDED);
   });
-
-  // Agregar atributos ARIA a elementos con descripciones
-  /* A efectos practicos esta logica no hace nada
-  $('[aria-describedby]').each(function() {
-    const describedby = $(this).attr('aria-describedby');
-    if (describedby) {
-      $(this).attr('aria-describedby', describedby);
-    }
-  });
-  */
 
   // Agregar aria-live a elementos dinámicos
-  $('[data-dynamic]').each(function() {
-    const ariaLive = $(this).attr('aria-live');
-    if (!ariaLive) { // Verifica si el aria-live está vacío o no definido
-      $(this).attr('aria-live', 'polite');
-    }
-  });
+  addAriaAttribute('[data-dynamic]', 'aria-live', 'polite');
 
   // Agregar aria-controls a elementos que controlan otros elementos
   $('[data-controls]').each(function() {
     const controls = $(this).attr('data-controls');
-    if (controls) {
-      const ariaControls = $(this).attr('aria-controls');
-      if (!ariaControls) { // Verifica si el aria-controls está vacío o no definido
-        $(this).attr('aria-controls', controls);
-      }
+    if (controls && !$(this).attr('aria-controls')) {
+      $(this).attr('aria-controls', controls).addClass(CLASS_ARIA_ADDED);
     }
   });
 
   // Agregar aria-haspopup a elementos que abren menús o diálogos
-  $('[data-has-popup]').each(function() {
-    const ariaHasPopup = $(this).attr('aria-haspopup');
-    if (!ariaHasPopup) { // Verifica si el aria-haspopup está vacío o no definido
-      $(this).attr('aria-haspopup', 'true');
-    }
-  });
+  addAriaAttribute('[data-has-popup]', 'aria-haspopup', 'true');
 
   // Agregar aria-current a elementos que representan el estado actual
-  $('.current').each(function() {
-    const ariaCurrent = $(this).attr('aria-current');
-    if (!ariaCurrent) { // Verifica si el aria-current está vacío o no definido
-      $(this).attr('aria-current', 'page');
-    }
-  });
+  addAriaAttribute('.current', 'aria-current', 'page');
 
   // Agregar role="alert" a elementos que muestran mensajes importantes
-  $('.alert').each(function() {
-    const role = $(this).attr('role');
-    if (!role) { // Verifica si el role está vacío o no definido
-      $(this).attr('role', 'alert');
-    }
-  });
+  addAriaAttribute('.alert', 'role', 'alert');
 }
 
 function disableAccesibilityHTML() {
+  $('.' + CLASS_ARIA_ADDED).each(function() {
+    $(this).removeAttr('role')
+      .removeAttr('aria-label')
+      .removeAttr('aria-labelledby')
+      .removeAttr('aria-hidden')
+      .removeAttr('aria-expanded')
+      .removeAttr('aria-live')
+      .removeAttr('aria-controls')
+      .removeAttr('aria-haspopup')
+      .removeAttr('aria-current')
+      .removeClass(CLASS_ARIA_ADDED);
+  });
 }
-
-
-/*
-export default {
-  showImages,
-  hideImages,
-  showAds,
-  hideAds,
-  showSocialNetworks,
-  hideSocialNetworks,
-  changeAlign,
-  changeFont,
-  changeFontSize,
-  changeLineSpacing,
-  changeParagraphSpacing,
-  changeContrast
-};
-*/
 
 // Mapeo de acciones a funciones
 export const actionMap = {
