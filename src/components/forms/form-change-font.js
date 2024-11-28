@@ -12,7 +12,7 @@ const options = [
     label: getI18nText('arial'),
     value: 'arial'
   },
-  {//letra para los dislexicos hay que ver como se incorpora o como se usa
+  {
     label: getI18nText('dyslexic'),
     value: 'opendyslexic'
   }

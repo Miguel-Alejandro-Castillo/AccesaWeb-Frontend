@@ -26,21 +26,6 @@ function getInitialData(cb) {
 }
 
 function initStyle(callback) {
-  //const $style = $('<style type="text/css"></style>');
-  /*
-  const $style = document.createElement('style');
-  $style.type = 'text/css';
-  $style.load(getURL('/accesibility.css'), function() {
-    $('head').append($style);
-    window.addEventListener('load', (event) => {
-      setTimeout(function() {
-        console.log('Se ejecuto esto');
-        $('iframe').contents().find('head').append($style);
-        callback();
-      }, 250);
-    });
-  });
-  */
 
   const link = document.createElement('link');
   link.rel = 'stylesheet';
@@ -143,7 +128,6 @@ function initEvents(store, rootElement, appContainer, data) {
   };
 
   if (_.has(data, 'isOnRecognition') && data.isOnRecognition) {
-    //$(document).keydown(keydownHandler);
     document.addEventListener('keydown', keydownHandler, true);
     document.addEventListener('focus', focusElementHandler, true);
   }

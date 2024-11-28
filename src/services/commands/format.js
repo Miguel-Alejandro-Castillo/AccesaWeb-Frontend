@@ -6,9 +6,9 @@ const textAlignOptions = ['none', 'left', 'justify', 'center', 'right'];
 
 const fontOptions = ['none', 'arial', 'opendyslexic'];
 
-const lineSpacingOptions = ['none', '1', '1.25', '1.5', '1.75', '2'];
+const lineSpacingOptions = ['none', '1.5', '1.75', '2'];
 
-const paragraphSpacingOptions = ['none', '1.5', '1.75', '2', '2.25', '2.5'];
+const paragraphSpacingOptions = ['none', '2', '2.25', '2.5'];
 
 const fontSizeOptions = ['50', '60', '70', '80', '90', '100', '110', '120', '130', '140', '150', '160', '170', '180', '190', '200'];
 
