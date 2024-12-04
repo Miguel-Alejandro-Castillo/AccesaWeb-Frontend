@@ -51,7 +51,7 @@ function changeFont(param) {
 }
 
 function changeFontSize(param) {
-  const rootFontSize = parseFloat(getComputedStyle(document.documentElement).fontSize); 
+  const rootFontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
   // Obtener el tamaño de fuente del elemento raíz
   $('body *').filter(function() {
     return $(this).text().trim().length > 0;

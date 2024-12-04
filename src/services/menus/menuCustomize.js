@@ -1,8 +1,8 @@
 import contrast from '../settings/customize/contrast-adjustment';
-import changeMenuOrientation from '../settings/customize/change-menu-orientation';
-import expandendMenu from '../settings/customize/expandend-menu';
+//import changeMenuOrientation from '../settings/customize/change-menu-orientation';
+//import expandendMenu from '../settings/customize/expandend-menu';
 
-const items = [contrast, changeMenuOrientation, expandendMenu];
+const items = [contrast/*, changeMenuOrientation, expandendMenu*/];
 export default {
   name: 'i18n-name',
   titleMain: 'i18n-titleMain',

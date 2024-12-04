@@ -2,6 +2,7 @@ export default {
   en: {
     'accept': 'Accept',
     'accessa-web': 'AccesaWeb',
+    'accesa-web-description': 'Help tool for people with disabilities.',
     'activate': 'Activate',
     'active-modules': 'Active Modules',
     'active-settings': 'Active Settings',

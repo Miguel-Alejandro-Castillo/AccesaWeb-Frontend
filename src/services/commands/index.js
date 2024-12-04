@@ -36,8 +36,7 @@ import menuImages from '../menus/menuImages';
 import contrast from '../settings/customize/contrast-adjustment';
 import showHideSocialNetworks from '../settings/customize/show-hide-social-networks';
 import showHideAds from '../settings/customize/show-hide-ads';
-/*import changeMenuOrientation from '../settings/customize/change-menu-orientation';
-import expandendMenu from '../settings/customize/expandend-menu';*/
+/*import changeMenuOrientation from '../settings/customize/change-menu-orientation';*/
 import menuCustomize from '../menus/menuCustomize';
 import fontSize from '../settings/format/font-size';
 import alignText from '../settings/format/align-text';

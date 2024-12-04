@@ -193,7 +193,7 @@ export default {
           help: 'i18n-help.change-paragraph-spacing',
           action: () => { },
           switchToContext: 'paragraph-spacing',
-          group: 'i18n-group.paragraph-spacing'
+          group: 'i18n-group.change-paragraph-spacing'
         }
       ],
       i18n: {
@@ -212,7 +212,7 @@ export default {
           'group.spacing': 'Format',
           'command.change-paragraph-spacing': 'paragraph spacing',
           'help.change-paragraph-spacing': 'Add paragragraph spacing',
-          'group.paragraph-spacing': 'Format'
+          'group.change-paragraph-spacing': 'Format'
         },
         es: {
           'command.change-align': 'cambiar alineación',
@@ -229,7 +229,7 @@ export default {
           'group.spacing': 'Formato',
           'command.change-paragraph-spacing': 'cambiar espaciado entre párrafos',
           'help.change-paragraph-spacing': 'Agregar espaciado entre parrafos',
-          'group.paragraph-spacing': 'Formato'
+          'group.change-paragraph-spacing': 'Formato'
         }
       }
     },
@@ -294,6 +294,7 @@ export default {
           'group': 'Font',
           'font-size-params': 'Please select a font size between 50% and 200%',
           'exit': 'Exit',
+          'group.change-font-size': 'Font',
           ...i18nFontSize('en')
         },
         es: {
@@ -302,6 +303,7 @@ export default {
           'group': 'Fuente',
           'font-size-params': 'Indique un tamaño de fuente entre 50% y 200%',
           'exit': 'Salir',
+          'group.change-font-size': 'Fuente',
           ...i18nFontSize('es')
         }
       }
@@ -344,6 +346,7 @@ export default {
           'group': 'Spacing',
           'paragraph-spacing-params': 'Specify a spacing between the values ​1.5 and 2.5',
           'exit': 'Exit',
+          'group.change-paragraph-spacing': 'Format',
           ...i18nParagraphSpacing('en')
         },
         es: {
@@ -352,6 +355,7 @@ export default {
           'group': 'Espaciado',
           'paragraph-spacing-params': 'Indique un espaciado entre los valores 1.5 y 2.5',
           'exit': 'Salir',
+          'group.change-paragraph-spacing': 'Formato',
           ...i18nParagraphSpacing('es')
         }
       }
