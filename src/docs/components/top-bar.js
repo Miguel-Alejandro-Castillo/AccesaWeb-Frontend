@@ -3,6 +3,7 @@ import {
 } from '../i18n/i18n';
 import classnames from 'classnames';
 import React from 'react';
+import { executeBackgroundAction } from '../../services/commands/background';
 
 export default class TopBar extends React.Component {
   static propTypes = {
@@ -10,8 +11,11 @@ export default class TopBar extends React.Component {
     setLanguage: React.PropTypes.func.isRequired
   }
   resetSettings() {
-    localStorage.setItem('isResetSettings', true);
+    //localStorage.setItem('isResetSettings', true);
     document.dispatchEvent(new Event('resetSettings'));
+    executeBackgroundAction({
+      resetUserSettings: true
+    });
   }
   render() {
     const currentLanguage = this.props.currentLanguage.split('-')[0];

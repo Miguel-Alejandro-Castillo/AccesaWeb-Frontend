@@ -42,7 +42,8 @@ const actionHandlers = {
   removeBookmark,
   shareSpeechRecognizerState,
   startSpeechRecognition,
-  modifyDOM
+  modifyDOM,
+  resetUserSettings
 };
 
 const docsUrl = chrome.extension.getURL('docs.html');
@@ -71,6 +72,15 @@ function updateNestedProperty(key, nestedKey, nestedValue, callback) {
 function modifyDOM(sender, actionValue, sendResponse) {
   updateNestedProperty('userSettings', actionValue.action, actionValue.param, function() {
     sendDataToTabs({modifyDOM: actionValue});
+  });
+}
+
+function resetUserSettings() {
+  chrome.storage.local.set(USER_SETTINGS_DEFAULT, function() {
+    const settings = USER_SETTINGS_DEFAULT.userSettings;
+    Object.keys(settings).forEach(key => {
+      sendDataToTabs({modifyDOM: {action: key, param: settings[key]}});
+    });
   });
 }
 
@@ -244,9 +254,7 @@ chrome.runtime.onMessage.addListener(handleMessageFromContent);
 chrome.tabs.onRemoved.addListener(sendTurnedOn);
 
 chrome.runtime.onInstalled.addListener(() => {
-  chrome.storage.local.set(USER_SETTINGS_DEFAULT, function() {
-    console.log('User Settings is set to ', USER_SETTINGS_DEFAULT);
-  });
+  chrome.storage.local.set(USER_SETTINGS_DEFAULT);
   initPropertiesSettings();
 });
 
